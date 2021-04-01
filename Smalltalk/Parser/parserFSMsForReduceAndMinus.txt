@@ -1,0 +1,7 @@
+
+parser
+   //This is a test of parser based FSMs using the complex operations copy, -, & (which also needs reduce). 
+
+   simple4 = a+; //1 or more a's //Note that correct code for method plus is "^self copy concatenate: self star"
+   fsm6 = (a*) - ((a a)*); //Should recognize only an odd number of a's.
+   fsm7 = (a*) & ((a a)*); //Should recognize only an even number of a's.

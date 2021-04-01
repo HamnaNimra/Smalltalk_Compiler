@@ -1,0 +1,60 @@
+
+parser
+   //This is a test of parser based FSMs. 
+
+   simple1 = a; //The attribute should be "RS". We can't distinguish terminals from nonterminals here.
+   simple2 = a [read read read read]; //The attribute should still be "RS". Superfluous attributes don't matter.
+   simple3 = a [read stack node keep]; //The attribute should be "RSNK". The keep attributes is superfluous for a parser.
+   simple4 = a [read stack node noKeep]; //The attribute should be "RSN". 
+   simple5 = a [read stack node look]; //The attribute should be "L" or "".
+   simple6 = a [noStack keep]; //The attribute should be "RK".
+   simple7 = ; //The empty string
+   simple8 = a?; //0 or 1 a
+   simple9 = a*; //0 or more a's
+   simple10 = a+; //1 or more a's
+   simple11 = a | b | c | d; //a or b or c or d
+   simple12 = a b c d; //a followed by b followed by c followed by d.
+   simple13 = simple1 [noStack keep]; 
+	//The attribute for simple1 should still be "RS". You'll
+	//need to inspect simple1 to verify this.
+
+   fsm1 = a [node]; //The attribute should be "RSN".
+   fsm2 = fsm1 [noNode]; //The attribute should be "RS" but fsm1 should still be "RSN".
+   fsm3 = {fsm1}; //Braces mean LOOK. The attribute should be "LSN", "SN", or ""; i.e. NOT R.
+   fsm4 = (a* | b*); //Make sure the FSM is correct... It might not look like you expected.
+   fsm5 = fsm4 fsm4+; //fsm5 will be a mess to look at but fsm4 should NOT be buggered up...
+	//You'll need to inspect fsm4 to verify that.
+
+   fsm6 = a* b; //Two simple tests
+   fsm7 = a b*; //of concatenate
+
+   complex = a? b* c+ d;
+
+   //The following FSMs should all be ROOT BUILDING semantic actions; i.e. TREE BUILDING.
+   //Also, note that ACTION parameters should be characters, integers, or strings depending
+   //on whether their labels are #walkCharacter: #walkInteger:, or #walkString:.
+   fsm10 = a [node] => "list";   //This one should create semantic transition #buildTree: with parameters containing STRING "list" (NOT A TOKEN).
+   fsm11 = b [node] => + 1;   //This one should create semantic transition #buildTreeFromIndex: with parameters containing integer 1.
+   fsm12 = c [node] => 1;   //This one should create semantic transition #buildTreeFromIndex: with parameters containing integer 1 TOO.
+   fsm13 = d [node] => -1;   //This one should create semantic transition #buildTreeFromIndex: with parameters containing integer -1.
+   fsm14 = e [node] => #buildRoutine:with: [1 2];  //This one should create semantic transition #buildRoutine:with: with parameters containing integers 1 and 2.
+   fsm15 = f [node] => #between:and: [10 20];  //This one should create semantic transition #between:and: with parameters containing integers 10 and 20.
+   fsm16 = g [node] => #testing;  //This one should create semantic transition #testing with parameters consisting of an empty collection.
+   fsm17 = h [node] => #myBuildTree ["list"];  //This one should look just like fsm10 except for my...
+
+   //The following FSMs should all be NON-ROOT BUILDING semantic actions
+   fsm18 = i [node] #normal1:and: [10 20];  //Like the above but NOT tree building...
+   fsm19 = j [node] #normal2;  //Like the above but NOT tree building...
+   fsm20 = k [node] #normal3: ["list"];  //Like the above but NOT tree building...
+	
+
+   //The last two fsms are not needed for this assignment. We'll add it to the next assignment.
+   //But if you're bored, just uncomment them and make them work now.
+   //NOTE1: Don't do this until the scanner FSMs have been built.
+   //NOTE2: You will need to implement reduce to eliminate useless states and transitions.	
+   //fsm8 = (a*) - ((a a)*); //Should recognize only an odd number of a's.
+   //fsm9 = (a*) & ((a a)*); //Should recognize only an even number of a's.
+   //wilf0 = ((a a)* | b c | d) - (a* | b c | g); //Should recognize d. 
+	//An even number of a's but take away all a's. (so nothing)
+	//b c and take away b c (so nothing)
+	//d - g (so d along since there was no g to take away).

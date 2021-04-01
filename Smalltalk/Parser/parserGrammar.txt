@@ -1,0 +1,44 @@
+parser
+
+    output "All". //One of All, Smalltalk, Ruby, C++, C++98, JavaList, or Java.
+
+    keywords "if for else" .
+
+    Grammar {'-|'}
+        -> Statements .
+
+    Statements -> Statement * => 'walkList:' .
+
+    Statement 
+	-> 'if' '(' Expression ')' '{' Statements '}' ('else' '{' Statements '}')? => 'walkIf:' 
+	-> 'for' '(' Expression ';' Expression ';' Expression ')' '{'
+		Statements
+	   '}' => 'walkFor:' 
+	-> Expression ';' .
+
+    Expression
+        -> Expression0
+	-> Expression0 '?' Expression0 ':' Expression0 => 'walkIf:'
+	-> 'walkIdentifier:' [node] '=' Expression => 'walkAssign:'.
+
+    Expression0
+        -> Expression0 '<' Expression1 => 'walkLess:'
+        -> Expression0 '>' Expression1 => 'walkGreater:'
+        -> Expression0 '==' Expression1 => 'walkEqual:'
+	-> Expression1 .
+
+    Expression1
+        -> Expression1 '+' Expression2 => 'walkPlus:'
+        -> Expression1 '-' Expression2 => 'walkMinus:'
+	-> Expression2 .
+
+    Expression2 
+        -> Expression2 '*' Expression3 => 'walkMultiply:'
+        -> Expression2 '/' Expression3 => 'walkDivide:'
+	-> Expression3 .
+
+    Expression3 
+	-> 'walkInteger:' [node] 
+	-> 'walkIdentifier:' [node]
+        -> '(' Expression ')' 
+        -> 'walkIdentifier:' [node] '(' (Expression (',' Expression)*)? ')' => 'walkSend:'.

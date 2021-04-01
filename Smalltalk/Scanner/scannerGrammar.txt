@@ -1,0 +1,75 @@
+scanner
+
+    //Note: scanners don't use stack and node, just read/look and keep/noKeep.
+    attribute defaults "noStack" "read" "noNode" "keep".
+
+    output "All". //One of All, Smalltalk, Ruby, C++, C++98, JavaList, or Java.
+
+    uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".
+    lowercase = "abcdefghijklmnopqrstuvwxyz".
+    letter = uppercase | lowercase | "_".
+    digit = "0123456789".
+    operator = "+-*/<>=".
+
+    tab = 9 [noKeep].
+    carriageReturn = 13 [noKeep].
+    lineFeed = 10 [noKeep].
+    formFeed = 12 [noKeep].
+    blank = 32 [noKeep]. 
+
+    lineEnd = carriageReturn | lineFeed  | formFeed.
+    space = blank | tab | lineEnd.
+    others = "?[]{}()^;#:.$_" | singleQuote | doubleQuote | space.
+
+    printable = letter | digit | operator | others .
+    endOfFileCharacter = 256.
+    all = printable | endOfFileCharacter.
+
+    EndOfFile {endOfFileCharacter}
+        -> => '-|'.
+
+    WhiteSpace {all - space}
+       -> space+.
+
+    Identifier {all - (letter | digit | $_)}
+        -> letter (letter | digit | $_ )* => 'walkIdentifier:' .
+
+    Operator1 {all}
+        -> $+ => '+' 
+        -> $- => '-' 
+        -> $* => '*' 
+        -> $/ => '/' 
+	-> $= $= => '=='
+	-> $< => '<'
+	-> $> => '>' .
+
+    Operator2 {all - $=}
+	-> $= => '='.
+
+    Punctuation {all}
+	-> $, => ',' 
+	-> $; => ';' 
+	-> $? => '?' 
+	-> $: => ':' .
+
+    Brackets {all}
+        -> $( => '(' 
+        -> $) => ')' 
+        -> ${ => '{' 
+        -> $} => '}' .
+
+
+    Number {all - digit}
+        -> digit+ => 'walkInteger:' .
+
+    Comment {all}
+	-> $# [noKeep] ((all - lineEnd) [noKeep])* lineEnd [noKeep] .
+
+    //An example that uses keep and noKeep.
+    //DoubleQuotedStringOrSymbol {all - $"}
+    //    -> $" [noKeep] 
+    //        ((printable - $") [keep] | $" [noKeep] $" [keep])* 
+    //       $" [noKeep] => DoubleQuotedString
+    //    -> $" [noKeep] 
+    //        ((printable - $") [keep] | $" [noKeep] $" [keep])* 
+    //       {endOfFileCharacter} #syntaxError: ["missing end quote for double quoted string"] => DoubleQuotedString

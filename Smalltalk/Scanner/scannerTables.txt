@@ -1,0 +1,566 @@
+
+
+
+//SMALLTALK ------------------------->
+
+#(
+   (ScannerReadaheadTable 1 ('#' 'R' 6) ('{' 'RK' 23) ('}' 'RK' 24) ((256) 'L' 7) ('<' 'RK' 18) ('=' 'RK' 3) ('>' 'RK' 20) (')' 'RK' 9) ('*' 'RK' 10) ('+' 'RK' 11) (',' 'RK' 12) ('-' 'RK' 13) ('(' 'RK' 8) ('/' 'RK' 14) ('0123456789' 'RK' 2) (':' 'RK' 16) (';' 'RK' 17) ('?' 'RK' 21) ('ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz' 'RK' 4) ((9 10 12 13) 'R' 5) (' ' 'R' 5))
+   (ScannerReadaheadTable 2 ((9 10 12 13 256) 'L' 15) ('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_+-*/<>=?[]{}()^;#:.$ ' 'L' 15) ('0123456789' 'RK' 2))
+   (ScannerReadaheadTable 3 ((9 10 12 13 256) 'L' 19) ('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_0123456789+-*/<>?[]{}()^;#:.$ ' 'L' 19) ('=' 'RK' 25))
+   (ScannerReadaheadTable 4 ((9 10 12 13 256) 'L' 22) ('+-*/<>=?[]{}()^;#:.$ ' 'L' 22) ('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz' 'RK' 4))
+   (ScannerReadaheadTable 5 ((256) 'L' 1) ('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_0123456789+-*/<>=?[]{}()^;#:.$' 'L' 1) ((9 10 12 13) 'R' 5) (' ' 'R' 5))
+   (ScannerReadaheadTable 6 ((9 256) 'R' 6) ('=>?ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_abcdefghijklmnopqrstuvwxyz{} #$()*+-./0123456789:;<' 'R' 6) ((10 12 13) 'R' 1))
+   (SemanticTable 7 buildToken: '-|' 1)
+   (SemanticTable 8 buildToken: '(' 1)
+   (SemanticTable 9 buildToken: ')' 1)
+   (SemanticTable 10 buildToken: '*' 1)
+   (SemanticTable 11 buildToken: '+' 1)
+   (SemanticTable 12 buildToken: ',' 1)
+   (SemanticTable 13 buildToken: '-' 1)
+   (SemanticTable 14 buildToken: '/' 1)
+   (SemanticTable 15 buildToken: walkInteger: 1)
+   (SemanticTable 16 buildToken: ':' 1)
+   (SemanticTable 17 buildToken: ';' 1)
+   (SemanticTable 18 buildToken: '<' 1)
+   (SemanticTable 19 buildToken: '=' 1)
+   (SemanticTable 20 buildToken: '>' 1)
+   (SemanticTable 21 buildToken: '?' 1)
+   (SemanticTable 22 buildToken: walkIdentifier: 1)
+   (SemanticTable 23 buildToken: '{' 1)
+   (SemanticTable 24 buildToken: '}' 1)
+   (SemanticTable 25 buildToken: '==' 1))
+
+
+//RUBY ----------------------------------->
+
+[
+   [:ScannerReadaheadTable, 1, ['#', 'R', 6], ['{', 'RK', 23], ['}', 'RK', 24], [[256], 'L', 7], ['<', 'RK', 18], ['=', 'RK', 3], ['>', 'RK', 20], [')', 'RK', 9], ['*', 'RK', 10], ['+', 'RK', 11], [',', 'RK', 12], ['-', 'RK', 13], ['(', 'RK', 8], ['/', 'RK', 14], ['0123456789', 'RK', 2], [':', 'RK', 16], [';', 'RK', 17], ['?', 'RK', 21], ['ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz', 'RK', 4], [[9, 10, 12, 13], 'R', 5], [' ', 'R', 5]],
+   [:ScannerReadaheadTable, 2, [[9, 10, 12, 13, 256], 'L', 15], ['ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_+-*/<>=?[]{}()^;#:.$ ', 'L', 15], ['0123456789', 'RK', 2]],
+   [:ScannerReadaheadTable, 3, [[9, 10, 12, 13, 256], 'L', 19], ['ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_0123456789+-*/<>?[]{}()^;#:.$ ', 'L', 19], ['=', 'RK', 25]],
+   [:ScannerReadaheadTable, 4, [[9, 10, 12, 13, 256], 'L', 22], ['+-*/<>=?[]{}()^;#:.$ ', 'L', 22], ['0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz', 'RK', 4]],
+   [:ScannerReadaheadTable, 5, [[256], 'L', 1], ['ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_0123456789+-*/<>=?[]{}()^;#:.$', 'L', 1], [[9, 10, 12, 13], 'R', 5], [' ', 'R', 5]],
+   [:ScannerReadaheadTable, 6, [[9, 256], 'R', 6], ['=>?ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_abcdefghijklmnopqrstuvwxyz{} #$()*+-./0123456789:;<', 'R', 6], [[10, 12, 13], 'R', 1]],
+   [:SemanticTable, 7, :buildToken, '-|', 1],
+   [:SemanticTable, 8, :buildToken, '(', 1],
+   [:SemanticTable, 9, :buildToken, ')', 1],
+   [:SemanticTable, 10, :buildToken, '*', 1],
+   [:SemanticTable, 11, :buildToken, '+', 1],
+   [:SemanticTable, 12, :buildToken, ',', 1],
+   [:SemanticTable, 13, :buildToken, '-', 1],
+   [:SemanticTable, 14, :buildToken, '/', 1],
+   [:SemanticTable, 15, :buildToken, :walkInteger, 1],
+   [:SemanticTable, 16, :buildToken, :, 1],
+   [:SemanticTable, 17, :buildToken, ';', 1],
+   [:SemanticTable, 18, :buildToken, '<', 1],
+   [:SemanticTable, 19, :buildToken, '=', 1],
+   [:SemanticTable, 20, :buildToken, '>', 1],
+   [:SemanticTable, 21, :buildToken, '?', 1],
+   [:SemanticTable, 22, :buildToken, :walkIdentifier, 1],
+   [:SemanticTable, 23, :buildToken, '{', 1],
+   [:SemanticTable, 24, :buildToken, '}', 1],
+   [:SemanticTable, 25, :buildToken, '==', 1]]
+
+
+//C++: ONE EXPRESSION VERSION ---------------------->
+
+
+
+    
+//For scanningTables.h
+
+//NOTE: Strings are not allocated with new since they exist globally as part of the compiled code.
+    
+struct RawScannerReadaheadTriple {const char *string; const char *attributes; long gotoTableNumber;}; //Note: string == NULL is equivalent to "{256}" (end of file).
+struct RawScannerReadaheadTable {const char *name; long stateNumber; long size; RawScannerReadaheadTriple **triples;};
+struct RawSemanticTable {const char *name; long stateNumber; const char *action; long size; const char **parameters; long gotoTableNumber;};
+
+struct ScannerTables {
+    long scannerReadaheadTablesSize; RawScannerReadaheadTable **scannerReadaheadTables;
+    long semanticTablesSize; RawSemanticTable **semanticTables;
+};
+
+ScannerTables *scannerTables(); 
+void deleteScannerTables(ScannerTables *scannerTable);
+
+//For scanningTables.cpp
+
+ScannerTables *scannerTables () {
+   return new ScannerTables {
+      6, new RawScannerReadaheadTable* [6] {
+         new RawScannerReadaheadTable {"ScannerReadaheadTable", 0, 21, new RawScannerReadaheadTriple* [21] {
+            new RawScannerReadaheadTriple {"#", "R", 5}, 
+            new RawScannerReadaheadTriple {"{", "RK", 22}, 
+            new RawScannerReadaheadTriple {"}", "RK", 23}, 
+            new RawScannerReadaheadTriple {NULL, "L", 6}, 
+            new RawScannerReadaheadTriple {"<", "RK", 17}, 
+            new RawScannerReadaheadTriple {"=", "RK", 2}, 
+            new RawScannerReadaheadTriple {">", "RK", 19}, 
+            new RawScannerReadaheadTriple {")", "RK", 8}, 
+            new RawScannerReadaheadTriple {"*", "RK", 9}, 
+            new RawScannerReadaheadTriple {"+", "RK", 10}, 
+            new RawScannerReadaheadTriple {",", "RK", 11}, 
+            new RawScannerReadaheadTriple {"-", "RK", 12}, 
+            new RawScannerReadaheadTriple {"(", "RK", 7}, 
+            new RawScannerReadaheadTriple {"/", "RK", 13}, 
+            new RawScannerReadaheadTriple {"0123456789", "RK", 1}, 
+            new RawScannerReadaheadTriple {":", "RK", 15}, 
+            new RawScannerReadaheadTriple {";", "RK", 16}, 
+            new RawScannerReadaheadTriple {"?", "RK", 20}, 
+            new RawScannerReadaheadTriple {"ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz", "RK", 3}, 
+            new RawScannerReadaheadTriple {"\011\012\014\015", "R", 4}, 
+            new RawScannerReadaheadTriple {" ", "R", 4}}}, 
+         new RawScannerReadaheadTable {"ScannerReadaheadTable", 1, 4, new RawScannerReadaheadTriple* [4] {
+            new RawScannerReadaheadTriple {"\011\012\014\015", "L", 14}, 
+            new RawScannerReadaheadTriple {NULL, "L", 14}, 
+            new RawScannerReadaheadTriple {"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_+-*/<>=?[]{}()^;#:.$ ", "L", 14}, 
+            new RawScannerReadaheadTriple {"0123456789", "RK", 1}}}, 
+         new RawScannerReadaheadTable {"ScannerReadaheadTable", 2, 4, new RawScannerReadaheadTriple* [4] {
+            new RawScannerReadaheadTriple {"\011\012\014\015", "L", 18}, 
+            new RawScannerReadaheadTriple {NULL, "L", 18}, 
+            new RawScannerReadaheadTriple {"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_0123456789+-*/<>?[]{}()^;#:.$ ", "L", 18}, 
+            new RawScannerReadaheadTriple {"=", "RK", 24}}}, 
+         new RawScannerReadaheadTable {"ScannerReadaheadTable", 3, 4, new RawScannerReadaheadTriple* [4] {
+            new RawScannerReadaheadTriple {"\011\012\014\015", "L", 21}, 
+            new RawScannerReadaheadTriple {NULL, "L", 21}, 
+            new RawScannerReadaheadTriple {"+-*/<>=?[]{}()^;#:.$ ", "L", 21}, 
+            new RawScannerReadaheadTriple {"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz", "RK", 3}}}, 
+         new RawScannerReadaheadTable {"ScannerReadaheadTable", 4, 4, new RawScannerReadaheadTriple* [4] {
+            new RawScannerReadaheadTriple {NULL, "L", 0}, 
+            new RawScannerReadaheadTriple {"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_0123456789+-*/<>=?[]{}()^;#:.$", "L", 0}, 
+            new RawScannerReadaheadTriple {"\011\012\014\015", "R", 4}, 
+            new RawScannerReadaheadTriple {" ", "R", 4}}}, 
+         new RawScannerReadaheadTable {"ScannerReadaheadTable", 5, 4, new RawScannerReadaheadTriple* [4] {
+            new RawScannerReadaheadTriple {"\011", "R", 5}, 
+            new RawScannerReadaheadTriple {NULL, "R", 5}, 
+            new RawScannerReadaheadTriple {"=>?ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_abcdefghijklmnopqrstuvwxyz{} #$()*+-./0123456789:;<", "R", 5}, 
+            new RawScannerReadaheadTriple {"\012\014\015", "R", 0}}}},
+      19, new RawSemanticTable* [19] {
+         new RawSemanticTable {"SemanticTable", 6, "buildToken", 1, new const char * [1] {"-|"}, 0}, 
+         new RawSemanticTable {"SemanticTable", 7, "buildToken", 1, new const char * [1] {"("}, 0}, 
+         new RawSemanticTable {"SemanticTable", 8, "buildToken", 1, new const char * [1] {")"}, 0}, 
+         new RawSemanticTable {"SemanticTable", 9, "buildToken", 1, new const char * [1] {"*"}, 0}, 
+         new RawSemanticTable {"SemanticTable", 10, "buildToken", 1, new const char * [1] {"+"}, 0}, 
+         new RawSemanticTable {"SemanticTable", 11, "buildToken", 1, new const char * [1] {","}, 0}, 
+         new RawSemanticTable {"SemanticTable", 12, "buildToken", 1, new const char * [1] {"-"}, 0}, 
+         new RawSemanticTable {"SemanticTable", 13, "buildToken", 1, new const char * [1] {"/"}, 0}, 
+         new RawSemanticTable {"SemanticTable", 14, "buildToken", 1, new const char * [1] {"walkInteger"}, 0}, 
+         new RawSemanticTable {"SemanticTable", 15, "buildToken", 1, new const char * [1] {""}, 0}, 
+         new RawSemanticTable {"SemanticTable", 16, "buildToken", 1, new const char * [1] {";"}, 0}, 
+         new RawSemanticTable {"SemanticTable", 17, "buildToken", 1, new const char * [1] {"<"}, 0}, 
+         new RawSemanticTable {"SemanticTable", 18, "buildToken", 1, new const char * [1] {"="}, 0}, 
+         new RawSemanticTable {"SemanticTable", 19, "buildToken", 1, new const char * [1] {">"}, 0}, 
+         new RawSemanticTable {"SemanticTable", 20, "buildToken", 1, new const char * [1] {"?"}, 0}, 
+         new RawSemanticTable {"SemanticTable", 21, "buildToken", 1, new const char * [1] {"walkIdentifier"}, 0}, 
+         new RawSemanticTable {"SemanticTable", 22, "buildToken", 1, new const char * [1] {"{"}, 0}, 
+         new RawSemanticTable {"SemanticTable", 23, "buildToken", 1, new const char * [1] {"}"}, 0}, 
+         new RawSemanticTable {"SemanticTable", 24, "buildToken", 1, new const char * [1] {"=="}, 0}}};
+   };
+        
+void deleteScannerTables (ScannerTables *scannerTable) {
+    for (long index0 = 0; index0 < scannerTable->scannerReadaheadTablesSize; index0++) {
+        for (long index1 = 0; index1< scannerTable->scannerReadaheadTables [index0]->size; index1++) {
+            delete scannerTable->scannerReadaheadTables [index0]->triples [index1];
+        }
+        delete [] scannerTable->scannerReadaheadTables [index0]->triples;
+        delete scannerTable->scannerReadaheadTables [index0];
+    }
+    delete [] scannerTable->scannerReadaheadTables;
+    
+    for (long index = 0; index < scannerTable->semanticTablesSize; index++) {
+        delete [] scannerTable->semanticTables [index]->parameters;
+        delete scannerTable->semanticTables [index];
+    }
+    delete [] scannerTable->semanticTables;
+    
+    delete scannerTable;
+}
+
+
+
+
+//C++: MULTI-STATEMENT VERSION ---------------------->
+
+
+
+    
+//NOTE: The following declarations should probably be moved manually to a more global location for access elsewhere...
+//NOTE: Strings are not allocated with new since they exist globally as part of the compiled code.
+    
+struct RawScannerReadaheadTriple {const char *string; const char *attributes; long gotoTableNumber;}; //Note: string == NULL is equivalent to "{256}" (end of file).
+struct RawScannerReadaheadTable {const char *name; long stateNumber; long size; RawScannerReadaheadTriple *triples;};
+struct RawSemanticTable {const char *name; long stateNumber; const char *action; long size; const char **parameters; long gotoTableNumber;};
+
+struct ScannerTables {
+    long scannerReadaheadTablesSize; RawScannerReadaheadTable *scannerReadaheadTables;
+    long semanticTablesSize; RawSemanticTable *semanticTables;
+};
+
+
+ScannerTables *scannerTables () {
+
+   //Define VARIABLES to refer to scanner readahead table TRIPLEs.
+   //FORMAT: RawScannerReadaheadTriple {const char *string; const char *attributes; long gotoTableNumber;} //Note: string == NULL is equivalent to "{256}" (end of file).
+
+   RawScannerReadaheadTriple *t0 = new RawScannerReadaheadTriple [21] {{"#", "R", 5}, {"{", "RK", 22}, {"}", "RK", 23}, {NULL, "L", 6}, {"<", "RK", 17}, {"=", "RK", 2}, {">", "RK", 19}, {")", "RK", 8}, {"*", "RK", 9}, {"+", "RK", 10}, {",", "RK", 11}, {"-", "RK", 12}, {"(", "RK", 7}, {"/", "RK", 13}, {"0123456789", "RK", 1}, {":", "RK", 15}, {";", "RK", 16}, {"?", "RK", 20}, {"ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz", "RK", 3}, {"\011\012\014\015", "R", 4}, {" ", "R", 4}};
+   RawScannerReadaheadTriple *t1 = new RawScannerReadaheadTriple [4] {{"\011\012\014\015", "L", 14}, {NULL, "L", 14}, {"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_+-*/<>=?[]{}()^;#:.$ ", "L", 14}, {"0123456789", "RK", 1}};
+   RawScannerReadaheadTriple *t2 = new RawScannerReadaheadTriple [4] {{"\011\012\014\015", "L", 18}, {NULL, "L", 18}, {"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_0123456789+-*/<>?[]{}()^;#:.$ ", "L", 18}, {"=", "RK", 24}};
+   RawScannerReadaheadTriple *t3 = new RawScannerReadaheadTriple [4] {{"\011\012\014\015", "L", 21}, {NULL, "L", 21}, {"+-*/<>=?[]{}()^;#:.$ ", "L", 21}, {"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz", "RK", 3}};
+   RawScannerReadaheadTriple *t4 = new RawScannerReadaheadTriple [4] {{NULL, "L", 0}, {"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_0123456789+-*/<>=?[]{}()^;#:.$", "L", 0}, {"\011\012\014\015", "R", 4}, {" ", "R", 4}};
+   RawScannerReadaheadTriple *t5 = new RawScannerReadaheadTriple [4] {{"\011", "R", 5}, {NULL, "R", 5}, {"=>?ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_abcdefghijklmnopqrstuvwxyz{} #$()*+-./0123456789:;<", "R", 5}, {"\012\014\015", "R", 0}};
+
+   //Define an array of scanner readahead tables.
+   //FORMAT: RawScannerReadaheadTable {const char *name; long stateNumber; long size; RawScannerReadaheadTriple *triples;}
+   RawScannerReadaheadTable *scannerReadaheadTables = new RawScannerReadaheadTable [6] {
+      {"ScannerReadaheadTable", 0, 21, &t0[0]}, 
+      {"ScannerReadaheadTable", 1, 4, &t1[0]}, 
+      {"ScannerReadaheadTable", 2, 4, &t2[0]}, 
+      {"ScannerReadaheadTable", 3, 4, &t3[0]}, 
+      {"ScannerReadaheadTable", 4, 4, &t4[0]}, 
+      {"ScannerReadaheadTable", 5, 4, &t5[0]}};
+
+   //Define VARIABLES to refer to semantic table PARAMETERs.
+   //FORMAT {string0, string1, ...} 
+   const char **p6 = new const char * [1] {"-|"};
+   const char **p7 = new const char * [1] {"("};
+   const char **p8 = new const char * [1] {")"};
+   const char **p9 = new const char * [1] {"*"};
+   const char **p10 = new const char * [1] {"+"};
+   const char **p11 = new const char * [1] {","};
+   const char **p12 = new const char * [1] {"-"};
+   const char **p13 = new const char * [1] {"/"};
+   const char **p14 = new const char * [1] {"walkInteger:"};
+   const char **p15 = new const char * [1] {":"};
+   const char **p16 = new const char * [1] {";"};
+   const char **p17 = new const char * [1] {"<"};
+   const char **p18 = new const char * [1] {"="};
+   const char **p19 = new const char * [1] {">"};
+   const char **p20 = new const char * [1] {"?"};
+   const char **p21 = new const char * [1] {"walkIdentifier:"};
+   const char **p22 = new const char * [1] {"{"};
+   const char **p23 = new const char * [1] {"}"};
+   const char **p24 = new const char * [1] {"=="};
+
+   //Define an array of semantic tables.
+   //FORMAT SemanticTable {const char *name; long stateNumber; const char *action; long size; const char **parameters; long gotoTableNumber;}
+   RawSemanticTable *semanticTables = new RawSemanticTable [19] {
+      {"SemanticTable", 6, "buildToken", 1, p6, 0}, 
+      {"SemanticTable", 7, "buildToken", 1, p7, 0}, 
+      {"SemanticTable", 8, "buildToken", 1, p8, 0}, 
+      {"SemanticTable", 9, "buildToken", 1, p9, 0}, 
+      {"SemanticTable", 10, "buildToken", 1, p10, 0}, 
+      {"SemanticTable", 11, "buildToken", 1, p11, 0}, 
+      {"SemanticTable", 12, "buildToken", 1, p12, 0}, 
+      {"SemanticTable", 13, "buildToken", 1, p13, 0}, 
+      {"SemanticTable", 14, "buildToken", 1, p14, 0}, 
+      {"SemanticTable", 15, "buildToken", 1, p15, 0}, 
+      {"SemanticTable", 16, "buildToken", 1, p16, 0}, 
+      {"SemanticTable", 17, "buildToken", 1, p17, 0}, 
+      {"SemanticTable", 18, "buildToken", 1, p18, 0}, 
+      {"SemanticTable", 19, "buildToken", 1, p19, 0}, 
+      {"SemanticTable", 20, "buildToken", 1, p20, 0}, 
+      {"SemanticTable", 21, "buildToken", 1, p21, 0}, 
+      {"SemanticTable", 22, "buildToken", 1, p22, 0}, 
+      {"SemanticTable", 23, "buildToken", 1, p23, 0}, 
+      {"SemanticTable", 24, "buildToken", 1, p24, 0}
+   };
+
+   ScannerTables *scannerTables = new ScannerTables {
+      6, scannerReadaheadTables,
+      19, semanticTables
+   };
+
+   return scannerTables;
+}
+
+        
+void deleteScannerTables (ScannerTables *scannerTable) {
+    for (long index = 0; index < scannerTable->scannerReadaheadTablesSize; index++) {
+        RawScannerReadaheadTable &scannerReadaheadTable = scannerTable->scannerReadaheadTables [index];
+        for (long index2 = 0; index2 < scannerReadaheadTable.size; index2++) {
+            delete [] scannerReadaheadTable.triples [index2].string;
+        }
+            
+        delete [] scannerReadaheadTable.triples;
+    }
+    
+    delete [] scannerTable->scannerReadaheadTables;
+    for (long index = 0; index < scannerTable->semanticTablesSize; index++) {
+        delete [] scannerTable->semanticTables [index].parameters;
+    }
+    
+    delete [] scannerTable->semanticTables;
+}
+
+
+
+
+//C++98 ----------------------------------->
+
+
+
+    
+//NOTE: The following declarations should probably be moved manually to a more global location for access elsewhere...
+//NOTE: Strings are not allocated with new since they exist globally as part of the compiled code.
+    
+struct RawScannerReadaheadTriple {const char *string; const char *attributes; long gotoTableNumber;}; //Note: string == NULL is equivalent to "{256}" (end of file).
+struct RawScannerReadaheadTable {const char *name; long stateNumber; long size; RawScannerReadaheadTriple *triples;};
+struct RawSemanticTable {const char *name; long stateNumber; const char *action; long size; const char **parameters; long gotoTableNumber;};
+
+struct ScannerTables {
+    long scannerReadaheadTablesSize; RawScannerReadaheadTable *scannerReadaheadTables;
+    long semanticTablesSize; RawSemanticTable *semanticTables;
+};
+
+
+#define copy(a,b) CopyMemory (a, b, sizeof (b))
+
+ScannerTables *scannerTables () {
+
+   //Define VARIABLES to refer to scanner readahead table TRIPLEs.
+   //FORMAT: RawScannerReadaheadTriple {const char *string; const char *attributes; long gotoTableNumber;} //Note: string == NULL is equivalent to "{256}" (end of file).
+
+   RawScannerReadaheadTriple *t0 = new RawScannerReadaheadTriple [21] {{"#", "R", 5}, {"{", "RK", 22}, {"}", "RK", 23}, {NULL, "L", 6}, {"<", "RK", 17}, {"=", "RK", 2}, {">", "RK", 19}, {")", "RK", 8}, {"*", "RK", 9}, {"+", "RK", 10}, {",", "RK", 11}, {"-", "RK", 12}, {"(", "RK", 7}, {"/", "RK", 13}, {"0123456789", "RK", 1}, {":", "RK", 15}, {";", "RK", 16}, {"?", "RK", 20}, {"ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz", "RK", 3}, {"\011\012\014\015", "R", 4}, {" ", "R", 4}};
+   RawScannerReadaheadTriple *t1 = new RawScannerReadaheadTriple [4] {{"\011\012\014\015", "L", 14}, {NULL, "L", 14}, {"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_+-*/<>=?[]{}()^;#:.$ ", "L", 14}, {"0123456789", "RK", 1}};
+   RawScannerReadaheadTriple *t2 = new RawScannerReadaheadTriple [4] {{"\011\012\014\015", "L", 18}, {NULL, "L", 18}, {"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_0123456789+-*/<>?[]{}()^;#:.$ ", "L", 18}, {"=", "RK", 24}};
+   RawScannerReadaheadTriple *t3 = new RawScannerReadaheadTriple [4] {{"\011\012\014\015", "L", 21}, {NULL, "L", 21}, {"+-*/<>=?[]{}()^;#:.$ ", "L", 21}, {"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz", "RK", 3}};
+   RawScannerReadaheadTriple *t4 = new RawScannerReadaheadTriple [4] {{NULL, "L", 0}, {"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_0123456789+-*/<>=?[]{}()^;#:.$", "L", 0}, {"\011\012\014\015", "R", 4}, {" ", "R", 4}};
+   RawScannerReadaheadTriple *t5 = new RawScannerReadaheadTriple [4] {{"\011", "R", 5}, {NULL, "R", 5}, {"=>?ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_abcdefghijklmnopqrstuvwxyz{} #$()*+-./0123456789:;<", "R", 5}, {"\012\014\015", "R", 0}};
+
+   //Define an array of scanner readahead tables.
+   //FORMAT: RawScannerReadaheadTable {const char *name; long stateNumber; long size; RawScannerReadaheadTriple *triples;}
+   RawScannerReadaheadTable *scannerReadaheadTables = new RawScannerReadaheadTable [6] {
+      {"ScannerReadaheadTable", 0, 21, &t0[0]}, 
+      {"ScannerReadaheadTable", 1, 4, &t1[0]}, 
+      {"ScannerReadaheadTable", 2, 4, &t2[0]}, 
+      {"ScannerReadaheadTable", 3, 4, &t3[0]}, 
+      {"ScannerReadaheadTable", 4, 4, &t4[0]}, 
+      {"ScannerReadaheadTable", 5, 4, &t5[0]}};
+
+   //Define VARIABLES to refer to semantic table PARAMETERs.
+   //FORMAT {string0, string1, ...} 
+   const char **p6 = new const char * [1] {"-|"};
+   const char **p7 = new const char * [1] {"("};
+   const char **p8 = new const char * [1] {")"};
+   const char **p9 = new const char * [1] {"*"};
+   const char **p10 = new const char * [1] {"+"};
+   const char **p11 = new const char * [1] {","};
+   const char **p12 = new const char * [1] {"-"};
+   const char **p13 = new const char * [1] {"/"};
+   const char **p14 = new const char * [1] {"walkInteger:"};
+   const char **p15 = new const char * [1] {":"};
+   const char **p16 = new const char * [1] {";"};
+   const char **p17 = new const char * [1] {"<"};
+   const char **p18 = new const char * [1] {"="};
+   const char **p19 = new const char * [1] {">"};
+   const char **p20 = new const char * [1] {"?"};
+   const char **p21 = new const char * [1] {"walkIdentifier:"};
+   const char **p22 = new const char * [1] {"{"};
+   const char **p23 = new const char * [1] {"}"};
+   const char **p24 = new const char * [1] {"=="};
+
+   //Define an array of semantic tables.
+   //FORMAT SemanticTable {const char *name; long stateNumber; const char *action; long size; const char **parameters; long gotoTableNumber;}
+   RawSemanticTable *semanticTables = new RawSemanticTable [19] {
+      {"SemanticTable", 6, "buildToken", 1, p6, 0}, 
+      {"SemanticTable", 7, "buildToken", 1, p7, 0}, 
+      {"SemanticTable", 8, "buildToken", 1, p8, 0}, 
+      {"SemanticTable", 9, "buildToken", 1, p9, 0}, 
+      {"SemanticTable", 10, "buildToken", 1, p10, 0}, 
+      {"SemanticTable", 11, "buildToken", 1, p11, 0}, 
+      {"SemanticTable", 12, "buildToken", 1, p12, 0}, 
+      {"SemanticTable", 13, "buildToken", 1, p13, 0}, 
+      {"SemanticTable", 14, "buildToken", 1, p14, 0}, 
+      {"SemanticTable", 15, "buildToken", 1, p15, 0}, 
+      {"SemanticTable", 16, "buildToken", 1, p16, 0}, 
+      {"SemanticTable", 17, "buildToken", 1, p17, 0}, 
+      {"SemanticTable", 18, "buildToken", 1, p18, 0}, 
+      {"SemanticTable", 19, "buildToken", 1, p19, 0}, 
+      {"SemanticTable", 20, "buildToken", 1, p20, 0}, 
+      {"SemanticTable", 21, "buildToken", 1, p21, 0}, 
+      {"SemanticTable", 22, "buildToken", 1, p22, 0}, 
+      {"SemanticTable", 23, "buildToken", 1, p23, 0}, 
+      {"SemanticTable", 24, "buildToken", 1, p24, 0}
+   };
+
+   ScannerTables *scannerTables = new ScannerTables; ScannerTables onStackScannerTables = {
+      6, scannerReadaheadTables,
+      19, semanticTables
+   };
+   copy (scannerTables, &onStackScannerTables);
+
+   return scannerTables;
+}
+
+#undef copy
+
+        
+void deleteScannerTables (ScannerTables *scannerTable) {
+    for (long index = 0; index < scannerTable->scannerReadaheadTablesSize; index++) {
+        RawScannerReadaheadTable &scannerReadaheadTable = scannerTable->scannerReadaheadTables [index];
+        for (long index2 = 0; index2 < scannerReadaheadTable.size; index2++) {
+            delete [] scannerReadaheadTable.triples [index2].string;
+        }
+            
+        delete [] scannerReadaheadTable.triples;
+    }
+    
+    delete [] scannerTable->scannerReadaheadTables;
+    for (long index = 0; index < scannerTable->semanticTablesSize; index++) {
+        delete [] scannerTable->semanticTables [index].parameters;
+    }
+    
+    delete [] scannerTable->semanticTables;
+}
+
+
+
+
+//JAVA ------------------------------------>
+
+
+
+    
+//NOTE: The following declarations should probably be moved manually to a more global location for access elsewhere...
+//NOTE: Strings are not allocated with new since they exist globally as part of the compiled code.
+    
+struct RawScannerReadaheadTriple {const char *string; const char *attributes; long gotoTableNumber;}; //Note: string == NULL is equivalent to "{256}" (end of file).
+struct RawScannerReadaheadTable {const char *name; long stateNumber; long size; RawScannerReadaheadTriple *triples;};
+struct RawSemanticTable {const char *name; long stateNumber; const char *action; long size; const char **parameters; long gotoTableNumber;};
+
+struct ScannerTables {
+    long scannerReadaheadTablesSize; RawScannerReadaheadTable *scannerReadaheadTables;
+    long semanticTablesSize; RawSemanticTable *semanticTables;
+};
+
+
+#define copy(a,b) CopyMemory (a, b, sizeof (b))
+
+ScannerTables *scannerTables () {
+
+   //Define VARIABLES to refer to scanner readahead table TRIPLEs.
+   //FORMAT: RawScannerReadaheadTriple {const char *string; const char *attributes; long gotoTableNumber;} //Note: string == NULL is equivalent to "{256}" (end of file).
+
+   RawScannerReadaheadTriple *t0 = new RawScannerReadaheadTriple [21] {{"#", "R", 5}, {"{", "RK", 22}, {"}", "RK", 23}, {NULL, "L", 6}, {"<", "RK", 17}, {"=", "RK", 2}, {">", "RK", 19}, {")", "RK", 8}, {"*", "RK", 9}, {"+", "RK", 10}, {",", "RK", 11}, {"-", "RK", 12}, {"(", "RK", 7}, {"/", "RK", 13}, {"0123456789", "RK", 1}, {":", "RK", 15}, {";", "RK", 16}, {"?", "RK", 20}, {"ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz", "RK", 3}, {"\011\012\014\015", "R", 4}, {" ", "R", 4}};
+   RawScannerReadaheadTriple *t1 = new RawScannerReadaheadTriple [4] {{"\011\012\014\015", "L", 14}, {NULL, "L", 14}, {"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_+-*/<>=?[]{}()^;#:.$ ", "L", 14}, {"0123456789", "RK", 1}};
+   RawScannerReadaheadTriple *t2 = new RawScannerReadaheadTriple [4] {{"\011\012\014\015", "L", 18}, {NULL, "L", 18}, {"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_0123456789+-*/<>?[]{}()^;#:.$ ", "L", 18}, {"=", "RK", 24}};
+   RawScannerReadaheadTriple *t3 = new RawScannerReadaheadTriple [4] {{"\011\012\014\015", "L", 21}, {NULL, "L", 21}, {"+-*/<>=?[]{}()^;#:.$ ", "L", 21}, {"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz", "RK", 3}};
+   RawScannerReadaheadTriple *t4 = new RawScannerReadaheadTriple [4] {{NULL, "L", 0}, {"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_0123456789+-*/<>=?[]{}()^;#:.$", "L", 0}, {"\011\012\014\015", "R", 4}, {" ", "R", 4}};
+   RawScannerReadaheadTriple *t5 = new RawScannerReadaheadTriple [4] {{"\011", "R", 5}, {NULL, "R", 5}, {"=>?ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_abcdefghijklmnopqrstuvwxyz{} #$()*+-./0123456789:;<", "R", 5}, {"\012\014\015", "R", 0}};
+
+   //Define an array of scanner readahead tables.
+   //FORMAT: RawScannerReadaheadTable {const char *name; long stateNumber; long size; RawScannerReadaheadTriple *triples;}
+   RawScannerReadaheadTable *scannerReadaheadTables = new RawScannerReadaheadTable [6] {
+      {"ScannerReadaheadTable", 0, 21, &t0[0]}, 
+      {"ScannerReadaheadTable", 1, 4, &t1[0]}, 
+      {"ScannerReadaheadTable", 2, 4, &t2[0]}, 
+      {"ScannerReadaheadTable", 3, 4, &t3[0]}, 
+      {"ScannerReadaheadTable", 4, 4, &t4[0]}, 
+      {"ScannerReadaheadTable", 5, 4, &t5[0]}};
+
+   //Define VARIABLES to refer to semantic table PARAMETERs.
+   //FORMAT {string0, string1, ...} 
+   const char **p6 = new const char * [1] {"-|"};
+   const char **p7 = new const char * [1] {"("};
+   const char **p8 = new const char * [1] {")"};
+   const char **p9 = new const char * [1] {"*"};
+   const char **p10 = new const char * [1] {"+"};
+   const char **p11 = new const char * [1] {","};
+   const char **p12 = new const char * [1] {"-"};
+   const char **p13 = new const char * [1] {"/"};
+   const char **p14 = new const char * [1] {"walkInteger:"};
+   const char **p15 = new const char * [1] {":"};
+   const char **p16 = new const char * [1] {";"};
+   const char **p17 = new const char * [1] {"<"};
+   const char **p18 = new const char * [1] {"="};
+   const char **p19 = new const char * [1] {">"};
+   const char **p20 = new const char * [1] {"?"};
+   const char **p21 = new const char * [1] {"walkIdentifier:"};
+   const char **p22 = new const char * [1] {"{"};
+   const char **p23 = new const char * [1] {"}"};
+   const char **p24 = new const char * [1] {"=="};
+
+   //Define an array of semantic tables.
+   //FORMAT SemanticTable {const char *name; long stateNumber; const char *action; long size; const char **parameters; long gotoTableNumber;}
+   RawSemanticTable *semanticTables = new RawSemanticTable [19] {
+      {"SemanticTable", 6, "buildToken", 1, p6, 0}, 
+      {"SemanticTable", 7, "buildToken", 1, p7, 0}, 
+      {"SemanticTable", 8, "buildToken", 1, p8, 0}, 
+      {"SemanticTable", 9, "buildToken", 1, p9, 0}, 
+      {"SemanticTable", 10, "buildToken", 1, p10, 0}, 
+      {"SemanticTable", 11, "buildToken", 1, p11, 0}, 
+      {"SemanticTable", 12, "buildToken", 1, p12, 0}, 
+      {"SemanticTable", 13, "buildToken", 1, p13, 0}, 
+      {"SemanticTable", 14, "buildToken", 1, p14, 0}, 
+      {"SemanticTable", 15, "buildToken", 1, p15, 0}, 
+      {"SemanticTable", 16, "buildToken", 1, p16, 0}, 
+      {"SemanticTable", 17, "buildToken", 1, p17, 0}, 
+      {"SemanticTable", 18, "buildToken", 1, p18, 0}, 
+      {"SemanticTable", 19, "buildToken", 1, p19, 0}, 
+      {"SemanticTable", 20, "buildToken", 1, p20, 0}, 
+      {"SemanticTable", 21, "buildToken", 1, p21, 0}, 
+      {"SemanticTable", 22, "buildToken", 1, p22, 0}, 
+      {"SemanticTable", 23, "buildToken", 1, p23, 0}, 
+      {"SemanticTable", 24, "buildToken", 1, p24, 0}
+   };
+
+   ScannerTables *scannerTables = new ScannerTables; ScannerTables onStackScannerTables = {
+      6, scannerReadaheadTables,
+      19, semanticTables
+   };
+   copy (scannerTables, &onStackScannerTables);
+
+   return scannerTables;
+}
+
+#undef copy
+
+        
+void deleteScannerTables (ScannerTables *scannerTable) {
+    for (long index = 0; index < scannerTable->scannerReadaheadTablesSize; index++) {
+        RawScannerReadaheadTable &scannerReadaheadTable = scannerTable->scannerReadaheadTables [index];
+        for (long index2 = 0; index2 < scannerReadaheadTable.size; index2++) {
+            delete [] scannerReadaheadTable.triples [index2].string;
+        }
+            
+        delete [] scannerReadaheadTable.triples;
+    }
+    
+    delete [] scannerTable->scannerReadaheadTables;
+    for (long index = 0; index < scannerTable->semanticTablesSize; index++) {
+        delete [] scannerTable->semanticTables [index].parameters;
+    }
+    
+    delete [] scannerTable->semanticTables;
+}
+
+
+
+
+//JAVA: LIST VERSION -------------->
+
+static List<Object> rawScannerTables () {return asList (
+   asList ("ScannerReadaheadTable", 0, asList ("#", "R", 5), asList ("{", "RK", 22), asList ("}", "RK", 23), asList (("256") "L" 6), asList ("<", "RK", 17), asList ("=", "RK", 2), asList (">", "RK", 19), asList (")", "RK", 8), asList ("*", "RK", 9), asList ("+", "RK", 10), asList (",", "RK", 11), asList ("-", "RK", 12), asList ("(", "RK", 7), asList ("/", "RK", 13), asList ("0123456789", "RK", 1), asList (":", "RK", 15), asList (";", "RK", 16), asList ("?", "RK", 20), asList ("ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz", "RK", 3), asList (("9 10 12 13") "R" 4), asList (" ", "R", 4)), 
+   asList ("ScannerReadaheadTable", 1, asList (("9 10 12 13 256") "L" 14), asList ("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_+-*/<>=?[]{}()^;#:.$ ", "L", 14), asList ("0123456789", "RK", 1)), 
+   asList ("ScannerReadaheadTable", 2, asList (("9 10 12 13 256") "L" 18), asList ("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_0123456789+-*/<>?[]{}()^;#:.$ ", "L", 18), asList ("=", "RK", 24)), 
+   asList ("ScannerReadaheadTable", 3, asList (("9 10 12 13 256") "L" 21), asList ("+-*/<>=?[]{}()^;#:.$ ", "L", 21), asList ("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz", "RK", 3)), 
+   asList ("ScannerReadaheadTable", 4, asList (("256") "L" 0), asList ("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_0123456789+-*/<>=?[]{}()^;#:.$", "L", 0), asList (("9 10 12 13") "R" 4), asList (" ", "R", 4)), 
+   asList ("ScannerReadaheadTable", 5, asList (("9 256") "R" 5), asList ("=>?ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_abcdefghijklmnopqrstuvwxyz{} #$()*+-./0123456789:;<", "R", 5), asList (("10 12 13") "R" 0)), 
+   asList ("SemanticTable", 6, buildToken, asList ("-|"), 0),
+   asList ("SemanticTable", 7, buildToken, asList ("("), 0),
+   asList ("SemanticTable", 8, buildToken, asList (")"), 0),
+   asList ("SemanticTable", 9, buildToken, asList ("*"), 0),
+   asList ("SemanticTable", 10, buildToken, asList ("+"), 0),
+   asList ("SemanticTable", 11, buildToken, asList (","), 0),
+   asList ("SemanticTable", 12, buildToken, asList ("-"), 0),
+   asList ("SemanticTable", 13, buildToken, asList ("/"), 0),
+   asList ("SemanticTable", 14, buildToken, asList ("walkInteger:"), 0),
+   asList ("SemanticTable", 15, buildToken, asList (":"), 0),
+   asList ("SemanticTable", 16, buildToken, asList (";"), 0),
+   asList ("SemanticTable", 17, buildToken, asList ("<"), 0),
+   asList ("SemanticTable", 18, buildToken, asList ("="), 0),
+   asList ("SemanticTable", 19, buildToken, asList (">"), 0),
+   asList ("SemanticTable", 20, buildToken, asList ("?"), 0),
+   asList ("SemanticTable", 21, buildToken, asList ("walkIdentifier:"), 0),
+   asList ("SemanticTable", 22, buildToken, asList ("{"), 0),
+   asList ("SemanticTable", 23, buildToken, asList ("}"), 0),
+   asList ("SemanticTable", 24, buildToken, asList ("=="), 0));}

@@ -1,0 +1,2405 @@
+
+
+
+//SMALLTALK ------------------------->
+
+#(
+   (keywords stack noStack read look node noNode keep noKeep parser scanner super superScanner attribute defaults keywords output optimize terminal nonterminal)
+   (ReadaheadTable 1 (scanner 'RS' 161) (superScanner 'RS' 162) (super 'RS' 3) (parser 'RS' 163))
+   (ReadaheadTable 2 (walkString: 'RSN' 67) (keywords 'RS' 4) (output 'RS' 5) (attribute 'RS' 6) (optimize 'RS' 7) (walkIdentifier: 'RSN' 67))
+   (ReadaheadTable 3 (scanner 'RS' 165))
+   (ReadaheadTable 4 (walkString: 'RSN' 67) (walkIdentifier: 'RSN' 67))
+   (ReadaheadTable 5 (walkString: 'RSN' 67) (walkIdentifier: 'RSN' 67))
+   (ReadaheadTable 6 (defaults 'RS' 14) (terminal 'RS' 15) (nonterminal 'RS' 16))
+   (ReadaheadTable 7 (walkString: 'RSN' 67) (walkIdentifier: 'RSN' 67))
+   (ReadaheadTable 8 (Equals 'RS' 18) (OpenCurly 'RS' 19) (RightArrow 'L' 70))
+   (ReadaheadTable 9 (walkString: 'RSN' 67) (walkIdentifier: 'RSN' 67) (#'-|' 'L' 71))
+   (ReadaheadTable 10 (RightArrow 'RS' 20))
+   (ReadaheadTable 11 (walkString: 'RSN' 67) (walkIdentifier: 'RSN' 67) (#'-|' 'L' 71))
+   (ReadaheadTable 12 (walkString: 'RSN' 67) (Dot 'RS' 79) (walkIdentifier: 'RSN' 67))
+   (ReadaheadTable 13 (Dot 'RS' 80))
+   (ReadaheadTable 14 (walkString: 'RSN' 67) (walkIdentifier: 'RSN' 67))
+   (ReadaheadTable 15 (defaults 'RS' 24))
+   (ReadaheadTable 16 (defaults 'RS' 25))
+   (ReadaheadTable 17 (Dot 'RS' 81))
+   (ReadaheadTable 18 (walkString: 'RSN' 67) (OpenCurly 'RS' 29) (walkSymbol: 'RSN' 30) (walkInteger: 'RSN' 75) (walkCharacter: 'RSN' 75) (walkIdentifier: 'RSN' 67) (OpenRound 'RS' 34) (CloseCurly 'L' 135) (Dot 'L' 135) (CloseRound 'L' 135) (FatRightArrow 'L' 135) (RightArrow 'L' 135))
+   (ReadaheadTable 19 (walkString: 'RSN' 67) (OpenCurly 'RS' 29) (walkSymbol: 'RSN' 30) (walkInteger: 'RSN' 75) (walkCharacter: 'RSN' 75) (walkIdentifier: 'RSN' 67) (OpenRound 'RS' 34) (CloseCurly 'L' 135) (Dot 'L' 135) (CloseRound 'L' 135) (FatRightArrow 'L' 135) (RightArrow 'L' 135))
+   (ReadaheadTable 20 (walkString: 'RSN' 67) (OpenCurly 'RS' 29) (walkSymbol: 'RSN' 30) (walkInteger: 'RSN' 75) (walkCharacter: 'RSN' 75) (walkIdentifier: 'RSN' 67) (OpenRound 'RS' 34) (CloseCurly 'L' 135) (Dot 'L' 135) (CloseRound 'L' 135) (FatRightArrow 'L' 135) (RightArrow 'L' 135))
+   (ReadaheadTable 21 (RightArrow 'RS' 20) (Dot 'RS' 84))
+   (ReadaheadTable 22 (walkString: 'RSN' 67) (keywords 'RS' 4) (output 'RS' 5) (attribute 'RS' 6) (optimize 'RS' 7) (walkIdentifier: 'RSN' 67))
+   (ReadaheadTable 23 (walkString: 'RSN' 67) (Dot 'RS' 85) (walkIdentifier: 'RSN' 67))
+   (ReadaheadTable 24 (walkString: 'RSN' 67) (walkIdentifier: 'RSN' 67))
+   (ReadaheadTable 25 (walkString: 'RSN' 67) (walkIdentifier: 'RSN' 67))
+   (ReadaheadTable 26 (OpenSquare 'RS' 39) (Star 'L' 73) (QuestionMark 'L' 73) (Plus 'L' 73) (And 'L' 73) (Minus 'L' 73) (OpenRound 'L' 73) (OpenCurly 'L' 73) (walkIdentifier: 'L' 73) (walkString: 'L' 73) (walkSymbol: 'L' 73) (walkCharacter: 'L' 73) (walkInteger: 'L' 73) (VerticalBar 'L' 73) (CloseCurly 'L' 73) (Dot 'L' 73) (CloseRound 'L' 73) (FatRightArrow 'L' 73) (RightArrow 'L' 73))
+   (ReadaheadTable 27 (Dot 'RS' 87))
+   (ReadaheadTable 28 (DotDot 'RS' 40) (OpenSquare 'L' 74) (Star 'L' 74) (QuestionMark 'L' 74) (Plus 'L' 74) (And 'L' 74) (Minus 'L' 74) (OpenRound 'L' 74) (OpenCurly 'L' 74) (walkIdentifier: 'L' 74) (walkString: 'L' 74) (walkSymbol: 'L' 74) (walkCharacter: 'L' 74) (walkInteger: 'L' 74) (VerticalBar 'L' 74) (CloseCurly 'L' 74) (Dot 'L' 74) (CloseRound 'L' 74) (FatRightArrow 'L' 74) (RightArrow 'L' 74))
+   (ReadaheadTable 29 (walkString: 'RSN' 67) (OpenCurly 'RS' 29) (walkSymbol: 'RSN' 30) (walkInteger: 'RSN' 75) (walkCharacter: 'RSN' 75) (walkIdentifier: 'RSN' 67) (OpenRound 'RS' 34) (CloseCurly 'L' 135) (Dot 'L' 135) (CloseRound 'L' 135) (FatRightArrow 'L' 135) (RightArrow 'L' 135))
+   (ReadaheadTable 30 (OpenSquare 'RS' 42) (Star 'L' 82) (QuestionMark 'L' 82) (Plus 'L' 82) (And 'L' 82) (Minus 'L' 82) (OpenRound 'L' 82) (OpenCurly 'L' 82) (walkIdentifier: 'L' 82) (walkString: 'L' 82) (walkSymbol: 'L' 82) (walkCharacter: 'L' 82) (walkInteger: 'L' 82) (RightArrow 'L' 82) (Dot 'L' 82) (VerticalBar 'L' 82) (CloseCurly 'L' 82) (CloseRound 'L' 82) (FatRightArrow 'L' 82))
+   (ReadaheadTable 31 (QuestionMark 'RS' 89) (Minus 'RS' 43) (Star 'RS' 90) (Plus 'RS' 91) (And 'RS' 44) (OpenRound 'L' 76) (OpenCurly 'L' 76) (walkIdentifier: 'L' 76) (walkString: 'L' 76) (walkSymbol: 'L' 76) (walkCharacter: 'L' 76) (walkInteger: 'L' 76) (VerticalBar 'L' 76) (CloseCurly 'L' 76) (Dot 'L' 76) (CloseRound 'L' 76) (FatRightArrow 'L' 76) (RightArrow 'L' 76))
+   (ReadaheadTable 32 (VerticalBar 'RS' 45) (CloseCurly 'L' 77) (Dot 'L' 77) (CloseRound 'L' 77) (FatRightArrow 'L' 77) (RightArrow 'L' 77))
+   (ReadaheadTable 33 (walkString: 'RSN' 67) (OpenCurly 'RS' 29) (walkSymbol: 'RSN' 30) (walkInteger: 'RSN' 75) (walkCharacter: 'RSN' 75) (walkIdentifier: 'RSN' 67) (OpenRound 'RS' 34) (VerticalBar 'L' 78) (CloseCurly 'L' 78) (Dot 'L' 78) (CloseRound 'L' 78) (FatRightArrow 'L' 78) (RightArrow 'L' 78))
+   (ReadaheadTable 34 (walkString: 'RSN' 67) (OpenCurly 'RS' 29) (walkSymbol: 'RSN' 30) (walkInteger: 'RSN' 75) (walkCharacter: 'RSN' 75) (walkIdentifier: 'RSN' 67) (OpenRound 'RS' 34) (CloseCurly 'L' 135) (Dot 'L' 135) (CloseRound 'L' 135) (FatRightArrow 'L' 135) (RightArrow 'L' 135))
+   (ReadaheadTable 35 (CloseCurly 'RS' 94))
+   (ReadaheadTable 36 (FatRightArrow 'RS' 48) (RightArrow 'L' 54) (Dot 'L' 54))
+   (ReadaheadTable 37 (walkString: 'RSN' 67) (Dot 'RS' 95) (walkIdentifier: 'RSN' 67))
+   (ReadaheadTable 38 (walkString: 'RSN' 67) (Dot 'RS' 96) (walkIdentifier: 'RSN' 67))
+   (ReadaheadTable 39 (keep 'RSN' 86) (noNode 'RSN' 86) (noStack 'RSN' 86) (CloseSquare 'RS' 97) (read 'RSN' 86) (look 'RSN' 86) (stack 'RSN' 86) (node 'RSN' 86) (noKeep 'RSN' 86))
+   (ReadaheadTable 40 (walkInteger: 'RSN' 75) (walkCharacter: 'RSN' 75))
+   (ReadaheadTable 41 (CloseCurly 'RS' 99))
+   (ReadaheadTable 42 (walkString: 'RSN' 67) (walkSymbol: 'RSN' 88) (walkIdentifier: 'RSN' 67) (walkCharacter: 'RSN' 75) (CloseSquare 'RS' 100) (walkInteger: 'RSN' 75))
+   (ReadaheadTable 43 (walkSymbol: 'RSN' 30) (walkString: 'RSN' 67) (OpenCurly 'RS' 29) (walkIdentifier: 'RSN' 67) (walkCharacter: 'RSN' 75) (OpenRound 'RS' 34) (walkInteger: 'RSN' 75))
+   (ReadaheadTable 44 (walkString: 'RSN' 67) (walkSymbol: 'RSN' 30) (OpenCurly 'RS' 29) (walkCharacter: 'RSN' 75) (walkIdentifier: 'RSN' 67) (OpenRound 'RS' 34) (walkInteger: 'RSN' 75))
+   (ReadaheadTable 45 (walkString: 'RSN' 67) (OpenCurly 'RS' 29) (walkSymbol: 'RSN' 30) (walkInteger: 'RSN' 75) (walkCharacter: 'RSN' 75) (walkIdentifier: 'RSN' 67) (OpenRound 'RS' 34))
+   (ReadaheadTable 46 (walkString: 'RSN' 67) (OpenCurly 'RS' 29) (walkSymbol: 'RSN' 30) (walkInteger: 'RSN' 75) (walkCharacter: 'RSN' 75) (walkIdentifier: 'RSN' 67) (OpenRound 'RS' 34) (VerticalBar 'L' 92) (CloseCurly 'L' 92) (Dot 'L' 92) (CloseRound 'L' 92) (FatRightArrow 'L' 92) (RightArrow 'L' 92))
+   (ReadaheadTable 47 (CloseRound 'RS' 93))
+   (ReadaheadTable 48 (Minus 'RS' 52) (walkString: 'RSN' 67) (walkSymbol: 'RSN' 30) (walkIdentifier: 'RSN' 67) (Plus 'RS' 53) (walkInteger: 'RSN' 104))
+   (ReadaheadTable 49 (keep 'RSN' 86) (noNode 'RSN' 86) (noStack 'RSN' 86) (CloseSquare 'RS' 97) (read 'RSN' 86) (look 'RSN' 86) (stack 'RSN' 86) (node 'RSN' 86) (noKeep 'RSN' 86))
+   (ReadaheadTable 50 (walkString: 'RSN' 67) (walkSymbol: 'RSN' 88) (walkIdentifier: 'RSN' 67) (walkCharacter: 'RSN' 75) (CloseSquare 'RS' 100) (walkInteger: 'RSN' 75))
+   (ReadaheadTable 51 (VerticalBar 'RS' 45) (CloseCurly 'L' 102) (Dot 'L' 102) (CloseRound 'L' 102) (FatRightArrow 'L' 102) (RightArrow 'L' 102))
+   (ReadaheadTable 52 (walkInteger: 'RSN' 106))
+   (ReadaheadTable 53 (walkInteger: 'RSN' 104))
+   (ReadbackTable 54 ((TreeBuildingOptions 54) 'RSN' 107) ((Alternation 36) 'RSN' 108))
+   (ReadbackTable 55 ((Defaults 164) 'RSN' 55) ((GrammarType 2) 'RSN' 122))
+   (ReadbackTable 56 ((Macro 9) 'RSN' 56) ((Production 11) 'RSN' 56) ((GrammarType 2) 'L' 134) ((Defaults 164) 'L' 134))
+   (ReadbackTable 57 ((RepetitionOption 46) 'RSN' 57) ((RepetitionOption 33) 'RSN' 148))
+   (ReadbackTable 58 ((OpenSquare 39) 'RS' 110) ((Attribute 49) 'RSN' 58))
+   (ReadbackTable 59 ((OpenSquare 42) 'RS' 82) ((SemanticActionParameter 50) 'RSN' 59))
+   (ReadbackTable 60 ((Plus 53) 'RS' 158) ((FatRightArrow 48) 'L' 158))
+   (ReadbackTable 61 ((keywords 4) 'RS' 136) ((Name 12) 'RSN' 61))
+   (ReadbackTable 62 ((LeftPart 10) 'RSN' 142) ((RightPart 21) 'RSN' 62))
+   (ReadbackTable 63 ((Name 23) 'RSN' 63) ((defaults 14) 'RS' 111))
+   (ReadbackTable 64 ((Name 37) 'RSN' 64) ((defaults 24) 'RS' 112))
+   (ReadbackTable 65 ((Name 38) 'RSN' 65) ((defaults 25) 'RS' 113))
+   (ReadbackTable 66 ((Concatenation 51) 'RSN' 109) ((Concatenation 32) 'RSN' 156))
+   (ShiftbackTable 67 1 119)
+   (ShiftbackTable 68 1 55)
+   (ShiftbackTable 69 1 126)
+   (ShiftbackTable 70 1 133)
+   (ShiftbackTable 71 1 56)
+   (ShiftbackTable 72 2 126)
+   (ShiftbackTable 73 1 114)
+   (ShiftbackTable 74 1 128)
+   (ShiftbackTable 75 1 130)
+   (ShiftbackTable 76 1 118)
+   (ShiftbackTable 77 1 129)
+   (ShiftbackTable 78 1 115)
+   (ShiftbackTable 79 2 61)
+   (ShiftbackTable 80 3 137)
+   (ShiftbackTable 81 3 138)
+   (ShiftbackTable 82 1 139)
+   (ShiftbackTable 83 1 140)
+   (ShiftbackTable 84 2 62)
+   (ShiftbackTable 85 2 63)
+   (ShiftbackTable 86 1 125)
+   (ShiftbackTable 87 4 144)
+   (ShiftbackTable 88 1 121)
+   (ShiftbackTable 89 2 145)
+   (ShiftbackTable 90 2 146)
+   (ShiftbackTable 91 2 147)
+   (ShiftbackTable 92 1 57)
+   (ShiftbackTable 93 3 128)
+   (ShiftbackTable 94 4 149)
+   (ShiftbackTable 95 2 64)
+   (ShiftbackTable 96 2 65)
+   (ShiftbackTable 97 1 58)
+   (ShiftbackTable 98 3 153)
+   (ShiftbackTable 99 3 154)
+   (ShiftbackTable 100 1 59)
+   (ShiftbackTable 101 3 155)
+   (ShiftbackTable 102 2 66)
+   (ShiftbackTable 103 1 157)
+   (ShiftbackTable 104 1 60)
+   (ShiftbackTable 105 1 159)
+   (ShiftbackTable 106 2 160)
+   (ShiftbackTable 107 3 141)
+   (ShiftbackTable 108 1 141)
+   (ShiftbackTable 109 1 66)
+   (ShiftbackTable 110 1 152)
+   (ShiftbackTable 111 1 143)
+   (ShiftbackTable 112 2 150)
+   (ShiftbackTable 113 2 151)
+   (ReduceTable 114 Expression (18 'RSN' 31)(19 'RSN' 31)(20 'RSN' 31)(29 'RSN' 31)(33 'RSN' 31)(34 'RSN' 31)(43 'RSN' 101)(44 'RSN' 101)(45 'RSN' 31)(46 'RSN' 31))
+   (ReduceTable 115 Concatenation (18 'RSN' 32)(19 'RSN' 32)(20 'RSN' 32)(29 'RSN' 32)(34 'RSN' 32)(45 'RSN' 51))
+   (ReduceTable 116 LeftPart (2 'RSN' 10)(9 'RSN' 10)(11 'RSN' 10)(164 'RSN' 10))
+   (ReduceTable 117 Macro (2 'RSN' 9)(9 'RSN' 9)(11 'RSN' 9)(164 'RSN' 9))
+   (ReduceTable 118 RepetitionOption (18 'RSN' 33)(19 'RSN' 33)(20 'RSN' 33)(29 'RSN' 33)(33 'RSN' 46)(34 'RSN' 33)(45 'RSN' 33)(46 'RSN' 46))
+   (ReduceTable 119 Name (2 'RSN' 8)(4 'RSN' 12)(5 'RSN' 13)(7 'RSN' 17)(9 'RSN' 8)(11 'RSN' 8)(12 'RSN' 12)(14 'RSN' 23)(18 'RSN' 74)(19 'RSN' 74)(20 'RSN' 74)(164 'RSN' 8)(23 'RSN' 23)(24 'RSN' 37)(25 'RSN' 38)(29 'RSN' 74)(33 'RSN' 74)(34 'RSN' 74)(37 'RSN' 37)(38 'RSN' 38)(42 'RSN' 88)(43 'RSN' 74)(44 'RSN' 74)(45 'RSN' 74)(46 'RSN' 74)(48 'RSN' 103)(50 'RSN' 88))
+   (ReduceTable 120 Defaults (2 'RSN' 164)(164 'RSN' 164))
+   (ReduceTable 121 SemanticActionParameter (42 'RSN' 50)(50 'RSN' 50))
+   (ReduceTable 122 Grammar (1 'RSN' 166))
+   (ReduceTable 123 TreeBuildingOptions (48 'RSN' 54))
+   (ReduceTable 124 Production (2 'RSN' 11)(9 'RSN' 11)(11 'RSN' 11)(164 'RSN' 11))
+   (ReduceTable 125 Attribute (39 'RSN' 49)(49 'RSN' 49))
+   (ReduceTable 126 GrammarType (1 'RSN' 2))
+   (ReduceTable 127 Rules (2 'RSN' 68)(164 'RSN' 68))
+   (ReduceTable 128 Primary (18 'RSN' 26)(19 'RSN' 26)(20 'RSN' 26)(29 'RSN' 26)(33 'RSN' 26)(34 'RSN' 26)(43 'RSN' 26)(44 'RSN' 26)(45 'RSN' 26)(46 'RSN' 26))
+   (ReduceTable 129 Alternation (18 'RSN' 27)(19 'RSN' 35)(20 'RSN' 36)(29 'RSN' 41)(34 'RSN' 47))
+   (ReduceTable 130 Byte (18 'RSN' 28)(19 'RSN' 28)(20 'RSN' 28)(29 'RSN' 28)(33 'RSN' 28)(34 'RSN' 28)(40 'RSN' 98)(42 'RSN' 88)(43 'RSN' 28)(44 'RSN' 28)(45 'RSN' 28)(46 'RSN' 28)(50 'RSN' 88))
+   (ReduceTable 131 RightPart (10 'RSN' 21)(21 'RSN' 21))
+   (ReduceTable 132 SemanticAction (18 'RSN' 83)(19 'RSN' 83)(20 'RSN' 83)(29 'RSN' 83)(33 'RSN' 83)(34 'RSN' 83)(43 'RSN' 83)(44 'RSN' 83)(45 'RSN' 83)(46 'RSN' 83)(48 'RSN' 105))
+   (SemanticTable 133 buildTree: walkLeftPart: 116)
+   (SemanticTable 134 buildTree: walkGrammar: 127)
+   (SemanticTable 135 buildTree: walkEpsilon: 129)
+   (SemanticTable 136 buildTree: walkKeywords: 120)
+   (SemanticTable 137 buildTree: walkOutput: 120)
+   (SemanticTable 138 buildTree: walkOptimize: 120)
+   (SemanticTable 139 buildTree: walkSemanticAction: 132)
+   (SemanticTable 140 buildTree: walkNonTreeBuildingSemanticAction: 114)
+   (SemanticTable 141 buildTree: walkRightPart: 131)
+   (SemanticTable 142 buildTree: walkProduction: 124)
+   (SemanticTable 143 buildTree: walkAttributeDefaults: 120)
+   (SemanticTable 144 buildTree: walkMacro: 117)
+   (SemanticTable 145 buildTree: walkQuestionMark: 118)
+   (SemanticTable 146 buildTree: walkStar: 118)
+   (SemanticTable 147 buildTree: walkPlus: 118)
+   (SemanticTable 148 buildTree: walkConcatenation: 115)
+   (SemanticTable 149 buildTree: walkLeftPartWithLookahead: 116)
+   (SemanticTable 150 buildTree: walkAttributeTerminalDefaults: 120)
+   (SemanticTable 151 buildTree: walkAttributeNonterminalDefaults: 120)
+   (SemanticTable 152 buildTree: walkAttributes: 114)
+   (SemanticTable 153 buildTree: walkDotDot: 128)
+   (SemanticTable 154 buildTree: walkLook: 128)
+   (SemanticTable 155 buildTree: walkMinus: 118)
+   (SemanticTable 156 buildTree: walkOr: 129)
+   (SemanticTable 157 buildTree: walkBuildTreeOrTokenFromName: 123)
+   (SemanticTable 158 buildTree: walkBuildTreeFromLeftIndex: 123)
+   (SemanticTable 159 buildTree: walkTreeBuildingSemanticAction: 123)
+   (SemanticTable 160 buildTree: walkBuildTreeFromRightIndex: 123)
+   (SemanticTable 161 processTypeNow: Scanner 69)
+   (SemanticTable 162 processTypeNow: SuperScanner 69)
+   (SemanticTable 163 processTypeNow: Parser 69)
+   (SemanticTable 164 processAndDiscardDefaultsNow 22)
+   (SemanticTable 165 processTypeNow: SuperScanner 72)
+   (AcceptTable 166))
+
+
+//RUBY ----------------------------------->
+
+[
+   [:keywords,  'stack',  'noStack',  'read',  'look',  'node',  'noNode',  'keep',  'noKeep',  'parser',  'scanner',  'super',  'superScanner',  'attribute',  'defaults',  'keywords',  'output',  'optimize',  'terminal',  'nonterminal'],
+   [:ReadaheadTable, 1, [scanner, 'RS', 161], [superScanner, 'RS', 162], [super, 'RS', 3], [parser, 'RS', 163]],
+   [:ReadaheadTable, 2, [walkString:, 'RSN', 67], [keywords, 'RS', 4], [output, 'RS', 5], [attribute, 'RS', 6], [optimize, 'RS', 7], [walkIdentifier:, 'RSN', 67]],
+   [:ReadaheadTable, 3, [scanner, 'RS', 165]],
+   [:ReadaheadTable, 4, [walkString:, 'RSN', 67], [walkIdentifier:, 'RSN', 67]],
+   [:ReadaheadTable, 5, [walkString:, 'RSN', 67], [walkIdentifier:, 'RSN', 67]],
+   [:ReadaheadTable, 6, [defaults, 'RS', 14], [terminal, 'RS', 15], [nonterminal, 'RS', 16]],
+   [:ReadaheadTable, 7, [walkString:, 'RSN', 67], [walkIdentifier:, 'RSN', 67]],
+   [:ReadaheadTable, 8, [Equals, 'RS', 18], [OpenCurly, 'RS', 19], [RightArrow, 'L', 70]],
+   [:ReadaheadTable, 9, [walkString:, 'RSN', 67], [walkIdentifier:, 'RSN', 67], [:'-|', 'L', 71]],
+   [:ReadaheadTable, 10, [RightArrow, 'RS', 20]],
+   [:ReadaheadTable, 11, [walkString:, 'RSN', 67], [walkIdentifier:, 'RSN', 67], [:'-|', 'L', 71]],
+   [:ReadaheadTable, 12, [walkString:, 'RSN', 67], [Dot, 'RS', 79], [walkIdentifier:, 'RSN', 67]],
+   [:ReadaheadTable, 13, [Dot, 'RS', 80]],
+   [:ReadaheadTable, 14, [walkString:, 'RSN', 67], [walkIdentifier:, 'RSN', 67]],
+   [:ReadaheadTable, 15, [defaults, 'RS', 24]],
+   [:ReadaheadTable, 16, [defaults, 'RS', 25]],
+   [:ReadaheadTable, 17, [Dot, 'RS', 81]],
+   [:ReadaheadTable, 18, [walkString:, 'RSN', 67], [OpenCurly, 'RS', 29], [walkSymbol:, 'RSN', 30], [walkInteger:, 'RSN', 75], [walkCharacter:, 'RSN', 75], [walkIdentifier:, 'RSN', 67], [OpenRound, 'RS', 34], [CloseCurly, 'L', 135], [Dot, 'L', 135], [CloseRound, 'L', 135], [FatRightArrow, 'L', 135], [RightArrow, 'L', 135]],
+   [:ReadaheadTable, 19, [walkString:, 'RSN', 67], [OpenCurly, 'RS', 29], [walkSymbol:, 'RSN', 30], [walkInteger:, 'RSN', 75], [walkCharacter:, 'RSN', 75], [walkIdentifier:, 'RSN', 67], [OpenRound, 'RS', 34], [CloseCurly, 'L', 135], [Dot, 'L', 135], [CloseRound, 'L', 135], [FatRightArrow, 'L', 135], [RightArrow, 'L', 135]],
+   [:ReadaheadTable, 20, [walkString:, 'RSN', 67], [OpenCurly, 'RS', 29], [walkSymbol:, 'RSN', 30], [walkInteger:, 'RSN', 75], [walkCharacter:, 'RSN', 75], [walkIdentifier:, 'RSN', 67], [OpenRound, 'RS', 34], [CloseCurly, 'L', 135], [Dot, 'L', 135], [CloseRound, 'L', 135], [FatRightArrow, 'L', 135], [RightArrow, 'L', 135]],
+   [:ReadaheadTable, 21, [RightArrow, 'RS', 20], [Dot, 'RS', 84]],
+   [:ReadaheadTable, 22, [walkString:, 'RSN', 67], [keywords, 'RS', 4], [output, 'RS', 5], [attribute, 'RS', 6], [optimize, 'RS', 7], [walkIdentifier:, 'RSN', 67]],
+   [:ReadaheadTable, 23, [walkString:, 'RSN', 67], [Dot, 'RS', 85], [walkIdentifier:, 'RSN', 67]],
+   [:ReadaheadTable, 24, [walkString:, 'RSN', 67], [walkIdentifier:, 'RSN', 67]],
+   [:ReadaheadTable, 25, [walkString:, 'RSN', 67], [walkIdentifier:, 'RSN', 67]],
+   [:ReadaheadTable, 26, [OpenSquare, 'RS', 39], [Star, 'L', 73], [QuestionMark, 'L', 73], [Plus, 'L', 73], [And, 'L', 73], [Minus, 'L', 73], [OpenRound, 'L', 73], [OpenCurly, 'L', 73], [walkIdentifier:, 'L', 73], [walkString:, 'L', 73], [walkSymbol:, 'L', 73], [walkCharacter:, 'L', 73], [walkInteger:, 'L', 73], [VerticalBar, 'L', 73], [CloseCurly, 'L', 73], [Dot, 'L', 73], [CloseRound, 'L', 73], [FatRightArrow, 'L', 73], [RightArrow, 'L', 73]],
+   [:ReadaheadTable, 27, [Dot, 'RS', 87]],
+   [:ReadaheadTable, 28, [DotDot, 'RS', 40], [OpenSquare, 'L', 74], [Star, 'L', 74], [QuestionMark, 'L', 74], [Plus, 'L', 74], [And, 'L', 74], [Minus, 'L', 74], [OpenRound, 'L', 74], [OpenCurly, 'L', 74], [walkIdentifier:, 'L', 74], [walkString:, 'L', 74], [walkSymbol:, 'L', 74], [walkCharacter:, 'L', 74], [walkInteger:, 'L', 74], [VerticalBar, 'L', 74], [CloseCurly, 'L', 74], [Dot, 'L', 74], [CloseRound, 'L', 74], [FatRightArrow, 'L', 74], [RightArrow, 'L', 74]],
+   [:ReadaheadTable, 29, [walkString:, 'RSN', 67], [OpenCurly, 'RS', 29], [walkSymbol:, 'RSN', 30], [walkInteger:, 'RSN', 75], [walkCharacter:, 'RSN', 75], [walkIdentifier:, 'RSN', 67], [OpenRound, 'RS', 34], [CloseCurly, 'L', 135], [Dot, 'L', 135], [CloseRound, 'L', 135], [FatRightArrow, 'L', 135], [RightArrow, 'L', 135]],
+   [:ReadaheadTable, 30, [OpenSquare, 'RS', 42], [Star, 'L', 82], [QuestionMark, 'L', 82], [Plus, 'L', 82], [And, 'L', 82], [Minus, 'L', 82], [OpenRound, 'L', 82], [OpenCurly, 'L', 82], [walkIdentifier:, 'L', 82], [walkString:, 'L', 82], [walkSymbol:, 'L', 82], [walkCharacter:, 'L', 82], [walkInteger:, 'L', 82], [RightArrow, 'L', 82], [Dot, 'L', 82], [VerticalBar, 'L', 82], [CloseCurly, 'L', 82], [CloseRound, 'L', 82], [FatRightArrow, 'L', 82]],
+   [:ReadaheadTable, 31, [QuestionMark, 'RS', 89], [Minus, 'RS', 43], [Star, 'RS', 90], [Plus, 'RS', 91], [And, 'RS', 44], [OpenRound, 'L', 76], [OpenCurly, 'L', 76], [walkIdentifier:, 'L', 76], [walkString:, 'L', 76], [walkSymbol:, 'L', 76], [walkCharacter:, 'L', 76], [walkInteger:, 'L', 76], [VerticalBar, 'L', 76], [CloseCurly, 'L', 76], [Dot, 'L', 76], [CloseRound, 'L', 76], [FatRightArrow, 'L', 76], [RightArrow, 'L', 76]],
+   [:ReadaheadTable, 32, [VerticalBar, 'RS', 45], [CloseCurly, 'L', 77], [Dot, 'L', 77], [CloseRound, 'L', 77], [FatRightArrow, 'L', 77], [RightArrow, 'L', 77]],
+   [:ReadaheadTable, 33, [walkString:, 'RSN', 67], [OpenCurly, 'RS', 29], [walkSymbol:, 'RSN', 30], [walkInteger:, 'RSN', 75], [walkCharacter:, 'RSN', 75], [walkIdentifier:, 'RSN', 67], [OpenRound, 'RS', 34], [VerticalBar, 'L', 78], [CloseCurly, 'L', 78], [Dot, 'L', 78], [CloseRound, 'L', 78], [FatRightArrow, 'L', 78], [RightArrow, 'L', 78]],
+   [:ReadaheadTable, 34, [walkString:, 'RSN', 67], [OpenCurly, 'RS', 29], [walkSymbol:, 'RSN', 30], [walkInteger:, 'RSN', 75], [walkCharacter:, 'RSN', 75], [walkIdentifier:, 'RSN', 67], [OpenRound, 'RS', 34], [CloseCurly, 'L', 135], [Dot, 'L', 135], [CloseRound, 'L', 135], [FatRightArrow, 'L', 135], [RightArrow, 'L', 135]],
+   [:ReadaheadTable, 35, [CloseCurly, 'RS', 94]],
+   [:ReadaheadTable, 36, [FatRightArrow, 'RS', 48], [RightArrow, 'L', 54], [Dot, 'L', 54]],
+   [:ReadaheadTable, 37, [walkString:, 'RSN', 67], [Dot, 'RS', 95], [walkIdentifier:, 'RSN', 67]],
+   [:ReadaheadTable, 38, [walkString:, 'RSN', 67], [Dot, 'RS', 96], [walkIdentifier:, 'RSN', 67]],
+   [:ReadaheadTable, 39, [keep, 'RSN', 86], [noNode, 'RSN', 86], [noStack, 'RSN', 86], [CloseSquare, 'RS', 97], [read, 'RSN', 86], [look, 'RSN', 86], [stack, 'RSN', 86], [node, 'RSN', 86], [noKeep, 'RSN', 86]],
+   [:ReadaheadTable, 40, [walkInteger:, 'RSN', 75], [walkCharacter:, 'RSN', 75]],
+   [:ReadaheadTable, 41, [CloseCurly, 'RS', 99]],
+   [:ReadaheadTable, 42, [walkString:, 'RSN', 67], [walkSymbol:, 'RSN', 88], [walkIdentifier:, 'RSN', 67], [walkCharacter:, 'RSN', 75], [CloseSquare, 'RS', 100], [walkInteger:, 'RSN', 75]],
+   [:ReadaheadTable, 43, [walkSymbol:, 'RSN', 30], [walkString:, 'RSN', 67], [OpenCurly, 'RS', 29], [walkIdentifier:, 'RSN', 67], [walkCharacter:, 'RSN', 75], [OpenRound, 'RS', 34], [walkInteger:, 'RSN', 75]],
+   [:ReadaheadTable, 44, [walkString:, 'RSN', 67], [walkSymbol:, 'RSN', 30], [OpenCurly, 'RS', 29], [walkCharacter:, 'RSN', 75], [walkIdentifier:, 'RSN', 67], [OpenRound, 'RS', 34], [walkInteger:, 'RSN', 75]],
+   [:ReadaheadTable, 45, [walkString:, 'RSN', 67], [OpenCurly, 'RS', 29], [walkSymbol:, 'RSN', 30], [walkInteger:, 'RSN', 75], [walkCharacter:, 'RSN', 75], [walkIdentifier:, 'RSN', 67], [OpenRound, 'RS', 34]],
+   [:ReadaheadTable, 46, [walkString:, 'RSN', 67], [OpenCurly, 'RS', 29], [walkSymbol:, 'RSN', 30], [walkInteger:, 'RSN', 75], [walkCharacter:, 'RSN', 75], [walkIdentifier:, 'RSN', 67], [OpenRound, 'RS', 34], [VerticalBar, 'L', 92], [CloseCurly, 'L', 92], [Dot, 'L', 92], [CloseRound, 'L', 92], [FatRightArrow, 'L', 92], [RightArrow, 'L', 92]],
+   [:ReadaheadTable, 47, [CloseRound, 'RS', 93]],
+   [:ReadaheadTable, 48, [Minus, 'RS', 52], [walkString:, 'RSN', 67], [walkSymbol:, 'RSN', 30], [walkIdentifier:, 'RSN', 67], [Plus, 'RS', 53], [walkInteger:, 'RSN', 104]],
+   [:ReadaheadTable, 49, [keep, 'RSN', 86], [noNode, 'RSN', 86], [noStack, 'RSN', 86], [CloseSquare, 'RS', 97], [read, 'RSN', 86], [look, 'RSN', 86], [stack, 'RSN', 86], [node, 'RSN', 86], [noKeep, 'RSN', 86]],
+   [:ReadaheadTable, 50, [walkString:, 'RSN', 67], [walkSymbol:, 'RSN', 88], [walkIdentifier:, 'RSN', 67], [walkCharacter:, 'RSN', 75], [CloseSquare, 'RS', 100], [walkInteger:, 'RSN', 75]],
+   [:ReadaheadTable, 51, [VerticalBar, 'RS', 45], [CloseCurly, 'L', 102], [Dot, 'L', 102], [CloseRound, 'L', 102], [FatRightArrow, 'L', 102], [RightArrow, 'L', 102]],
+   [:ReadaheadTable, 52, [walkInteger:, 'RSN', 106]],
+   [:ReadaheadTable, 53, [walkInteger:, 'RSN', 104]],
+   [:ReadbackTable, 54, [[TreeBuildingOptions, 54], 'RSN', 107], [[Alternation, 36], 'RSN', 108]],
+   [:ReadbackTable, 55, [[Defaults, 164], 'RSN', 55], [[GrammarType, 2], 'RSN', 122]],
+   [:ReadbackTable, 56, [[Macro, 9], 'RSN', 56], [[Production, 11], 'RSN', 56], [[GrammarType, 2], 'L', 134], [[Defaults, 164], 'L', 134]],
+   [:ReadbackTable, 57, [[RepetitionOption, 46], 'RSN', 57], [[RepetitionOption, 33], 'RSN', 148]],
+   [:ReadbackTable, 58, [[OpenSquare, 39], 'RS', 110], [[Attribute, 49], 'RSN', 58]],
+   [:ReadbackTable, 59, [[OpenSquare, 42], 'RS', 82], [[SemanticActionParameter, 50], 'RSN', 59]],
+   [:ReadbackTable, 60, [[Plus, 53], 'RS', 158], [[FatRightArrow, 48], 'L', 158]],
+   [:ReadbackTable, 61, [[keywords, 4], 'RS', 136], [[Name, 12], 'RSN', 61]],
+   [:ReadbackTable, 62, [[LeftPart, 10], 'RSN', 142], [[RightPart, 21], 'RSN', 62]],
+   [:ReadbackTable, 63, [[Name, 23], 'RSN', 63], [[defaults, 14], 'RS', 111]],
+   [:ReadbackTable, 64, [[Name, 37], 'RSN', 64], [[defaults, 24], 'RS', 112]],
+   [:ReadbackTable, 65, [[Name, 38], 'RSN', 65], [[defaults, 25], 'RS', 113]],
+   [:ReadbackTable, 66, [[Concatenation, 51], 'RSN', 109], [[Concatenation, 32], 'RSN', 156]],
+   [ShiftbackTable, 67, 1, 119],
+   [ShiftbackTable, 68, 1, 55],
+   [ShiftbackTable, 69, 1, 126],
+   [ShiftbackTable, 70, 1, 133],
+   [ShiftbackTable, 71, 1, 56],
+   [ShiftbackTable, 72, 2, 126],
+   [ShiftbackTable, 73, 1, 114],
+   [ShiftbackTable, 74, 1, 128],
+   [ShiftbackTable, 75, 1, 130],
+   [ShiftbackTable, 76, 1, 118],
+   [ShiftbackTable, 77, 1, 129],
+   [ShiftbackTable, 78, 1, 115],
+   [ShiftbackTable, 79, 2, 61],
+   [ShiftbackTable, 80, 3, 137],
+   [ShiftbackTable, 81, 3, 138],
+   [ShiftbackTable, 82, 1, 139],
+   [ShiftbackTable, 83, 1, 140],
+   [ShiftbackTable, 84, 2, 62],
+   [ShiftbackTable, 85, 2, 63],
+   [ShiftbackTable, 86, 1, 125],
+   [ShiftbackTable, 87, 4, 144],
+   [ShiftbackTable, 88, 1, 121],
+   [ShiftbackTable, 89, 2, 145],
+   [ShiftbackTable, 90, 2, 146],
+   [ShiftbackTable, 91, 2, 147],
+   [ShiftbackTable, 92, 1, 57],
+   [ShiftbackTable, 93, 3, 128],
+   [ShiftbackTable, 94, 4, 149],
+   [ShiftbackTable, 95, 2, 64],
+   [ShiftbackTable, 96, 2, 65],
+   [ShiftbackTable, 97, 1, 58],
+   [ShiftbackTable, 98, 3, 153],
+   [ShiftbackTable, 99, 3, 154],
+   [ShiftbackTable, 100, 1, 59],
+   [ShiftbackTable, 101, 3, 155],
+   [ShiftbackTable, 102, 2, 66],
+   [ShiftbackTable, 103, 1, 157],
+   [ShiftbackTable, 104, 1, 60],
+   [ShiftbackTable, 105, 1, 159],
+   [ShiftbackTable, 106, 2, 160],
+   [ShiftbackTable, 107, 3, 141],
+   [ShiftbackTable, 108, 1, 141],
+   [ShiftbackTable, 109, 1, 66],
+   [ShiftbackTable, 110, 1, 152],
+   [ShiftbackTable, 111, 1, 143],
+   [ShiftbackTable, 112, 2, 150],
+   [ShiftbackTable, 113, 2, 151],
+   [:ReduceTable, 114, Expression, [[18, 'RSN', 31], [19, 'RSN', 31], [20, 'RSN', 31], [29, 'RSN', 31], [33, 'RSN', 31], [34, 'RSN', 31], [43, 'RSN', 101], [44, 'RSN', 101], [45, 'RSN', 31], [46, 'RSN', 31]]],
+   [:ReduceTable, 115, Concatenation, [[18, 'RSN', 32], [19, 'RSN', 32], [20, 'RSN', 32], [29, 'RSN', 32], [34, 'RSN', 32], [45, 'RSN', 51]]],
+   [:ReduceTable, 116, LeftPart, [[2, 'RSN', 10], [9, 'RSN', 10], [11, 'RSN', 10], [164, 'RSN', 10]]],
+   [:ReduceTable, 117, Macro, [[2, 'RSN', 9], [9, 'RSN', 9], [11, 'RSN', 9], [164, 'RSN', 9]]],
+   [:ReduceTable, 118, RepetitionOption, [[18, 'RSN', 33], [19, 'RSN', 33], [20, 'RSN', 33], [29, 'RSN', 33], [33, 'RSN', 46], [34, 'RSN', 33], [45, 'RSN', 33], [46, 'RSN', 46]]],
+   [:ReduceTable, 119, Name, [[2, 'RSN', 8], [4, 'RSN', 12], [5, 'RSN', 13], [7, 'RSN', 17], [9, 'RSN', 8], [11, 'RSN', 8], [12, 'RSN', 12], [14, 'RSN', 23], [18, 'RSN', 74], [19, 'RSN', 74], [20, 'RSN', 74], [164, 'RSN', 8], [23, 'RSN', 23], [24, 'RSN', 37], [25, 'RSN', 38], [29, 'RSN', 74], [33, 'RSN', 74], [34, 'RSN', 74], [37, 'RSN', 37], [38, 'RSN', 38], [42, 'RSN', 88], [43, 'RSN', 74], [44, 'RSN', 74], [45, 'RSN', 74], [46, 'RSN', 74], [48, 'RSN', 103], [50, 'RSN', 88]]],
+   [:ReduceTable, 120, Defaults, [[2, 'RSN', 164], [164, 'RSN', 164]]],
+   [:ReduceTable, 121, SemanticActionParameter, [[42, 'RSN', 50], [50, 'RSN', 50]]],
+   [:ReduceTable, 122, Grammar, [[1, 'RSN', 166]]],
+   [:ReduceTable, 123, TreeBuildingOptions, [[48, 'RSN', 54]]],
+   [:ReduceTable, 124, Production, [[2, 'RSN', 11], [9, 'RSN', 11], [11, 'RSN', 11], [164, 'RSN', 11]]],
+   [:ReduceTable, 125, Attribute, [[39, 'RSN', 49], [49, 'RSN', 49]]],
+   [:ReduceTable, 126, GrammarType, [[1, 'RSN', 2]]],
+   [:ReduceTable, 127, Rules, [[2, 'RSN', 68], [164, 'RSN', 68]]],
+   [:ReduceTable, 128, Primary, [[18, 'RSN', 26], [19, 'RSN', 26], [20, 'RSN', 26], [29, 'RSN', 26], [33, 'RSN', 26], [34, 'RSN', 26], [43, 'RSN', 26], [44, 'RSN', 26], [45, 'RSN', 26], [46, 'RSN', 26]]],
+   [:ReduceTable, 129, Alternation, [[18, 'RSN', 27], [19, 'RSN', 35], [20, 'RSN', 36], [29, 'RSN', 41], [34, 'RSN', 47]]],
+   [:ReduceTable, 130, Byte, [[18, 'RSN', 28], [19, 'RSN', 28], [20, 'RSN', 28], [29, 'RSN', 28], [33, 'RSN', 28], [34, 'RSN', 28], [40, 'RSN', 98], [42, 'RSN', 88], [43, 'RSN', 28], [44, 'RSN', 28], [45, 'RSN', 28], [46, 'RSN', 28], [50, 'RSN', 88]]],
+   [:ReduceTable, 131, RightPart, [[10, 'RSN', 21], [21, 'RSN', 21]]],
+   [:ReduceTable, 132, SemanticAction, [[18, 'RSN', 83], [19, 'RSN', 83], [20, 'RSN', 83], [29, 'RSN', 83], [33, 'RSN', 83], [34, 'RSN', 83], [43, 'RSN', 83], [44, 'RSN', 83], [45, 'RSN', 83], [46, 'RSN', 83], [48, 'RSN', 105]]],
+   [:SemanticTable, 133, :buildTree, walkLeftPart:, 116],
+   [:SemanticTable, 134, :buildTree, walkGrammar:, 127],
+   [:SemanticTable, 135, :buildTree, walkEpsilon:, 129],
+   [:SemanticTable, 136, :buildTree, walkKeywords:, 120],
+   [:SemanticTable, 137, :buildTree, walkOutput:, 120],
+   [:SemanticTable, 138, :buildTree, walkOptimize:, 120],
+   [:SemanticTable, 139, :buildTree, walkSemanticAction:, 132],
+   [:SemanticTable, 140, :buildTree, walkNonTreeBuildingSemanticAction:, 114],
+   [:SemanticTable, 141, :buildTree, walkRightPart:, 131],
+   [:SemanticTable, 142, :buildTree, walkProduction:, 124],
+   [:SemanticTable, 143, :buildTree, walkAttributeDefaults:, 120],
+   [:SemanticTable, 144, :buildTree, walkMacro:, 117],
+   [:SemanticTable, 145, :buildTree, walkQuestionMark:, 118],
+   [:SemanticTable, 146, :buildTree, walkStar:, 118],
+   [:SemanticTable, 147, :buildTree, walkPlus:, 118],
+   [:SemanticTable, 148, :buildTree, walkConcatenation:, 115],
+   [:SemanticTable, 149, :buildTree, walkLeftPartWithLookahead:, 116],
+   [:SemanticTable, 150, :buildTree, walkAttributeTerminalDefaults:, 120],
+   [:SemanticTable, 151, :buildTree, walkAttributeNonterminalDefaults:, 120],
+   [:SemanticTable, 152, :buildTree, walkAttributes:, 114],
+   [:SemanticTable, 153, :buildTree, walkDotDot:, 128],
+   [:SemanticTable, 154, :buildTree, walkLook:, 128],
+   [:SemanticTable, 155, :buildTree, walkMinus:, 118],
+   [:SemanticTable, 156, :buildTree, walkOr:, 129],
+   [:SemanticTable, 157, :buildTree, walkBuildTreeOrTokenFromName:, 123],
+   [:SemanticTable, 158, :buildTree, walkBuildTreeFromLeftIndex:, 123],
+   [:SemanticTable, 159, :buildTree, walkTreeBuildingSemanticAction:, 123],
+   [:SemanticTable, 160, :buildTree, walkBuildTreeFromRightIndex:, 123],
+   [:SemanticTable, 161, :processTypeNow, Scanner, 69],
+   [:SemanticTable, 162, :processTypeNow, SuperScanner, 69],
+   [:SemanticTable, 163, :processTypeNow, Parser, 69],
+   [:SemanticTable, 164, :processAndDiscardDefaultsNow, 22],
+   [:SemanticTable, 165, :processTypeNow, SuperScanner, 72],
+   [:AcceptTable, 166]]
+
+
+//C++: ONE EXPRESSION VERSION ---------------------->
+
+
+
+    
+//For parsingTables.h
+
+struct RawReadaheadTriple {const char *string; const char *attributes; long gotoTable;};
+struct RawReadaheadTable {const char *name; long state; long size; RawReadaheadTriple **triples;};
+struct RawReadbackPair {const char *symbol; long state;};
+struct RawReadbackTriple {RawReadbackPair pair; const char *attributes; long gotoTable;};
+struct RawReadbackTable {const char *name; long state; long size; RawReadbackTriple **triples;};
+struct RawShiftbackTable {const char *name; long state; long shift; long gotoTable;};
+struct RawReduceTriple {long stackTopState; const char *attributes; long gotoTable;};
+struct RawReduceTable {const char *name; long state;  const char *nonterminal; long size; RawReduceTriple **triples;};
+//The following is assumed available from scanner.h
+//struct RawSemanticTable {const char *name; long state; const char *action; long size; const char **parameters; long gotoTable;};
+struct RawAcceptTable {const char *name; long state;};
+
+struct ParserTables {
+    long keywordsSize; const char **keywords;
+    long readaheadTablesSize; RawReadaheadTable **readaheadTables;
+    long readbackTablesSize; RawReadbackTable **readbackTables;
+    long shiftbackTablesSize; RawShiftbackTable **shiftbackTables;
+    long reduceTablesSize; RawReduceTable **reduceTables;
+    long semanticTablesSize; RawSemanticTable **semanticTables;
+    RawAcceptTable *acceptTable;
+};
+
+
+ParserTables *parserTables();
+void deleteParserTables(ParserTables *parserTable); 
+
+ParserTables *parserTables () {
+   return new ParserTables {
+      19, new const char * [19] {"stack", "noStack", "read", "look", "node", "noNode", "keep", "noKeep", "parser", "scanner", "super", "superScanner", "attribute", "defaults", "keywords", "output", "optimize", "terminal", "nonterminal"},
+      53, new RawReadaheadTable* [53] {
+         new RawReadaheadTable {"ReadaheadTable", 0, 4, new RawReadaheadTriple* [4] {
+            new RawReadaheadTriple {"scanner", "RS", 160}, 
+            new RawReadaheadTriple {"superScanner", "RS", 161}, 
+            new RawReadaheadTriple {"super", "RS", 2}, 
+            new RawReadaheadTriple {"parser", "RS", 162}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 1, 6, new RawReadaheadTriple* [6] {
+            new RawReadaheadTriple {"walkString:", "RSN", 66}, 
+            new RawReadaheadTriple {"keywords", "RS", 3}, 
+            new RawReadaheadTriple {"output", "RS", 4}, 
+            new RawReadaheadTriple {"attribute", "RS", 5}, 
+            new RawReadaheadTriple {"optimize", "RS", 6}, 
+            new RawReadaheadTriple {"walkIdentifier:", "RSN", 66}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 2, 1, new RawReadaheadTriple* [1] {
+            new RawReadaheadTriple {"scanner", "RS", 164}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 3, 2, new RawReadaheadTriple* [2] {
+            new RawReadaheadTriple {"walkString:", "RSN", 66}, 
+            new RawReadaheadTriple {"walkIdentifier:", "RSN", 66}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 4, 2, new RawReadaheadTriple* [2] {
+            new RawReadaheadTriple {"walkString:", "RSN", 66}, 
+            new RawReadaheadTriple {"walkIdentifier:", "RSN", 66}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 5, 3, new RawReadaheadTriple* [3] {
+            new RawReadaheadTriple {"defaults", "RS", 13}, 
+            new RawReadaheadTriple {"terminal", "RS", 14}, 
+            new RawReadaheadTriple {"nonterminal", "RS", 15}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 6, 2, new RawReadaheadTriple* [2] {
+            new RawReadaheadTriple {"walkString:", "RSN", 66}, 
+            new RawReadaheadTriple {"walkIdentifier:", "RSN", 66}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 7, 3, new RawReadaheadTriple* [3] {
+            new RawReadaheadTriple {"Equals", "RS", 17}, 
+            new RawReadaheadTriple {"OpenCurly", "RS", 18}, 
+            new RawReadaheadTriple {"RightArrow", "L", 69}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 8, 3, new RawReadaheadTriple* [3] {
+            new RawReadaheadTriple {"walkString:", "RSN", 66}, 
+            new RawReadaheadTriple {"walkIdentifier:", "RSN", 66}, 
+            new RawReadaheadTriple {"-|", "L", 70}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 9, 1, new RawReadaheadTriple* [1] {
+            new RawReadaheadTriple {"RightArrow", "RS", 19}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 10, 3, new RawReadaheadTriple* [3] {
+            new RawReadaheadTriple {"walkString:", "RSN", 66}, 
+            new RawReadaheadTriple {"walkIdentifier:", "RSN", 66}, 
+            new RawReadaheadTriple {"-|", "L", 70}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 11, 3, new RawReadaheadTriple* [3] {
+            new RawReadaheadTriple {"walkString:", "RSN", 66}, 
+            new RawReadaheadTriple {"Dot", "RS", 78}, 
+            new RawReadaheadTriple {"walkIdentifier:", "RSN", 66}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 12, 1, new RawReadaheadTriple* [1] {
+            new RawReadaheadTriple {"Dot", "RS", 79}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 13, 2, new RawReadaheadTriple* [2] {
+            new RawReadaheadTriple {"walkString:", "RSN", 66}, 
+            new RawReadaheadTriple {"walkIdentifier:", "RSN", 66}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 14, 1, new RawReadaheadTriple* [1] {
+            new RawReadaheadTriple {"defaults", "RS", 23}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 15, 1, new RawReadaheadTriple* [1] {
+            new RawReadaheadTriple {"defaults", "RS", 24}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 16, 1, new RawReadaheadTriple* [1] {
+            new RawReadaheadTriple {"Dot", "RS", 80}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 17, 12, new RawReadaheadTriple* [12] {
+            new RawReadaheadTriple {"walkString:", "RSN", 66}, 
+            new RawReadaheadTriple {"OpenCurly", "RS", 28}, 
+            new RawReadaheadTriple {"walkSymbol:", "RSN", 29}, 
+            new RawReadaheadTriple {"walkInteger:", "RSN", 74}, 
+            new RawReadaheadTriple {"walkCharacter:", "RSN", 74}, 
+            new RawReadaheadTriple {"walkIdentifier:", "RSN", 66}, 
+            new RawReadaheadTriple {"OpenRound", "RS", 33}, 
+            new RawReadaheadTriple {"CloseCurly", "L", 134}, 
+            new RawReadaheadTriple {"Dot", "L", 134}, 
+            new RawReadaheadTriple {"CloseRound", "L", 134}, 
+            new RawReadaheadTriple {"FatRightArrow", "L", 134}, 
+            new RawReadaheadTriple {"RightArrow", "L", 134}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 18, 12, new RawReadaheadTriple* [12] {
+            new RawReadaheadTriple {"walkString:", "RSN", 66}, 
+            new RawReadaheadTriple {"OpenCurly", "RS", 28}, 
+            new RawReadaheadTriple {"walkSymbol:", "RSN", 29}, 
+            new RawReadaheadTriple {"walkInteger:", "RSN", 74}, 
+            new RawReadaheadTriple {"walkCharacter:", "RSN", 74}, 
+            new RawReadaheadTriple {"walkIdentifier:", "RSN", 66}, 
+            new RawReadaheadTriple {"OpenRound", "RS", 33}, 
+            new RawReadaheadTriple {"CloseCurly", "L", 134}, 
+            new RawReadaheadTriple {"Dot", "L", 134}, 
+            new RawReadaheadTriple {"CloseRound", "L", 134}, 
+            new RawReadaheadTriple {"FatRightArrow", "L", 134}, 
+            new RawReadaheadTriple {"RightArrow", "L", 134}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 19, 12, new RawReadaheadTriple* [12] {
+            new RawReadaheadTriple {"walkString:", "RSN", 66}, 
+            new RawReadaheadTriple {"OpenCurly", "RS", 28}, 
+            new RawReadaheadTriple {"walkSymbol:", "RSN", 29}, 
+            new RawReadaheadTriple {"walkInteger:", "RSN", 74}, 
+            new RawReadaheadTriple {"walkCharacter:", "RSN", 74}, 
+            new RawReadaheadTriple {"walkIdentifier:", "RSN", 66}, 
+            new RawReadaheadTriple {"OpenRound", "RS", 33}, 
+            new RawReadaheadTriple {"CloseCurly", "L", 134}, 
+            new RawReadaheadTriple {"Dot", "L", 134}, 
+            new RawReadaheadTriple {"CloseRound", "L", 134}, 
+            new RawReadaheadTriple {"FatRightArrow", "L", 134}, 
+            new RawReadaheadTriple {"RightArrow", "L", 134}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 20, 2, new RawReadaheadTriple* [2] {
+            new RawReadaheadTriple {"RightArrow", "RS", 19}, 
+            new RawReadaheadTriple {"Dot", "RS", 83}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 21, 6, new RawReadaheadTriple* [6] {
+            new RawReadaheadTriple {"walkString:", "RSN", 66}, 
+            new RawReadaheadTriple {"keywords", "RS", 3}, 
+            new RawReadaheadTriple {"output", "RS", 4}, 
+            new RawReadaheadTriple {"attribute", "RS", 5}, 
+            new RawReadaheadTriple {"optimize", "RS", 6}, 
+            new RawReadaheadTriple {"walkIdentifier:", "RSN", 66}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 22, 3, new RawReadaheadTriple* [3] {
+            new RawReadaheadTriple {"walkString:", "RSN", 66}, 
+            new RawReadaheadTriple {"Dot", "RS", 84}, 
+            new RawReadaheadTriple {"walkIdentifier:", "RSN", 66}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 23, 2, new RawReadaheadTriple* [2] {
+            new RawReadaheadTriple {"walkString:", "RSN", 66}, 
+            new RawReadaheadTriple {"walkIdentifier:", "RSN", 66}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 24, 2, new RawReadaheadTriple* [2] {
+            new RawReadaheadTriple {"walkString:", "RSN", 66}, 
+            new RawReadaheadTriple {"walkIdentifier:", "RSN", 66}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 25, 19, new RawReadaheadTriple* [19] {
+            new RawReadaheadTriple {"OpenSquare", "RS", 38}, 
+            new RawReadaheadTriple {"Star", "L", 72}, 
+            new RawReadaheadTriple {"QuestionMark", "L", 72}, 
+            new RawReadaheadTriple {"Plus", "L", 72}, 
+            new RawReadaheadTriple {"And", "L", 72}, 
+            new RawReadaheadTriple {"Minus", "L", 72}, 
+            new RawReadaheadTriple {"OpenRound", "L", 72}, 
+            new RawReadaheadTriple {"OpenCurly", "L", 72}, 
+            new RawReadaheadTriple {"walkIdentifier:", "L", 72}, 
+            new RawReadaheadTriple {"walkString:", "L", 72}, 
+            new RawReadaheadTriple {"walkSymbol:", "L", 72}, 
+            new RawReadaheadTriple {"walkCharacter:", "L", 72}, 
+            new RawReadaheadTriple {"walkInteger:", "L", 72}, 
+            new RawReadaheadTriple {"VerticalBar", "L", 72}, 
+            new RawReadaheadTriple {"CloseCurly", "L", 72}, 
+            new RawReadaheadTriple {"Dot", "L", 72}, 
+            new RawReadaheadTriple {"CloseRound", "L", 72}, 
+            new RawReadaheadTriple {"FatRightArrow", "L", 72}, 
+            new RawReadaheadTriple {"RightArrow", "L", 72}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 26, 1, new RawReadaheadTriple* [1] {
+            new RawReadaheadTriple {"Dot", "RS", 86}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 27, 20, new RawReadaheadTriple* [20] {
+            new RawReadaheadTriple {"DotDot", "RS", 39}, 
+            new RawReadaheadTriple {"OpenSquare", "L", 73}, 
+            new RawReadaheadTriple {"Star", "L", 73}, 
+            new RawReadaheadTriple {"QuestionMark", "L", 73}, 
+            new RawReadaheadTriple {"Plus", "L", 73}, 
+            new RawReadaheadTriple {"And", "L", 73}, 
+            new RawReadaheadTriple {"Minus", "L", 73}, 
+            new RawReadaheadTriple {"OpenRound", "L", 73}, 
+            new RawReadaheadTriple {"OpenCurly", "L", 73}, 
+            new RawReadaheadTriple {"walkIdentifier:", "L", 73}, 
+            new RawReadaheadTriple {"walkString:", "L", 73}, 
+            new RawReadaheadTriple {"walkSymbol:", "L", 73}, 
+            new RawReadaheadTriple {"walkCharacter:", "L", 73}, 
+            new RawReadaheadTriple {"walkInteger:", "L", 73}, 
+            new RawReadaheadTriple {"VerticalBar", "L", 73}, 
+            new RawReadaheadTriple {"CloseCurly", "L", 73}, 
+            new RawReadaheadTriple {"Dot", "L", 73}, 
+            new RawReadaheadTriple {"CloseRound", "L", 73}, 
+            new RawReadaheadTriple {"FatRightArrow", "L", 73}, 
+            new RawReadaheadTriple {"RightArrow", "L", 73}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 28, 12, new RawReadaheadTriple* [12] {
+            new RawReadaheadTriple {"walkString:", "RSN", 66}, 
+            new RawReadaheadTriple {"OpenCurly", "RS", 28}, 
+            new RawReadaheadTriple {"walkSymbol:", "RSN", 29}, 
+            new RawReadaheadTriple {"walkInteger:", "RSN", 74}, 
+            new RawReadaheadTriple {"walkCharacter:", "RSN", 74}, 
+            new RawReadaheadTriple {"walkIdentifier:", "RSN", 66}, 
+            new RawReadaheadTriple {"OpenRound", "RS", 33}, 
+            new RawReadaheadTriple {"CloseCurly", "L", 134}, 
+            new RawReadaheadTriple {"Dot", "L", 134}, 
+            new RawReadaheadTriple {"CloseRound", "L", 134}, 
+            new RawReadaheadTriple {"FatRightArrow", "L", 134}, 
+            new RawReadaheadTriple {"RightArrow", "L", 134}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 29, 19, new RawReadaheadTriple* [19] {
+            new RawReadaheadTriple {"OpenSquare", "RS", 41}, 
+            new RawReadaheadTriple {"Star", "L", 81}, 
+            new RawReadaheadTriple {"QuestionMark", "L", 81}, 
+            new RawReadaheadTriple {"Plus", "L", 81}, 
+            new RawReadaheadTriple {"And", "L", 81}, 
+            new RawReadaheadTriple {"Minus", "L", 81}, 
+            new RawReadaheadTriple {"OpenRound", "L", 81}, 
+            new RawReadaheadTriple {"OpenCurly", "L", 81}, 
+            new RawReadaheadTriple {"walkIdentifier:", "L", 81}, 
+            new RawReadaheadTriple {"walkString:", "L", 81}, 
+            new RawReadaheadTriple {"walkSymbol:", "L", 81}, 
+            new RawReadaheadTriple {"walkCharacter:", "L", 81}, 
+            new RawReadaheadTriple {"walkInteger:", "L", 81}, 
+            new RawReadaheadTriple {"RightArrow", "L", 81}, 
+            new RawReadaheadTriple {"Dot", "L", 81}, 
+            new RawReadaheadTriple {"VerticalBar", "L", 81}, 
+            new RawReadaheadTriple {"CloseCurly", "L", 81}, 
+            new RawReadaheadTriple {"CloseRound", "L", 81}, 
+            new RawReadaheadTriple {"FatRightArrow", "L", 81}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 30, 18, new RawReadaheadTriple* [18] {
+            new RawReadaheadTriple {"QuestionMark", "RS", 88}, 
+            new RawReadaheadTriple {"Minus", "RS", 42}, 
+            new RawReadaheadTriple {"Star", "RS", 89}, 
+            new RawReadaheadTriple {"Plus", "RS", 90}, 
+            new RawReadaheadTriple {"And", "RS", 43}, 
+            new RawReadaheadTriple {"OpenRound", "L", 75}, 
+            new RawReadaheadTriple {"OpenCurly", "L", 75}, 
+            new RawReadaheadTriple {"walkIdentifier:", "L", 75}, 
+            new RawReadaheadTriple {"walkString:", "L", 75}, 
+            new RawReadaheadTriple {"walkSymbol:", "L", 75}, 
+            new RawReadaheadTriple {"walkCharacter:", "L", 75}, 
+            new RawReadaheadTriple {"walkInteger:", "L", 75}, 
+            new RawReadaheadTriple {"VerticalBar", "L", 75}, 
+            new RawReadaheadTriple {"CloseCurly", "L", 75}, 
+            new RawReadaheadTriple {"Dot", "L", 75}, 
+            new RawReadaheadTriple {"CloseRound", "L", 75}, 
+            new RawReadaheadTriple {"FatRightArrow", "L", 75}, 
+            new RawReadaheadTriple {"RightArrow", "L", 75}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 31, 6, new RawReadaheadTriple* [6] {
+            new RawReadaheadTriple {"VerticalBar", "RS", 44}, 
+            new RawReadaheadTriple {"CloseCurly", "L", 76}, 
+            new RawReadaheadTriple {"Dot", "L", 76}, 
+            new RawReadaheadTriple {"CloseRound", "L", 76}, 
+            new RawReadaheadTriple {"FatRightArrow", "L", 76}, 
+            new RawReadaheadTriple {"RightArrow", "L", 76}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 32, 13, new RawReadaheadTriple* [13] {
+            new RawReadaheadTriple {"walkString:", "RSN", 66}, 
+            new RawReadaheadTriple {"OpenCurly", "RS", 28}, 
+            new RawReadaheadTriple {"walkSymbol:", "RSN", 29}, 
+            new RawReadaheadTriple {"walkInteger:", "RSN", 74}, 
+            new RawReadaheadTriple {"walkCharacter:", "RSN", 74}, 
+            new RawReadaheadTriple {"walkIdentifier:", "RSN", 66}, 
+            new RawReadaheadTriple {"OpenRound", "RS", 33}, 
+            new RawReadaheadTriple {"VerticalBar", "L", 77}, 
+            new RawReadaheadTriple {"CloseCurly", "L", 77}, 
+            new RawReadaheadTriple {"Dot", "L", 77}, 
+            new RawReadaheadTriple {"CloseRound", "L", 77}, 
+            new RawReadaheadTriple {"FatRightArrow", "L", 77}, 
+            new RawReadaheadTriple {"RightArrow", "L", 77}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 33, 12, new RawReadaheadTriple* [12] {
+            new RawReadaheadTriple {"walkString:", "RSN", 66}, 
+            new RawReadaheadTriple {"OpenCurly", "RS", 28}, 
+            new RawReadaheadTriple {"walkSymbol:", "RSN", 29}, 
+            new RawReadaheadTriple {"walkInteger:", "RSN", 74}, 
+            new RawReadaheadTriple {"walkCharacter:", "RSN", 74}, 
+            new RawReadaheadTriple {"walkIdentifier:", "RSN", 66}, 
+            new RawReadaheadTriple {"OpenRound", "RS", 33}, 
+            new RawReadaheadTriple {"CloseCurly", "L", 134}, 
+            new RawReadaheadTriple {"Dot", "L", 134}, 
+            new RawReadaheadTriple {"CloseRound", "L", 134}, 
+            new RawReadaheadTriple {"FatRightArrow", "L", 134}, 
+            new RawReadaheadTriple {"RightArrow", "L", 134}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 34, 1, new RawReadaheadTriple* [1] {
+            new RawReadaheadTriple {"CloseCurly", "RS", 93}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 35, 3, new RawReadaheadTriple* [3] {
+            new RawReadaheadTriple {"FatRightArrow", "RS", 47}, 
+            new RawReadaheadTriple {"RightArrow", "L", 53}, 
+            new RawReadaheadTriple {"Dot", "L", 53}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 36, 3, new RawReadaheadTriple* [3] {
+            new RawReadaheadTriple {"walkString:", "RSN", 66}, 
+            new RawReadaheadTriple {"Dot", "RS", 94}, 
+            new RawReadaheadTriple {"walkIdentifier:", "RSN", 66}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 37, 3, new RawReadaheadTriple* [3] {
+            new RawReadaheadTriple {"walkString:", "RSN", 66}, 
+            new RawReadaheadTriple {"Dot", "RS", 95}, 
+            new RawReadaheadTriple {"walkIdentifier:", "RSN", 66}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 38, 9, new RawReadaheadTriple* [9] {
+            new RawReadaheadTriple {"keep", "RSN", 85}, 
+            new RawReadaheadTriple {"noNode", "RSN", 85}, 
+            new RawReadaheadTriple {"noStack", "RSN", 85}, 
+            new RawReadaheadTriple {"CloseSquare", "RS", 96}, 
+            new RawReadaheadTriple {"read", "RSN", 85}, 
+            new RawReadaheadTriple {"look", "RSN", 85}, 
+            new RawReadaheadTriple {"stack", "RSN", 85}, 
+            new RawReadaheadTriple {"node", "RSN", 85}, 
+            new RawReadaheadTriple {"noKeep", "RSN", 85}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 39, 2, new RawReadaheadTriple* [2] {
+            new RawReadaheadTriple {"walkInteger:", "RSN", 74}, 
+            new RawReadaheadTriple {"walkCharacter:", "RSN", 74}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 40, 1, new RawReadaheadTriple* [1] {
+            new RawReadaheadTriple {"CloseCurly", "RS", 98}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 41, 6, new RawReadaheadTriple* [6] {
+            new RawReadaheadTriple {"walkString:", "RSN", 66}, 
+            new RawReadaheadTriple {"walkSymbol:", "RSN", 87}, 
+            new RawReadaheadTriple {"walkIdentifier:", "RSN", 66}, 
+            new RawReadaheadTriple {"walkCharacter:", "RSN", 74}, 
+            new RawReadaheadTriple {"CloseSquare", "RS", 99}, 
+            new RawReadaheadTriple {"walkInteger:", "RSN", 74}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 42, 7, new RawReadaheadTriple* [7] {
+            new RawReadaheadTriple {"walkSymbol:", "RSN", 29}, 
+            new RawReadaheadTriple {"walkString:", "RSN", 66}, 
+            new RawReadaheadTriple {"OpenCurly", "RS", 28}, 
+            new RawReadaheadTriple {"walkIdentifier:", "RSN", 66}, 
+            new RawReadaheadTriple {"walkCharacter:", "RSN", 74}, 
+            new RawReadaheadTriple {"OpenRound", "RS", 33}, 
+            new RawReadaheadTriple {"walkInteger:", "RSN", 74}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 43, 7, new RawReadaheadTriple* [7] {
+            new RawReadaheadTriple {"walkString:", "RSN", 66}, 
+            new RawReadaheadTriple {"walkSymbol:", "RSN", 29}, 
+            new RawReadaheadTriple {"OpenCurly", "RS", 28}, 
+            new RawReadaheadTriple {"walkCharacter:", "RSN", 74}, 
+            new RawReadaheadTriple {"walkIdentifier:", "RSN", 66}, 
+            new RawReadaheadTriple {"OpenRound", "RS", 33}, 
+            new RawReadaheadTriple {"walkInteger:", "RSN", 74}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 44, 7, new RawReadaheadTriple* [7] {
+            new RawReadaheadTriple {"walkString:", "RSN", 66}, 
+            new RawReadaheadTriple {"OpenCurly", "RS", 28}, 
+            new RawReadaheadTriple {"walkSymbol:", "RSN", 29}, 
+            new RawReadaheadTriple {"walkInteger:", "RSN", 74}, 
+            new RawReadaheadTriple {"walkCharacter:", "RSN", 74}, 
+            new RawReadaheadTriple {"walkIdentifier:", "RSN", 66}, 
+            new RawReadaheadTriple {"OpenRound", "RS", 33}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 45, 13, new RawReadaheadTriple* [13] {
+            new RawReadaheadTriple {"walkString:", "RSN", 66}, 
+            new RawReadaheadTriple {"OpenCurly", "RS", 28}, 
+            new RawReadaheadTriple {"walkSymbol:", "RSN", 29}, 
+            new RawReadaheadTriple {"walkInteger:", "RSN", 74}, 
+            new RawReadaheadTriple {"walkCharacter:", "RSN", 74}, 
+            new RawReadaheadTriple {"walkIdentifier:", "RSN", 66}, 
+            new RawReadaheadTriple {"OpenRound", "RS", 33}, 
+            new RawReadaheadTriple {"VerticalBar", "L", 91}, 
+            new RawReadaheadTriple {"CloseCurly", "L", 91}, 
+            new RawReadaheadTriple {"Dot", "L", 91}, 
+            new RawReadaheadTriple {"CloseRound", "L", 91}, 
+            new RawReadaheadTriple {"FatRightArrow", "L", 91}, 
+            new RawReadaheadTriple {"RightArrow", "L", 91}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 46, 1, new RawReadaheadTriple* [1] {
+            new RawReadaheadTriple {"CloseRound", "RS", 92}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 47, 6, new RawReadaheadTriple* [6] {
+            new RawReadaheadTriple {"Minus", "RS", 51}, 
+            new RawReadaheadTriple {"walkString:", "RSN", 66}, 
+            new RawReadaheadTriple {"walkSymbol:", "RSN", 29}, 
+            new RawReadaheadTriple {"walkIdentifier:", "RSN", 66}, 
+            new RawReadaheadTriple {"Plus", "RS", 52}, 
+            new RawReadaheadTriple {"walkInteger:", "RSN", 103}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 48, 9, new RawReadaheadTriple* [9] {
+            new RawReadaheadTriple {"keep", "RSN", 85}, 
+            new RawReadaheadTriple {"noNode", "RSN", 85}, 
+            new RawReadaheadTriple {"noStack", "RSN", 85}, 
+            new RawReadaheadTriple {"CloseSquare", "RS", 96}, 
+            new RawReadaheadTriple {"read", "RSN", 85}, 
+            new RawReadaheadTriple {"look", "RSN", 85}, 
+            new RawReadaheadTriple {"stack", "RSN", 85}, 
+            new RawReadaheadTriple {"node", "RSN", 85}, 
+            new RawReadaheadTriple {"noKeep", "RSN", 85}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 49, 6, new RawReadaheadTriple* [6] {
+            new RawReadaheadTriple {"walkString:", "RSN", 66}, 
+            new RawReadaheadTriple {"walkSymbol:", "RSN", 87}, 
+            new RawReadaheadTriple {"walkIdentifier:", "RSN", 66}, 
+            new RawReadaheadTriple {"walkCharacter:", "RSN", 74}, 
+            new RawReadaheadTriple {"CloseSquare", "RS", 99}, 
+            new RawReadaheadTriple {"walkInteger:", "RSN", 74}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 50, 6, new RawReadaheadTriple* [6] {
+            new RawReadaheadTriple {"VerticalBar", "RS", 44}, 
+            new RawReadaheadTriple {"CloseCurly", "L", 101}, 
+            new RawReadaheadTriple {"Dot", "L", 101}, 
+            new RawReadaheadTriple {"CloseRound", "L", 101}, 
+            new RawReadaheadTriple {"FatRightArrow", "L", 101}, 
+            new RawReadaheadTriple {"RightArrow", "L", 101}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 51, 1, new RawReadaheadTriple* [1] {
+            new RawReadaheadTriple {"walkInteger:", "RSN", 105}}}, 
+         new RawReadaheadTable {"ReadaheadTable", 52, 1, new RawReadaheadTriple* [1] {
+            new RawReadaheadTriple {"walkInteger:", "RSN", 103}}}},
+      13, new RawReadbackTable* [13] {
+         new RawReadbackTable {"ReadbackTable", 53, 2, new RawReadbackTriple* [2] {
+            new RawReadbackTriple {{"TreeBuildingOptions", 53}, "RSN", 106}, 
+            new RawReadbackTriple {{"Alternation", 35}, "RSN", 107}}}, 
+         new RawReadbackTable {"ReadbackTable", 54, 2, new RawReadbackTriple* [2] {
+            new RawReadbackTriple {{"Defaults", 163}, "RSN", 54}, 
+            new RawReadbackTriple {{"GrammarType", 1}, "RSN", 121}}}, 
+         new RawReadbackTable {"ReadbackTable", 55, 4, new RawReadbackTriple* [4] {
+            new RawReadbackTriple {{"Macro", 8}, "RSN", 55}, 
+            new RawReadbackTriple {{"Production", 10}, "RSN", 55}, 
+            new RawReadbackTriple {{"GrammarType", 1}, "L", 133}, 
+            new RawReadbackTriple {{"Defaults", 163}, "L", 133}}}, 
+         new RawReadbackTable {"ReadbackTable", 56, 2, new RawReadbackTriple* [2] {
+            new RawReadbackTriple {{"RepetitionOption", 45}, "RSN", 56}, 
+            new RawReadbackTriple {{"RepetitionOption", 32}, "RSN", 147}}}, 
+         new RawReadbackTable {"ReadbackTable", 57, 2, new RawReadbackTriple* [2] {
+            new RawReadbackTriple {{"OpenSquare", 38}, "RS", 109}, 
+            new RawReadbackTriple {{"Attribute", 48}, "RSN", 57}}}, 
+         new RawReadbackTable {"ReadbackTable", 58, 2, new RawReadbackTriple* [2] {
+            new RawReadbackTriple {{"OpenSquare", 41}, "RS", 81}, 
+            new RawReadbackTriple {{"SemanticActionParameter", 49}, "RSN", 58}}}, 
+         new RawReadbackTable {"ReadbackTable", 59, 2, new RawReadbackTriple* [2] {
+            new RawReadbackTriple {{"Plus", 52}, "RS", 157}, 
+            new RawReadbackTriple {{"FatRightArrow", 47}, "L", 157}}}, 
+         new RawReadbackTable {"ReadbackTable", 60, 2, new RawReadbackTriple* [2] {
+            new RawReadbackTriple {{"keywords", 3}, "RS", 135}, 
+            new RawReadbackTriple {{"Name", 11}, "RSN", 60}}}, 
+         new RawReadbackTable {"ReadbackTable", 61, 2, new RawReadbackTriple* [2] {
+            new RawReadbackTriple {{"LeftPart", 9}, "RSN", 141}, 
+            new RawReadbackTriple {{"RightPart", 20}, "RSN", 61}}}, 
+         new RawReadbackTable {"ReadbackTable", 62, 2, new RawReadbackTriple* [2] {
+            new RawReadbackTriple {{"Name", 22}, "RSN", 62}, 
+            new RawReadbackTriple {{"defaults", 13}, "RS", 110}}}, 
+         new RawReadbackTable {"ReadbackTable", 63, 2, new RawReadbackTriple* [2] {
+            new RawReadbackTriple {{"Name", 36}, "RSN", 63}, 
+            new RawReadbackTriple {{"defaults", 23}, "RS", 111}}}, 
+         new RawReadbackTable {"ReadbackTable", 64, 2, new RawReadbackTriple* [2] {
+            new RawReadbackTriple {{"Name", 37}, "RSN", 64}, 
+            new RawReadbackTriple {{"defaults", 24}, "RS", 112}}}, 
+         new RawReadbackTable {"ReadbackTable", 65, 2, new RawReadbackTriple* [2] {
+            new RawReadbackTriple {{"Concatenation", 50}, "RSN", 108}, 
+            new RawReadbackTriple {{"Concatenation", 31}, "RSN", 155}}}},
+      47, new RawShiftbackTable* [47] {
+         new RawShiftbackTable {"ShiftbackTable", 66, 1, 118}, 
+         new RawShiftbackTable {"ShiftbackTable", 67, 1, 54}, 
+         new RawShiftbackTable {"ShiftbackTable", 68, 1, 125}, 
+         new RawShiftbackTable {"ShiftbackTable", 69, 1, 132}, 
+         new RawShiftbackTable {"ShiftbackTable", 70, 1, 55}, 
+         new RawShiftbackTable {"ShiftbackTable", 71, 2, 125}, 
+         new RawShiftbackTable {"ShiftbackTable", 72, 1, 113}, 
+         new RawShiftbackTable {"ShiftbackTable", 73, 1, 127}, 
+         new RawShiftbackTable {"ShiftbackTable", 74, 1, 129}, 
+         new RawShiftbackTable {"ShiftbackTable", 75, 1, 117}, 
+         new RawShiftbackTable {"ShiftbackTable", 76, 1, 128}, 
+         new RawShiftbackTable {"ShiftbackTable", 77, 1, 114}, 
+         new RawShiftbackTable {"ShiftbackTable", 78, 2, 60}, 
+         new RawShiftbackTable {"ShiftbackTable", 79, 3, 136}, 
+         new RawShiftbackTable {"ShiftbackTable", 80, 3, 137}, 
+         new RawShiftbackTable {"ShiftbackTable", 81, 1, 138}, 
+         new RawShiftbackTable {"ShiftbackTable", 82, 1, 139}, 
+         new RawShiftbackTable {"ShiftbackTable", 83, 2, 61}, 
+         new RawShiftbackTable {"ShiftbackTable", 84, 2, 62}, 
+         new RawShiftbackTable {"ShiftbackTable", 85, 1, 124}, 
+         new RawShiftbackTable {"ShiftbackTable", 86, 4, 143}, 
+         new RawShiftbackTable {"ShiftbackTable", 87, 1, 120}, 
+         new RawShiftbackTable {"ShiftbackTable", 88, 2, 144}, 
+         new RawShiftbackTable {"ShiftbackTable", 89, 2, 145}, 
+         new RawShiftbackTable {"ShiftbackTable", 90, 2, 146}, 
+         new RawShiftbackTable {"ShiftbackTable", 91, 1, 56}, 
+         new RawShiftbackTable {"ShiftbackTable", 92, 3, 127}, 
+         new RawShiftbackTable {"ShiftbackTable", 93, 4, 148}, 
+         new RawShiftbackTable {"ShiftbackTable", 94, 2, 63}, 
+         new RawShiftbackTable {"ShiftbackTable", 95, 2, 64}, 
+         new RawShiftbackTable {"ShiftbackTable", 96, 1, 57}, 
+         new RawShiftbackTable {"ShiftbackTable", 97, 3, 152}, 
+         new RawShiftbackTable {"ShiftbackTable", 98, 3, 153}, 
+         new RawShiftbackTable {"ShiftbackTable", 99, 1, 58}, 
+         new RawShiftbackTable {"ShiftbackTable", 100, 3, 154}, 
+         new RawShiftbackTable {"ShiftbackTable", 101, 2, 65}, 
+         new RawShiftbackTable {"ShiftbackTable", 102, 1, 156}, 
+         new RawShiftbackTable {"ShiftbackTable", 103, 1, 59}, 
+         new RawShiftbackTable {"ShiftbackTable", 104, 1, 158}, 
+         new RawShiftbackTable {"ShiftbackTable", 105, 2, 159}, 
+         new RawShiftbackTable {"ShiftbackTable", 106, 3, 140}, 
+         new RawShiftbackTable {"ShiftbackTable", 107, 1, 140}, 
+         new RawShiftbackTable {"ShiftbackTable", 108, 1, 65}, 
+         new RawShiftbackTable {"ShiftbackTable", 109, 1, 151}, 
+         new RawShiftbackTable {"ShiftbackTable", 110, 1, 142}, 
+         new RawShiftbackTable {"ShiftbackTable", 111, 2, 149}, 
+         new RawShiftbackTable {"ShiftbackTable", 112, 2, 150}},
+      19, new RawReduceTable* [19] {
+         new RawReduceTable {"ReduceTable", 113, "Expression", 10, new RawReduceTriple* [10] {
+            new RawReduceTriple {17, "RSN", 30}, 
+            new RawReduceTriple {18, "RSN", 30}, 
+            new RawReduceTriple {19, "RSN", 30}, 
+            new RawReduceTriple {28, "RSN", 30}, 
+            new RawReduceTriple {32, "RSN", 30}, 
+            new RawReduceTriple {33, "RSN", 30}, 
+            new RawReduceTriple {42, "RSN", 100}, 
+            new RawReduceTriple {43, "RSN", 100}, 
+            new RawReduceTriple {44, "RSN", 30}, 
+            new RawReduceTriple {45, "RSN", 30}}}, 
+         new RawReduceTable {"ReduceTable", 114, "Concatenation", 6, new RawReduceTriple* [6] {
+            new RawReduceTriple {17, "RSN", 31}, 
+            new RawReduceTriple {18, "RSN", 31}, 
+            new RawReduceTriple {19, "RSN", 31}, 
+            new RawReduceTriple {28, "RSN", 31}, 
+            new RawReduceTriple {33, "RSN", 31}, 
+            new RawReduceTriple {44, "RSN", 50}}}, 
+         new RawReduceTable {"ReduceTable", 115, "LeftPart", 4, new RawReduceTriple* [4] {
+            new RawReduceTriple {1, "RSN", 9}, 
+            new RawReduceTriple {8, "RSN", 9}, 
+            new RawReduceTriple {10, "RSN", 9}, 
+            new RawReduceTriple {163, "RSN", 9}}}, 
+         new RawReduceTable {"ReduceTable", 116, "Macro", 4, new RawReduceTriple* [4] {
+            new RawReduceTriple {1, "RSN", 8}, 
+            new RawReduceTriple {8, "RSN", 8}, 
+            new RawReduceTriple {10, "RSN", 8}, 
+            new RawReduceTriple {163, "RSN", 8}}}, 
+         new RawReduceTable {"ReduceTable", 117, "RepetitionOption", 8, new RawReduceTriple* [8] {
+            new RawReduceTriple {17, "RSN", 32}, 
+            new RawReduceTriple {18, "RSN", 32}, 
+            new RawReduceTriple {19, "RSN", 32}, 
+            new RawReduceTriple {28, "RSN", 32}, 
+            new RawReduceTriple {32, "RSN", 45}, 
+            new RawReduceTriple {33, "RSN", 32}, 
+            new RawReduceTriple {44, "RSN", 32}, 
+            new RawReduceTriple {45, "RSN", 45}}}, 
+         new RawReduceTable {"ReduceTable", 118, "Name", 27, new RawReduceTriple* [27] {
+            new RawReduceTriple {1, "RSN", 7}, 
+            new RawReduceTriple {3, "RSN", 11}, 
+            new RawReduceTriple {4, "RSN", 12}, 
+            new RawReduceTriple {6, "RSN", 16}, 
+            new RawReduceTriple {8, "RSN", 7}, 
+            new RawReduceTriple {10, "RSN", 7}, 
+            new RawReduceTriple {11, "RSN", 11}, 
+            new RawReduceTriple {13, "RSN", 22}, 
+            new RawReduceTriple {17, "RSN", 73}, 
+            new RawReduceTriple {18, "RSN", 73}, 
+            new RawReduceTriple {19, "RSN", 73}, 
+            new RawReduceTriple {163, "RSN", 7}, 
+            new RawReduceTriple {22, "RSN", 22}, 
+            new RawReduceTriple {23, "RSN", 36}, 
+            new RawReduceTriple {24, "RSN", 37}, 
+            new RawReduceTriple {28, "RSN", 73}, 
+            new RawReduceTriple {32, "RSN", 73}, 
+            new RawReduceTriple {33, "RSN", 73}, 
+            new RawReduceTriple {36, "RSN", 36}, 
+            new RawReduceTriple {37, "RSN", 37}, 
+            new RawReduceTriple {41, "RSN", 87}, 
+            new RawReduceTriple {42, "RSN", 73}, 
+            new RawReduceTriple {43, "RSN", 73}, 
+            new RawReduceTriple {44, "RSN", 73}, 
+            new RawReduceTriple {45, "RSN", 73}, 
+            new RawReduceTriple {47, "RSN", 102}, 
+            new RawReduceTriple {49, "RSN", 87}}}, 
+         new RawReduceTable {"ReduceTable", 119, "Defaults", 2, new RawReduceTriple* [2] {
+            new RawReduceTriple {1, "RSN", 163}, 
+            new RawReduceTriple {163, "RSN", 163}}}, 
+         new RawReduceTable {"ReduceTable", 120, "SemanticActionParameter", 2, new RawReduceTriple* [2] {
+            new RawReduceTriple {41, "RSN", 49}, 
+            new RawReduceTriple {49, "RSN", 49}}}, 
+         new RawReduceTable {"ReduceTable", 121, "Grammar", 1, new RawReduceTriple* [1] {
+            new RawReduceTriple {0, "RSN", 165}}}, 
+         new RawReduceTable {"ReduceTable", 122, "TreeBuildingOptions", 1, new RawReduceTriple* [1] {
+            new RawReduceTriple {47, "RSN", 53}}}, 
+         new RawReduceTable {"ReduceTable", 123, "Production", 4, new RawReduceTriple* [4] {
+            new RawReduceTriple {1, "RSN", 10}, 
+            new RawReduceTriple {8, "RSN", 10}, 
+            new RawReduceTriple {10, "RSN", 10}, 
+            new RawReduceTriple {163, "RSN", 10}}}, 
+         new RawReduceTable {"ReduceTable", 124, "Attribute", 2, new RawReduceTriple* [2] {
+            new RawReduceTriple {38, "RSN", 48}, 
+            new RawReduceTriple {48, "RSN", 48}}}, 
+         new RawReduceTable {"ReduceTable", 125, "GrammarType", 1, new RawReduceTriple* [1] {
+            new RawReduceTriple {0, "RSN", 1}}}, 
+         new RawReduceTable {"ReduceTable", 126, "Rules", 2, new RawReduceTriple* [2] {
+            new RawReduceTriple {1, "RSN", 67}, 
+            new RawReduceTriple {163, "RSN", 67}}}, 
+         new RawReduceTable {"ReduceTable", 127, "Primary", 10, new RawReduceTriple* [10] {
+            new RawReduceTriple {17, "RSN", 25}, 
+            new RawReduceTriple {18, "RSN", 25}, 
+            new RawReduceTriple {19, "RSN", 25}, 
+            new RawReduceTriple {28, "RSN", 25}, 
+            new RawReduceTriple {32, "RSN", 25}, 
+            new RawReduceTriple {33, "RSN", 25}, 
+            new RawReduceTriple {42, "RSN", 25}, 
+            new RawReduceTriple {43, "RSN", 25}, 
+            new RawReduceTriple {44, "RSN", 25}, 
+            new RawReduceTriple {45, "RSN", 25}}}, 
+         new RawReduceTable {"ReduceTable", 128, "Alternation", 5, new RawReduceTriple* [5] {
+            new RawReduceTriple {17, "RSN", 26}, 
+            new RawReduceTriple {18, "RSN", 34}, 
+            new RawReduceTriple {19, "RSN", 35}, 
+            new RawReduceTriple {28, "RSN", 40}, 
+            new RawReduceTriple {33, "RSN", 46}}}, 
+         new RawReduceTable {"ReduceTable", 129, "Byte", 13, new RawReduceTriple* [13] {
+            new RawReduceTriple {17, "RSN", 27}, 
+            new RawReduceTriple {18, "RSN", 27}, 
+            new RawReduceTriple {19, "RSN", 27}, 
+            new RawReduceTriple {28, "RSN", 27}, 
+            new RawReduceTriple {32, "RSN", 27}, 
+            new RawReduceTriple {33, "RSN", 27}, 
+            new RawReduceTriple {39, "RSN", 97}, 
+            new RawReduceTriple {41, "RSN", 87}, 
+            new RawReduceTriple {42, "RSN", 27}, 
+            new RawReduceTriple {43, "RSN", 27}, 
+            new RawReduceTriple {44, "RSN", 27}, 
+            new RawReduceTriple {45, "RSN", 27}, 
+            new RawReduceTriple {49, "RSN", 87}}}, 
+         new RawReduceTable {"ReduceTable", 130, "RightPart", 2, new RawReduceTriple* [2] {
+            new RawReduceTriple {9, "RSN", 20}, 
+            new RawReduceTriple {20, "RSN", 20}}}, 
+         new RawReduceTable {"ReduceTable", 131, "SemanticAction", 11, new RawReduceTriple* [11] {
+            new RawReduceTriple {17, "RSN", 82}, 
+            new RawReduceTriple {18, "RSN", 82}, 
+            new RawReduceTriple {19, "RSN", 82}, 
+            new RawReduceTriple {28, "RSN", 82}, 
+            new RawReduceTriple {32, "RSN", 82}, 
+            new RawReduceTriple {33, "RSN", 82}, 
+            new RawReduceTriple {42, "RSN", 82}, 
+            new RawReduceTriple {43, "RSN", 82}, 
+            new RawReduceTriple {44, "RSN", 82}, 
+            new RawReduceTriple {45, "RSN", 82}, 
+            new RawReduceTriple {47, "RSN", 104}}}},
+      33, new RawSemanticTable* [33] {
+         new RawSemanticTable {"SemanticTable", 132, "buildTree", 1, new const char * [1] {"walkLeftPart"}, 115}, 
+         new RawSemanticTable {"SemanticTable", 133, "buildTree", 1, new const char * [1] {"walkGrammar"}, 126}, 
+         new RawSemanticTable {"SemanticTable", 134, "buildTree", 1, new const char * [1] {"walkEpsilon"}, 128}, 
+         new RawSemanticTable {"SemanticTable", 135, "buildTree", 1, new const char * [1] {"walkKeywords"}, 119}, 
+         new RawSemanticTable {"SemanticTable", 136, "buildTree", 1, new const char * [1] {"walkOutput"}, 119}, 
+         new RawSemanticTable {"SemanticTable", 137, "buildTree", 1, new const char * [1] {"walkOptimize"}, 119}, 
+         new RawSemanticTable {"SemanticTable", 138, "buildTree", 1, new const char * [1] {"walkSemanticAction"}, 131}, 
+         new RawSemanticTable {"SemanticTable", 139, "buildTree", 1, new const char * [1] {"walkNonTreeBuildingSemanticAction"}, 113}, 
+         new RawSemanticTable {"SemanticTable", 140, "buildTree", 1, new const char * [1] {"walkRightPart"}, 130}, 
+         new RawSemanticTable {"SemanticTable", 141, "buildTree", 1, new const char * [1] {"walkProduction"}, 123}, 
+         new RawSemanticTable {"SemanticTable", 142, "buildTree", 1, new const char * [1] {"walkAttributeDefaults"}, 119}, 
+         new RawSemanticTable {"SemanticTable", 143, "buildTree", 1, new const char * [1] {"walkMacro"}, 116}, 
+         new RawSemanticTable {"SemanticTable", 144, "buildTree", 1, new const char * [1] {"walkQuestionMark"}, 117}, 
+         new RawSemanticTable {"SemanticTable", 145, "buildTree", 1, new const char * [1] {"walkStar"}, 117}, 
+         new RawSemanticTable {"SemanticTable", 146, "buildTree", 1, new const char * [1] {"walkPlus"}, 117}, 
+         new RawSemanticTable {"SemanticTable", 147, "buildTree", 1, new const char * [1] {"walkConcatenation"}, 114}, 
+         new RawSemanticTable {"SemanticTable", 148, "buildTree", 1, new const char * [1] {"walkLeftPartWithLookahead"}, 115}, 
+         new RawSemanticTable {"SemanticTable", 149, "buildTree", 1, new const char * [1] {"walkAttributeTerminalDefaults"}, 119}, 
+         new RawSemanticTable {"SemanticTable", 150, "buildTree", 1, new const char * [1] {"walkAttributeNonterminalDefaults"}, 119}, 
+         new RawSemanticTable {"SemanticTable", 151, "buildTree", 1, new const char * [1] {"walkAttributes"}, 113}, 
+         new RawSemanticTable {"SemanticTable", 152, "buildTree", 1, new const char * [1] {"walkDotDot"}, 127}, 
+         new RawSemanticTable {"SemanticTable", 153, "buildTree", 1, new const char * [1] {"walkLook"}, 127}, 
+         new RawSemanticTable {"SemanticTable", 154, "buildTree", 1, new const char * [1] {"walkMinus"}, 117}, 
+         new RawSemanticTable {"SemanticTable", 155, "buildTree", 1, new const char * [1] {"walkOr"}, 128}, 
+         new RawSemanticTable {"SemanticTable", 156, "buildTree", 1, new const char * [1] {"walkBuildTreeOrTokenFromName"}, 122}, 
+         new RawSemanticTable {"SemanticTable", 157, "buildTree", 1, new const char * [1] {"walkBuildTreeFromLeftIndex"}, 122}, 
+         new RawSemanticTable {"SemanticTable", 158, "buildTree", 1, new const char * [1] {"walkTreeBuildingSemanticAction"}, 122}, 
+         new RawSemanticTable {"SemanticTable", 159, "buildTree", 1, new const char * [1] {"walkBuildTreeFromRightIndex"}, 122}, 
+         new RawSemanticTable {"SemanticTable", 160, "processTypeNow", 1, new const char * [1] {"Scanner"}, 68}, 
+         new RawSemanticTable {"SemanticTable", 161, "processTypeNow", 1, new const char * [1] {"SuperScanner"}, 68}, 
+         new RawSemanticTable {"SemanticTable", 162, "processTypeNow", 1, new const char * [1] {"Parser"}, 68}, 
+         new RawSemanticTable {"SemanticTable", 163, "processAndDiscardDefaultsNow", 0, new const char * [1] {}, 21}, 
+         new RawSemanticTable {"SemanticTable", 164, "processTypeNow", 1, new const char * [1] {"SuperScanner"}, 71}},
+      
+         new RawAcceptTable {"AcceptTable", 165}};
+   };
+
+void deleteParserTables (ParserTables *parserTable) {
+
+    delete [] parserTable->keywords;
+
+    for (long index0 = 0; index0 < parserTable->readaheadTablesSize; index0++) {
+        for (long index1 = 0; index1< parserTable->readaheadTables [index0]->size; index1++) {
+            delete parserTable->readaheadTables [index0]->triples [index1];
+        }
+        delete [] parserTable->readaheadTables [index0]->triples;
+        delete parserTable->readaheadTables [index0];
+    }
+    delete [] parserTable->readaheadTables;
+
+    for (long index0 = 0; index0 < parserTable->readbackTablesSize; index0++) {
+        for (long index1 = 0; index1< parserTable->readbackTables [index0]->size; index1++) {
+            delete parserTable->readbackTables [index0]->triples [index1];
+        }
+        delete [] parserTable->readbackTables [index0]->triples;
+        delete parserTable->readbackTables [index0];
+    }
+    delete [] parserTable->readbackTables;
+
+    for (long index0 = 0; index0 < parserTable->shiftbackTablesSize; index0++) {
+        delete parserTable->shiftbackTables [index0];
+    }
+    delete [] parserTable->shiftbackTables;
+
+    for (long index0 = 0; index0 < parserTable->reduceTablesSize; index0++) {
+        for (long index1 = 0; index1< parserTable->reduceTables [index0]->size; index1++) {
+            delete parserTable->reduceTables [index0]->triples [index1];
+        }
+        delete [] parserTable->reduceTables [index0]->triples;
+        delete parserTable->reduceTables [index0];
+    }
+    delete [] parserTable->reduceTables;
+
+    for (long index = 0; index < parserTable->semanticTablesSize; index++) {
+        delete [] parserTable->semanticTables [index]->parameters;
+        delete parserTable->semanticTables [index];
+    }
+    delete [] parserTable->semanticTables;
+
+    delete parserTable->acceptTable;
+
+    delete parserTable;
+}
+
+
+
+
+//C++: MULTI-STATEMENT VERSION ---------------------->
+
+
+
+    
+//NOTE: The following declarations should probably be moved manually to a more global location for access elsewhere...
+
+struct RawReadaheadTriple {const char *string; const char *attributes; long gotoTable;};
+struct RawReadaheadTable {const char *name; long state; long size; RawReadaheadTriple *triples;};
+struct RawReadbackPair {const char *symbol; long state;};
+struct RawReadbackTriple {RawReadbackPair pair; const char *attributes; long gotoTable;};
+struct RawReadbackTable {const char *name; long state; long size; RawReadbackTriple *triples;};
+struct RawShiftbackTable {const char *name; long state; long shift; long gotoTable;};
+struct RawReduceTriple {long stackTopState; const char *attributes; long gotoTable;};
+struct RawReduceTable {const char *name; long state;  const char *nonterminal; long size; RawReduceTriple *triples;};
+struct RawSemanticTable {const char *name; long state; const char *action; long size; const char **parameters; long gotoTable;};
+struct RawAcceptTable {const char *name; long state;};
+
+struct ParserTables {
+    long keywordsSize; const char **keywords;
+    long readaheadTablesSize; RawReadaheadTable *readaheadTables;
+    long readbackTablesSize; RawReadbackTable *readbackTables;
+    long shiftbackTablesSize; RawShiftbackTable *shiftbackTables;
+    long reduceTablesSize; RawReduceTable *reduceTables;
+    long semanticTablesSize; RawSemanticTable *semanticTables;
+    RawAcceptTable *acceptTable;
+};
+
+
+//For parsingTables.cpp
+
+ParserTables *parserTables () {
+   const char **keywords = new const char * [19] {"stack", "noStack", "read", "look", "node", "noNode", "keep", "noKeep", "parser", "scanner", "super", "superScanner", "attribute", "defaults", "keywords", "output", "optimize", "terminal", "nonterminal"};
+
+   //Define VARIABLES to refer to readahead table TRIPLEs.
+   //FORMAT: RawReadaheadTriple {const char *string; const char *attributes; long gotoTableNumber;} //Note: string == NULL is equivalent to "{256}" (end of file).
+   RawReadaheadTriple *ra0  = new RawReadaheadTriple [4] {{"scanner", "RS", 160}, {"superScanner", "RS", 161}, {"super", "RS", 2}, {"parser", "RS", 162}};
+   RawReadaheadTriple *ra1  = new RawReadaheadTriple [6] {{"walkString:", "RSN", 66}, {"keywords", "RS", 3}, {"output", "RS", 4}, {"attribute", "RS", 5}, {"optimize", "RS", 6}, {"walkIdentifier:", "RSN", 66}};
+   RawReadaheadTriple *ra2  = new RawReadaheadTriple [1] {{"scanner", "RS", 164}};
+   RawReadaheadTriple *ra3  = new RawReadaheadTriple [2] {{"walkString:", "RSN", 66}, {"walkIdentifier:", "RSN", 66}};
+   RawReadaheadTriple *ra4  = new RawReadaheadTriple [2] {{"walkString:", "RSN", 66}, {"walkIdentifier:", "RSN", 66}};
+   RawReadaheadTriple *ra5  = new RawReadaheadTriple [3] {{"defaults", "RS", 13}, {"terminal", "RS", 14}, {"nonterminal", "RS", 15}};
+   RawReadaheadTriple *ra6  = new RawReadaheadTriple [2] {{"walkString:", "RSN", 66}, {"walkIdentifier:", "RSN", 66}};
+   RawReadaheadTriple *ra7  = new RawReadaheadTriple [3] {{"Equals", "RS", 17}, {"OpenCurly", "RS", 18}, {"RightArrow", "L", 69}};
+   RawReadaheadTriple *ra8  = new RawReadaheadTriple [3] {{"walkString:", "RSN", 66}, {"walkIdentifier:", "RSN", 66}, {"-|", "L", 70}};
+   RawReadaheadTriple *ra9  = new RawReadaheadTriple [1] {{"RightArrow", "RS", 19}};
+   RawReadaheadTriple *ra10 = new RawReadaheadTriple [3] {{"walkString:", "RSN", 66}, {"walkIdentifier:", "RSN", 66}, {"-|", "L", 70}};
+   RawReadaheadTriple *ra11 = new RawReadaheadTriple [3] {{"walkString:", "RSN", 66}, {"Dot", "RS", 78}, {"walkIdentifier:", "RSN", 66}};
+   RawReadaheadTriple *ra12 = new RawReadaheadTriple [1] {{"Dot", "RS", 79}};
+   RawReadaheadTriple *ra13 = new RawReadaheadTriple [2] {{"walkString:", "RSN", 66}, {"walkIdentifier:", "RSN", 66}};
+   RawReadaheadTriple *ra14 = new RawReadaheadTriple [1] {{"defaults", "RS", 23}};
+   RawReadaheadTriple *ra15 = new RawReadaheadTriple [1] {{"defaults", "RS", 24}};
+   RawReadaheadTriple *ra16 = new RawReadaheadTriple [1] {{"Dot", "RS", 80}};
+   RawReadaheadTriple *ra17 = new RawReadaheadTriple [12] {{"walkString:", "RSN", 66}, {"OpenCurly", "RS", 28}, {"walkSymbol:", "RSN", 29}, {"walkInteger:", "RSN", 74}, {"walkCharacter:", "RSN", 74}, {"walkIdentifier:", "RSN", 66}, {"OpenRound", "RS", 33}, {"CloseCurly", "L", 134}, {"Dot", "L", 134}, {"CloseRound", "L", 134}, {"FatRightArrow", "L", 134}, {"RightArrow", "L", 134}};
+   RawReadaheadTriple *ra18 = new RawReadaheadTriple [12] {{"walkString:", "RSN", 66}, {"OpenCurly", "RS", 28}, {"walkSymbol:", "RSN", 29}, {"walkInteger:", "RSN", 74}, {"walkCharacter:", "RSN", 74}, {"walkIdentifier:", "RSN", 66}, {"OpenRound", "RS", 33}, {"CloseCurly", "L", 134}, {"Dot", "L", 134}, {"CloseRound", "L", 134}, {"FatRightArrow", "L", 134}, {"RightArrow", "L", 134}};
+   RawReadaheadTriple *ra19 = new RawReadaheadTriple [12] {{"walkString:", "RSN", 66}, {"OpenCurly", "RS", 28}, {"walkSymbol:", "RSN", 29}, {"walkInteger:", "RSN", 74}, {"walkCharacter:", "RSN", 74}, {"walkIdentifier:", "RSN", 66}, {"OpenRound", "RS", 33}, {"CloseCurly", "L", 134}, {"Dot", "L", 134}, {"CloseRound", "L", 134}, {"FatRightArrow", "L", 134}, {"RightArrow", "L", 134}};
+   RawReadaheadTriple *ra20 = new RawReadaheadTriple [2] {{"RightArrow", "RS", 19}, {"Dot", "RS", 83}};
+   RawReadaheadTriple *ra21 = new RawReadaheadTriple [6] {{"walkString:", "RSN", 66}, {"keywords", "RS", 3}, {"output", "RS", 4}, {"attribute", "RS", 5}, {"optimize", "RS", 6}, {"walkIdentifier:", "RSN", 66}};
+   RawReadaheadTriple *ra22 = new RawReadaheadTriple [3] {{"walkString:", "RSN", 66}, {"Dot", "RS", 84}, {"walkIdentifier:", "RSN", 66}};
+   RawReadaheadTriple *ra23 = new RawReadaheadTriple [2] {{"walkString:", "RSN", 66}, {"walkIdentifier:", "RSN", 66}};
+   RawReadaheadTriple *ra24 = new RawReadaheadTriple [2] {{"walkString:", "RSN", 66}, {"walkIdentifier:", "RSN", 66}};
+   RawReadaheadTriple *ra25 = new RawReadaheadTriple [19] {{"OpenSquare", "RS", 38}, {"Star", "L", 72}, {"QuestionMark", "L", 72}, {"Plus", "L", 72}, {"And", "L", 72}, {"Minus", "L", 72}, {"OpenRound", "L", 72}, {"OpenCurly", "L", 72}, {"walkIdentifier:", "L", 72}, {"walkString:", "L", 72}, {"walkSymbol:", "L", 72}, {"walkCharacter:", "L", 72}, {"walkInteger:", "L", 72}, {"VerticalBar", "L", 72}, {"CloseCurly", "L", 72}, {"Dot", "L", 72}, {"CloseRound", "L", 72}, {"FatRightArrow", "L", 72}, {"RightArrow", "L", 72}};
+   RawReadaheadTriple *ra26 = new RawReadaheadTriple [1] {{"Dot", "RS", 86}};
+   RawReadaheadTriple *ra27 = new RawReadaheadTriple [20] {{"DotDot", "RS", 39}, {"OpenSquare", "L", 73}, {"Star", "L", 73}, {"QuestionMark", "L", 73}, {"Plus", "L", 73}, {"And", "L", 73}, {"Minus", "L", 73}, {"OpenRound", "L", 73}, {"OpenCurly", "L", 73}, {"walkIdentifier:", "L", 73}, {"walkString:", "L", 73}, {"walkSymbol:", "L", 73}, {"walkCharacter:", "L", 73}, {"walkInteger:", "L", 73}, {"VerticalBar", "L", 73}, {"CloseCurly", "L", 73}, {"Dot", "L", 73}, {"CloseRound", "L", 73}, {"FatRightArrow", "L", 73}, {"RightArrow", "L", 73}};
+   RawReadaheadTriple *ra28 = new RawReadaheadTriple [12] {{"walkString:", "RSN", 66}, {"OpenCurly", "RS", 28}, {"walkSymbol:", "RSN", 29}, {"walkInteger:", "RSN", 74}, {"walkCharacter:", "RSN", 74}, {"walkIdentifier:", "RSN", 66}, {"OpenRound", "RS", 33}, {"CloseCurly", "L", 134}, {"Dot", "L", 134}, {"CloseRound", "L", 134}, {"FatRightArrow", "L", 134}, {"RightArrow", "L", 134}};
+   RawReadaheadTriple *ra29 = new RawReadaheadTriple [19] {{"OpenSquare", "RS", 41}, {"Star", "L", 81}, {"QuestionMark", "L", 81}, {"Plus", "L", 81}, {"And", "L", 81}, {"Minus", "L", 81}, {"OpenRound", "L", 81}, {"OpenCurly", "L", 81}, {"walkIdentifier:", "L", 81}, {"walkString:", "L", 81}, {"walkSymbol:", "L", 81}, {"walkCharacter:", "L", 81}, {"walkInteger:", "L", 81}, {"RightArrow", "L", 81}, {"Dot", "L", 81}, {"VerticalBar", "L", 81}, {"CloseCurly", "L", 81}, {"CloseRound", "L", 81}, {"FatRightArrow", "L", 81}};
+   RawReadaheadTriple *ra30 = new RawReadaheadTriple [18] {{"QuestionMark", "RS", 88}, {"Minus", "RS", 42}, {"Star", "RS", 89}, {"Plus", "RS", 90}, {"And", "RS", 43}, {"OpenRound", "L", 75}, {"OpenCurly", "L", 75}, {"walkIdentifier:", "L", 75}, {"walkString:", "L", 75}, {"walkSymbol:", "L", 75}, {"walkCharacter:", "L", 75}, {"walkInteger:", "L", 75}, {"VerticalBar", "L", 75}, {"CloseCurly", "L", 75}, {"Dot", "L", 75}, {"CloseRound", "L", 75}, {"FatRightArrow", "L", 75}, {"RightArrow", "L", 75}};
+   RawReadaheadTriple *ra31 = new RawReadaheadTriple [6] {{"VerticalBar", "RS", 44}, {"CloseCurly", "L", 76}, {"Dot", "L", 76}, {"CloseRound", "L", 76}, {"FatRightArrow", "L", 76}, {"RightArrow", "L", 76}};
+   RawReadaheadTriple *ra32 = new RawReadaheadTriple [13] {{"walkString:", "RSN", 66}, {"OpenCurly", "RS", 28}, {"walkSymbol:", "RSN", 29}, {"walkInteger:", "RSN", 74}, {"walkCharacter:", "RSN", 74}, {"walkIdentifier:", "RSN", 66}, {"OpenRound", "RS", 33}, {"VerticalBar", "L", 77}, {"CloseCurly", "L", 77}, {"Dot", "L", 77}, {"CloseRound", "L", 77}, {"FatRightArrow", "L", 77}, {"RightArrow", "L", 77}};
+   RawReadaheadTriple *ra33 = new RawReadaheadTriple [12] {{"walkString:", "RSN", 66}, {"OpenCurly", "RS", 28}, {"walkSymbol:", "RSN", 29}, {"walkInteger:", "RSN", 74}, {"walkCharacter:", "RSN", 74}, {"walkIdentifier:", "RSN", 66}, {"OpenRound", "RS", 33}, {"CloseCurly", "L", 134}, {"Dot", "L", 134}, {"CloseRound", "L", 134}, {"FatRightArrow", "L", 134}, {"RightArrow", "L", 134}};
+   RawReadaheadTriple *ra34 = new RawReadaheadTriple [1] {{"CloseCurly", "RS", 93}};
+   RawReadaheadTriple *ra35 = new RawReadaheadTriple [3] {{"FatRightArrow", "RS", 47}, {"RightArrow", "L", 53}, {"Dot", "L", 53}};
+   RawReadaheadTriple *ra36 = new RawReadaheadTriple [3] {{"walkString:", "RSN", 66}, {"Dot", "RS", 94}, {"walkIdentifier:", "RSN", 66}};
+   RawReadaheadTriple *ra37 = new RawReadaheadTriple [3] {{"walkString:", "RSN", 66}, {"Dot", "RS", 95}, {"walkIdentifier:", "RSN", 66}};
+   RawReadaheadTriple *ra38 = new RawReadaheadTriple [9] {{"keep", "RSN", 85}, {"noNode", "RSN", 85}, {"noStack", "RSN", 85}, {"CloseSquare", "RS", 96}, {"read", "RSN", 85}, {"look", "RSN", 85}, {"stack", "RSN", 85}, {"node", "RSN", 85}, {"noKeep", "RSN", 85}};
+   RawReadaheadTriple *ra39 = new RawReadaheadTriple [2] {{"walkInteger:", "RSN", 74}, {"walkCharacter:", "RSN", 74}};
+   RawReadaheadTriple *ra40 = new RawReadaheadTriple [1] {{"CloseCurly", "RS", 98}};
+   RawReadaheadTriple *ra41 = new RawReadaheadTriple [6] {{"walkString:", "RSN", 66}, {"walkSymbol:", "RSN", 87}, {"walkIdentifier:", "RSN", 66}, {"walkCharacter:", "RSN", 74}, {"CloseSquare", "RS", 99}, {"walkInteger:", "RSN", 74}};
+   RawReadaheadTriple *ra42 = new RawReadaheadTriple [7] {{"walkSymbol:", "RSN", 29}, {"walkString:", "RSN", 66}, {"OpenCurly", "RS", 28}, {"walkIdentifier:", "RSN", 66}, {"walkCharacter:", "RSN", 74}, {"OpenRound", "RS", 33}, {"walkInteger:", "RSN", 74}};
+   RawReadaheadTriple *ra43 = new RawReadaheadTriple [7] {{"walkString:", "RSN", 66}, {"walkSymbol:", "RSN", 29}, {"OpenCurly", "RS", 28}, {"walkCharacter:", "RSN", 74}, {"walkIdentifier:", "RSN", 66}, {"OpenRound", "RS", 33}, {"walkInteger:", "RSN", 74}};
+   RawReadaheadTriple *ra44 = new RawReadaheadTriple [7] {{"walkString:", "RSN", 66}, {"OpenCurly", "RS", 28}, {"walkSymbol:", "RSN", 29}, {"walkInteger:", "RSN", 74}, {"walkCharacter:", "RSN", 74}, {"walkIdentifier:", "RSN", 66}, {"OpenRound", "RS", 33}};
+   RawReadaheadTriple *ra45 = new RawReadaheadTriple [13] {{"walkString:", "RSN", 66}, {"OpenCurly", "RS", 28}, {"walkSymbol:", "RSN", 29}, {"walkInteger:", "RSN", 74}, {"walkCharacter:", "RSN", 74}, {"walkIdentifier:", "RSN", 66}, {"OpenRound", "RS", 33}, {"VerticalBar", "L", 91}, {"CloseCurly", "L", 91}, {"Dot", "L", 91}, {"CloseRound", "L", 91}, {"FatRightArrow", "L", 91}, {"RightArrow", "L", 91}};
+   RawReadaheadTriple *ra46 = new RawReadaheadTriple [1] {{"CloseRound", "RS", 92}};
+   RawReadaheadTriple *ra47 = new RawReadaheadTriple [6] {{"Minus", "RS", 51}, {"walkString:", "RSN", 66}, {"walkSymbol:", "RSN", 29}, {"walkIdentifier:", "RSN", 66}, {"Plus", "RS", 52}, {"walkInteger:", "RSN", 103}};
+   RawReadaheadTriple *ra48 = new RawReadaheadTriple [9] {{"keep", "RSN", 85}, {"noNode", "RSN", 85}, {"noStack", "RSN", 85}, {"CloseSquare", "RS", 96}, {"read", "RSN", 85}, {"look", "RSN", 85}, {"stack", "RSN", 85}, {"node", "RSN", 85}, {"noKeep", "RSN", 85}};
+   RawReadaheadTriple *ra49 = new RawReadaheadTriple [6] {{"walkString:", "RSN", 66}, {"walkSymbol:", "RSN", 87}, {"walkIdentifier:", "RSN", 66}, {"walkCharacter:", "RSN", 74}, {"CloseSquare", "RS", 99}, {"walkInteger:", "RSN", 74}};
+   RawReadaheadTriple *ra50 = new RawReadaheadTriple [6] {{"VerticalBar", "RS", 44}, {"CloseCurly", "L", 101}, {"Dot", "L", 101}, {"CloseRound", "L", 101}, {"FatRightArrow", "L", 101}, {"RightArrow", "L", 101}};
+   RawReadaheadTriple *ra51 = new RawReadaheadTriple [1] {{"walkInteger:", "RSN", 105}};
+   RawReadaheadTriple *ra52 = new RawReadaheadTriple [1] {{"walkInteger:", "RSN", 103}};
+
+   //Define an array of readahead tables.
+   //FORMAT: RawReadaheadTable {char *name; long stateNumber; long size; RawReadaheadTriple *triples;}
+   RawReadaheadTable *readaheadTables = new RawReadaheadTable [53] {
+      {"ReadaheadTable", 0, 4, &ra0[0]}, 
+      {"ReadaheadTable", 1, 6, &ra1[0]}, 
+      {"ReadaheadTable", 2, 1, &ra2[0]}, 
+      {"ReadaheadTable", 3, 2, &ra3[0]}, 
+      {"ReadaheadTable", 4, 2, &ra4[0]}, 
+      {"ReadaheadTable", 5, 3, &ra5[0]}, 
+      {"ReadaheadTable", 6, 2, &ra6[0]}, 
+      {"ReadaheadTable", 7, 3, &ra7[0]}, 
+      {"ReadaheadTable", 8, 3, &ra8[0]}, 
+      {"ReadaheadTable", 9, 1, &ra9[0]}, 
+      {"ReadaheadTable", 10, 3, &ra10[0]}, 
+      {"ReadaheadTable", 11, 3, &ra11[0]}, 
+      {"ReadaheadTable", 12, 1, &ra12[0]}, 
+      {"ReadaheadTable", 13, 2, &ra13[0]}, 
+      {"ReadaheadTable", 14, 1, &ra14[0]}, 
+      {"ReadaheadTable", 15, 1, &ra15[0]}, 
+      {"ReadaheadTable", 16, 1, &ra16[0]}, 
+      {"ReadaheadTable", 17, 12, &ra17[0]}, 
+      {"ReadaheadTable", 18, 12, &ra18[0]}, 
+      {"ReadaheadTable", 19, 12, &ra19[0]}, 
+      {"ReadaheadTable", 20, 2, &ra20[0]}, 
+      {"ReadaheadTable", 21, 6, &ra21[0]}, 
+      {"ReadaheadTable", 22, 3, &ra22[0]}, 
+      {"ReadaheadTable", 23, 2, &ra23[0]}, 
+      {"ReadaheadTable", 24, 2, &ra24[0]}, 
+      {"ReadaheadTable", 25, 19, &ra25[0]}, 
+      {"ReadaheadTable", 26, 1, &ra26[0]}, 
+      {"ReadaheadTable", 27, 20, &ra27[0]}, 
+      {"ReadaheadTable", 28, 12, &ra28[0]}, 
+      {"ReadaheadTable", 29, 19, &ra29[0]}, 
+      {"ReadaheadTable", 30, 18, &ra30[0]}, 
+      {"ReadaheadTable", 31, 6, &ra31[0]}, 
+      {"ReadaheadTable", 32, 13, &ra32[0]}, 
+      {"ReadaheadTable", 33, 12, &ra33[0]}, 
+      {"ReadaheadTable", 34, 1, &ra34[0]}, 
+      {"ReadaheadTable", 35, 3, &ra35[0]}, 
+      {"ReadaheadTable", 36, 3, &ra36[0]}, 
+      {"ReadaheadTable", 37, 3, &ra37[0]}, 
+      {"ReadaheadTable", 38, 9, &ra38[0]}, 
+      {"ReadaheadTable", 39, 2, &ra39[0]}, 
+      {"ReadaheadTable", 40, 1, &ra40[0]}, 
+      {"ReadaheadTable", 41, 6, &ra41[0]}, 
+      {"ReadaheadTable", 42, 7, &ra42[0]}, 
+      {"ReadaheadTable", 43, 7, &ra43[0]}, 
+      {"ReadaheadTable", 44, 7, &ra44[0]}, 
+      {"ReadaheadTable", 45, 13, &ra45[0]}, 
+      {"ReadaheadTable", 46, 1, &ra46[0]}, 
+      {"ReadaheadTable", 47, 6, &ra47[0]}, 
+      {"ReadaheadTable", 48, 9, &ra48[0]}, 
+      {"ReadaheadTable", 49, 6, &ra49[0]}, 
+      {"ReadaheadTable", 50, 6, &ra50[0]}, 
+      {"ReadaheadTable", 51, 1, &ra51[0]}, 
+      {"ReadaheadTable", 52, 1, &ra52[0]}};
+
+   //Define VARIABLES to refer to readback table TRIPLEs.
+   //FORMAT: RawReadbackPair {const char *symbol; long state;}
+   //FORMAT: RawReadbackTriple {RawReadbackPair pair; const char *attributes; long gotoTableNumber;}
+   RawReadbackTriple *rb53 = new RawReadbackTriple [2] {{{"TreeBuildingOptions", 53}, "RSN", 106}, {{"Alternation", 35}, "RSN", 107}};
+   RawReadbackTriple *rb54 = new RawReadbackTriple [2] {{{"Defaults", 163}, "RSN", 54}, {{"GrammarType", 1}, "RSN", 121}};
+   RawReadbackTriple *rb55 = new RawReadbackTriple [4] {{{"Macro", 8}, "RSN", 55}, {{"Production", 10}, "RSN", 55}, {{"GrammarType", 1}, "L", 133}, {{"Defaults", 163}, "L", 133}};
+   RawReadbackTriple *rb56 = new RawReadbackTriple [2] {{{"RepetitionOption", 45}, "RSN", 56}, {{"RepetitionOption", 32}, "RSN", 147}};
+   RawReadbackTriple *rb57 = new RawReadbackTriple [2] {{{"OpenSquare", 38}, "RS", 109}, {{"Attribute", 48}, "RSN", 57}};
+   RawReadbackTriple *rb58 = new RawReadbackTriple [2] {{{"OpenSquare", 41}, "RS", 81}, {{"SemanticActionParameter", 49}, "RSN", 58}};
+   RawReadbackTriple *rb59 = new RawReadbackTriple [2] {{{"Plus", 52}, "RS", 157}, {{"FatRightArrow", 47}, "L", 157}};
+   RawReadbackTriple *rb60 = new RawReadbackTriple [2] {{{"keywords", 3}, "RS", 135}, {{"Name", 11}, "RSN", 60}};
+   RawReadbackTriple *rb61 = new RawReadbackTriple [2] {{{"LeftPart", 9}, "RSN", 141}, {{"RightPart", 20}, "RSN", 61}};
+   RawReadbackTriple *rb62 = new RawReadbackTriple [2] {{{"Name", 22}, "RSN", 62}, {{"defaults", 13}, "RS", 110}};
+   RawReadbackTriple *rb63 = new RawReadbackTriple [2] {{{"Name", 36}, "RSN", 63}, {{"defaults", 23}, "RS", 111}};
+   RawReadbackTriple *rb64 = new RawReadbackTriple [2] {{{"Name", 37}, "RSN", 64}, {{"defaults", 24}, "RS", 112}};
+   RawReadbackTriple *rb65 = new RawReadbackTriple [2] {{{"Concatenation", 50}, "RSN", 108}, {{"Concatenation", 31}, "RSN", 155}};
+
+   //Define an array of readback tables.
+   //FORMAT: RawReadabackTable {const char *name; long stateNumber; long size; RawReadbackTriple *triples;}
+   RawReadbackTable *readbackTables = new RawReadbackTable [13] {
+      {"ReadbackTable", 53, 2, rb54}, 
+      {"ReadbackTable", 54, 2, rb55}, 
+      {"ReadbackTable", 55, 4, rb56}, 
+      {"ReadbackTable", 56, 2, rb57}, 
+      {"ReadbackTable", 57, 2, rb58}, 
+      {"ReadbackTable", 58, 2, rb59}, 
+      {"ReadbackTable", 59, 2, rb60}, 
+      {"ReadbackTable", 60, 2, rb61}, 
+      {"ReadbackTable", 61, 2, rb62}, 
+      {"ReadbackTable", 62, 2, rb63}, 
+      {"ReadbackTable", 63, 2, rb64}, 
+      {"ReadbackTable", 64, 2, rb65}, 
+      {"ReadbackTable", 65, 2, rb66}};
+
+   //Define an array of shiftback tables.
+   //FORMAT: RawShiftbackTable {const char *name; long stateNumber; long shift; long gotoTable;}
+   RawShiftbackTable *shiftbackTables = new RawShiftbackTable [47] {
+      {"ShiftbackTable", 66, 1, 118}, 
+      {"ShiftbackTable", 67, 1, 54}, 
+      {"ShiftbackTable", 68, 1, 125}, 
+      {"ShiftbackTable", 69, 1, 132}, 
+      {"ShiftbackTable", 70, 1, 55}, 
+      {"ShiftbackTable", 71, 2, 125}, 
+      {"ShiftbackTable", 72, 1, 113}, 
+      {"ShiftbackTable", 73, 1, 127}, 
+      {"ShiftbackTable", 74, 1, 129}, 
+      {"ShiftbackTable", 75, 1, 117}, 
+      {"ShiftbackTable", 76, 1, 128}, 
+      {"ShiftbackTable", 77, 1, 114}, 
+      {"ShiftbackTable", 78, 2, 60}, 
+      {"ShiftbackTable", 79, 3, 136}, 
+      {"ShiftbackTable", 80, 3, 137}, 
+      {"ShiftbackTable", 81, 1, 138}, 
+      {"ShiftbackTable", 82, 1, 139}, 
+      {"ShiftbackTable", 83, 2, 61}, 
+      {"ShiftbackTable", 84, 2, 62}, 
+      {"ShiftbackTable", 85, 1, 124}, 
+      {"ShiftbackTable", 86, 4, 143}, 
+      {"ShiftbackTable", 87, 1, 120}, 
+      {"ShiftbackTable", 88, 2, 144}, 
+      {"ShiftbackTable", 89, 2, 145}, 
+      {"ShiftbackTable", 90, 2, 146}, 
+      {"ShiftbackTable", 91, 1, 56}, 
+      {"ShiftbackTable", 92, 3, 127}, 
+      {"ShiftbackTable", 93, 4, 148}, 
+      {"ShiftbackTable", 94, 2, 63}, 
+      {"ShiftbackTable", 95, 2, 64}, 
+      {"ShiftbackTable", 96, 1, 57}, 
+      {"ShiftbackTable", 97, 3, 152}, 
+      {"ShiftbackTable", 98, 3, 153}, 
+      {"ShiftbackTable", 99, 1, 58}, 
+      {"ShiftbackTable", 100, 3, 154}, 
+      {"ShiftbackTable", 101, 2, 65}, 
+      {"ShiftbackTable", 102, 1, 156}, 
+      {"ShiftbackTable", 103, 1, 59}, 
+      {"ShiftbackTable", 104, 1, 158}, 
+      {"ShiftbackTable", 105, 2, 159}, 
+      {"ShiftbackTable", 106, 3, 140}, 
+      {"ShiftbackTable", 107, 1, 140}, 
+      {"ShiftbackTable", 108, 1, 65}, 
+      {"ShiftbackTable", 109, 1, 151}, 
+      {"ShiftbackTable", 110, 1, 142}, 
+      {"ShiftbackTable", 111, 2, 149}, 
+      {"ShiftbackTable", 112, 2, 150}};
+
+   //Define VARIABLES to refer to reduce table TRIPLEs.
+   //FORMAT: RawReduceTriple {long stackTopState; const char *attributes; long gotoTableNumber;}
+   RawReduceTriple *rd113 = new RawReduceTriple [10] {{17, "RSN", 30}, {18, "RSN", 30}, {19, "RSN", 30}, {28, "RSN", 30}, {32, "RSN", 30}, {33, "RSN", 30}, {42, "RSN", 100}, {43, "RSN", 100}, {44, "RSN", 30}, {45, "RSN", 30}};
+   RawReduceTriple *rd114 = new RawReduceTriple [6] {{17, "RSN", 31}, {18, "RSN", 31}, {19, "RSN", 31}, {28, "RSN", 31}, {33, "RSN", 31}, {44, "RSN", 50}};
+   RawReduceTriple *rd115 = new RawReduceTriple [4] {{1, "RSN", 9}, {8, "RSN", 9}, {10, "RSN", 9}, {163, "RSN", 9}};
+   RawReduceTriple *rd116 = new RawReduceTriple [4] {{1, "RSN", 8}, {8, "RSN", 8}, {10, "RSN", 8}, {163, "RSN", 8}};
+   RawReduceTriple *rd117 = new RawReduceTriple [8] {{17, "RSN", 32}, {18, "RSN", 32}, {19, "RSN", 32}, {28, "RSN", 32}, {32, "RSN", 45}, {33, "RSN", 32}, {44, "RSN", 32}, {45, "RSN", 45}};
+   RawReduceTriple *rd118 = new RawReduceTriple [27] {{1, "RSN", 7}, {3, "RSN", 11}, {4, "RSN", 12}, {6, "RSN", 16}, {8, "RSN", 7}, {10, "RSN", 7}, {11, "RSN", 11}, {13, "RSN", 22}, {17, "RSN", 73}, {18, "RSN", 73}, {19, "RSN", 73}, {163, "RSN", 7}, {22, "RSN", 22}, {23, "RSN", 36}, {24, "RSN", 37}, {28, "RSN", 73}, {32, "RSN", 73}, {33, "RSN", 73}, {36, "RSN", 36}, {37, "RSN", 37}, {41, "RSN", 87}, {42, "RSN", 73}, {43, "RSN", 73}, {44, "RSN", 73}, {45, "RSN", 73}, {47, "RSN", 102}, {49, "RSN", 87}};
+   RawReduceTriple *rd119 = new RawReduceTriple [2] {{1, "RSN", 163}, {163, "RSN", 163}};
+   RawReduceTriple *rd120 = new RawReduceTriple [2] {{41, "RSN", 49}, {49, "RSN", 49}};
+   RawReduceTriple *rd121 = new RawReduceTriple [1] {{0, "RSN", 165}};
+   RawReduceTriple *rd122 = new RawReduceTriple [1] {{47, "RSN", 53}};
+   RawReduceTriple *rd123 = new RawReduceTriple [4] {{1, "RSN", 10}, {8, "RSN", 10}, {10, "RSN", 10}, {163, "RSN", 10}};
+   RawReduceTriple *rd124 = new RawReduceTriple [2] {{38, "RSN", 48}, {48, "RSN", 48}};
+   RawReduceTriple *rd125 = new RawReduceTriple [1] {{0, "RSN", 1}};
+   RawReduceTriple *rd126 = new RawReduceTriple [2] {{1, "RSN", 67}, {163, "RSN", 67}};
+   RawReduceTriple *rd127 = new RawReduceTriple [10] {{17, "RSN", 25}, {18, "RSN", 25}, {19, "RSN", 25}, {28, "RSN", 25}, {32, "RSN", 25}, {33, "RSN", 25}, {42, "RSN", 25}, {43, "RSN", 25}, {44, "RSN", 25}, {45, "RSN", 25}};
+   RawReduceTriple *rd128 = new RawReduceTriple [5] {{17, "RSN", 26}, {18, "RSN", 34}, {19, "RSN", 35}, {28, "RSN", 40}, {33, "RSN", 46}};
+   RawReduceTriple *rd129 = new RawReduceTriple [13] {{17, "RSN", 27}, {18, "RSN", 27}, {19, "RSN", 27}, {28, "RSN", 27}, {32, "RSN", 27}, {33, "RSN", 27}, {39, "RSN", 97}, {41, "RSN", 87}, {42, "RSN", 27}, {43, "RSN", 27}, {44, "RSN", 27}, {45, "RSN", 27}, {49, "RSN", 87}};
+   RawReduceTriple *rd130 = new RawReduceTriple [2] {{9, "RSN", 20}, {20, "RSN", 20}};
+   RawReduceTriple *rd131 = new RawReduceTriple [11] {{17, "RSN", 82}, {18, "RSN", 82}, {19, "RSN", 82}, {28, "RSN", 82}, {32, "RSN", 82}, {33, "RSN", 82}, {42, "RSN", 82}, {43, "RSN", 82}, {44, "RSN", 82}, {45, "RSN", 82}, {47, "RSN", 104}};
+
+   //Define an array of reduce tables.
+   //FORMAT: RawReduceTable {const char *name; long stateNumber;  const char *nonterminal, long size; RawReduceTriple *triples;}
+   RawReduceTable *reduceTables = new RawReduceTable [19] {
+      {"ReduceTable", 113, "Expression", 10, rd113}, 
+      {"ReduceTable", 114, "Concatenation", 6, rd114}, 
+      {"ReduceTable", 115, "LeftPart", 4, rd115}, 
+      {"ReduceTable", 116, "Macro", 4, rd116}, 
+      {"ReduceTable", 117, "RepetitionOption", 8, rd117}, 
+      {"ReduceTable", 118, "Name", 27, rd118}, 
+      {"ReduceTable", 119, "Defaults", 2, rd119}, 
+      {"ReduceTable", 120, "SemanticActionParameter", 2, rd120}, 
+      {"ReduceTable", 121, "Grammar", 1, rd121}, 
+      {"ReduceTable", 122, "TreeBuildingOptions", 1, rd122}, 
+      {"ReduceTable", 123, "Production", 4, rd123}, 
+      {"ReduceTable", 124, "Attribute", 2, rd124}, 
+      {"ReduceTable", 125, "GrammarType", 1, rd125}, 
+      {"ReduceTable", 126, "Rules", 2, rd126}, 
+      {"ReduceTable", 127, "Primary", 10, rd127}, 
+      {"ReduceTable", 128, "Alternation", 5, rd128}, 
+      {"ReduceTable", 129, "Byte", 13, rd129}, 
+      {"ReduceTable", 130, "RightPart", 2, rd130}, 
+      {"ReduceTable", 131, "SemanticAction", 11, rd131}};
+
+   //Define VARIABLES to refer to semantic table PARAMETERs.
+   //FORMAT {string0, string1, ...} 
+   const char **p132 = new const char * [1] {"walkLeftPart:"};
+   const char **p133 = new const char * [1] {"walkGrammar:"};
+   const char **p134 = new const char * [1] {"walkEpsilon:"};
+   const char **p135 = new const char * [1] {"walkKeywords:"};
+   const char **p136 = new const char * [1] {"walkOutput:"};
+   const char **p137 = new const char * [1] {"walkOptimize:"};
+   const char **p138 = new const char * [1] {"walkSemanticAction:"};
+   const char **p139 = new const char * [1] {"walkNonTreeBuildingSemanticAction:"};
+   const char **p140 = new const char * [1] {"walkRightPart:"};
+   const char **p141 = new const char * [1] {"walkProduction:"};
+   const char **p142 = new const char * [1] {"walkAttributeDefaults:"};
+   const char **p143 = new const char * [1] {"walkMacro:"};
+   const char **p144 = new const char * [1] {"walkQuestionMark:"};
+   const char **p145 = new const char * [1] {"walkStar:"};
+   const char **p146 = new const char * [1] {"walkPlus:"};
+   const char **p147 = new const char * [1] {"walkConcatenation:"};
+   const char **p148 = new const char * [1] {"walkLeftPartWithLookahead:"};
+   const char **p149 = new const char * [1] {"walkAttributeTerminalDefaults:"};
+   const char **p150 = new const char * [1] {"walkAttributeNonterminalDefaults:"};
+   const char **p151 = new const char * [1] {"walkAttributes:"};
+   const char **p152 = new const char * [1] {"walkDotDot:"};
+   const char **p153 = new const char * [1] {"walkLook:"};
+   const char **p154 = new const char * [1] {"walkMinus:"};
+   const char **p155 = new const char * [1] {"walkOr:"};
+   const char **p156 = new const char * [1] {"walkBuildTreeOrTokenFromName:"};
+   const char **p157 = new const char * [1] {"walkBuildTreeFromLeftIndex:"};
+   const char **p158 = new const char * [1] {"walkTreeBuildingSemanticAction:"};
+   const char **p159 = new const char * [1] {"walkBuildTreeFromRightIndex:"};
+   const char **p160 = new const char * [1] {"Scanner"};
+   const char **p161 = new const char * [1] {"SuperScanner"};
+   const char **p162 = new const char * [1] {"Parser"};
+   const char **p163 = new const char * [1] {"" /* Empty array is illegal */};
+   const char **p164 = new const char * [1] {"SuperScanner"};
+
+   //Define an array of semantic tables.
+   //FORMAT SemanticTable {const char *name; long stateNumber; const char *action; long size; const char **parameters; long gotoTableNumber;}
+   RawSemanticTable *semanticTables = new RawSemanticTable [33] {
+      {"SemanticTable", 132, "buildTree", 1, p132, 115}, 
+      {"SemanticTable", 133, "buildTree", 1, p133, 126}, 
+      {"SemanticTable", 134, "buildTree", 1, p134, 128}, 
+      {"SemanticTable", 135, "buildTree", 1, p135, 119}, 
+      {"SemanticTable", 136, "buildTree", 1, p136, 119}, 
+      {"SemanticTable", 137, "buildTree", 1, p137, 119}, 
+      {"SemanticTable", 138, "buildTree", 1, p138, 131}, 
+      {"SemanticTable", 139, "buildTree", 1, p139, 113}, 
+      {"SemanticTable", 140, "buildTree", 1, p140, 130}, 
+      {"SemanticTable", 141, "buildTree", 1, p141, 123}, 
+      {"SemanticTable", 142, "buildTree", 1, p142, 119}, 
+      {"SemanticTable", 143, "buildTree", 1, p143, 116}, 
+      {"SemanticTable", 144, "buildTree", 1, p144, 117}, 
+      {"SemanticTable", 145, "buildTree", 1, p145, 117}, 
+      {"SemanticTable", 146, "buildTree", 1, p146, 117}, 
+      {"SemanticTable", 147, "buildTree", 1, p147, 114}, 
+      {"SemanticTable", 148, "buildTree", 1, p148, 115}, 
+      {"SemanticTable", 149, "buildTree", 1, p149, 119}, 
+      {"SemanticTable", 150, "buildTree", 1, p150, 119}, 
+      {"SemanticTable", 151, "buildTree", 1, p151, 113}, 
+      {"SemanticTable", 152, "buildTree", 1, p152, 127}, 
+      {"SemanticTable", 153, "buildTree", 1, p153, 127}, 
+      {"SemanticTable", 154, "buildTree", 1, p154, 117}, 
+      {"SemanticTable", 155, "buildTree", 1, p155, 128}, 
+      {"SemanticTable", 156, "buildTree", 1, p156, 122}, 
+      {"SemanticTable", 157, "buildTree", 1, p157, 122}, 
+      {"SemanticTable", 158, "buildTree", 1, p158, 122}, 
+      {"SemanticTable", 159, "buildTree", 1, p159, 122}, 
+      {"SemanticTable", 160, "processTypeNow", 1, p160, 68}, 
+      {"SemanticTable", 161, "processTypeNow", 1, p161, 68}, 
+      {"SemanticTable", 162, "processTypeNow", 1, p162, 68}, 
+      {"SemanticTable", 163, "processAndDiscardDefaultsNow", 0, p163, 21}, 
+      {"SemanticTable", 164, "processTypeNow", 1, p164, 71}
+   };
+
+   RawAcceptTable *acceptTable = new RawAcceptTable {"AcceptTable", 165};
+
+   ParserTables *parserTables = new ParserTables {
+      19, keywords,
+      53, readaheadTables,
+      13, readbackTables,
+      47, shiftbackTables,
+      19, reduceTables,
+      33, semanticTables,
+      acceptTable};
+
+   return parserTables;
+}
+
+    
+void deleteParserTables (ParserTables *parserTable) {
+
+    for (long index = 0; index < parserTable->readaheadTablesSize; index++) {
+        delete [] parserTable->readaheadTables [index].triples;
+    }
+    delete [] parserTable->readaheadTables;
+    
+    for (long index = 0; index < parserTable->readbackTablesSize; index++) {
+        delete [] parserTable->readbackTables [index].triples;
+    }
+    delete [] parserTable->readbackTables;
+    delete [] parserTable->shiftbackTables;
+    
+    for (long index = 0; index < parserTable->reduceTablesSize; index++) {
+        delete [] parserTable->reduceTables [index].triples;
+    }
+    delete [] parserTable->reduceTables;
+    
+    for (long index = 0; index < parserTable->semanticTablesSize; index++) {
+        delete [] parserTable->semanticTables [index].parameters;
+    }
+    delete [] parserTable->semanticTables;
+}
+
+
+
+
+//C++98 ----------------------------------->
+
+
+
+    
+//NOTE: The following declarations should probably be moved manually to a more global location for access elsewhere...
+
+struct RawReadaheadTriple {const char *string; const char *attributes; long gotoTable;};
+struct RawReadaheadTable {const char *name; long state; long size; RawReadaheadTriple *triples;};
+struct RawReadbackPair {const char *symbol; long state;};
+struct RawReadbackTriple {RawReadbackPair pair; const char *attributes; long gotoTable;};
+struct RawReadbackTable {const char *name; long state; long size; RawReadbackTriple *triples;};
+struct RawShiftbackTable {const char *name; long state; long shift; long gotoTable;};
+struct RawReduceTriple {long stackTopState; const char *attributes; long gotoTable;};
+struct RawReduceTable {const char *name; long state;  const char *nonterminal; long size; RawReduceTriple *triples;};
+struct RawSemanticTable {const char *name; long state; const char *action; long size; const char **parameters; long gotoTable;};
+struct RawAcceptTable {const char *name; long state;};
+
+struct ParserTables {
+    long keywordsSize; const char **keywords;
+    long readaheadTablesSize; RawReadaheadTable *readaheadTables;
+    long readbackTablesSize; RawReadbackTable *readbackTables;
+    long shiftbackTablesSize; RawShiftbackTable *shiftbackTables;
+    long reduceTablesSize; RawReduceTable *reduceTables;
+    long semanticTablesSize; RawSemanticTable *semanticTables;
+    RawAcceptTable *acceptTable;
+};
+
+
+#define copy(a,b) CopyMemory (a, b, sizeof (b))
+
+//For parsingTables.cpp
+
+ParserTables *parserTables () {
+   const char **keywords = new const char * [19] {"stack", "noStack", "read", "look", "node", "noNode", "keep", "noKeep", "parser", "scanner", "super", "superScanner", "attribute", "defaults", "keywords", "output", "optimize", "terminal", "nonterminal"};
+
+   //Define VARIABLES to refer to readahead table TRIPLEs.
+   //FORMAT: RawReadaheadTriple {const char *string; const char *attributes; long gotoTableNumber;} //Note: string == NULL is equivalent to "{256}" (end of file).
+   RawReadaheadTriple *ra0  = new RawReadaheadTriple [4] {{"scanner", "RS", 160}, {"superScanner", "RS", 161}, {"super", "RS", 2}, {"parser", "RS", 162}};
+   RawReadaheadTriple *ra1  = new RawReadaheadTriple [6] {{"walkString:", "RSN", 66}, {"keywords", "RS", 3}, {"output", "RS", 4}, {"attribute", "RS", 5}, {"optimize", "RS", 6}, {"walkIdentifier:", "RSN", 66}};
+   RawReadaheadTriple *ra2  = new RawReadaheadTriple [1] {{"scanner", "RS", 164}};
+   RawReadaheadTriple *ra3  = new RawReadaheadTriple [2] {{"walkString:", "RSN", 66}, {"walkIdentifier:", "RSN", 66}};
+   RawReadaheadTriple *ra4  = new RawReadaheadTriple [2] {{"walkString:", "RSN", 66}, {"walkIdentifier:", "RSN", 66}};
+   RawReadaheadTriple *ra5  = new RawReadaheadTriple [3] {{"defaults", "RS", 13}, {"terminal", "RS", 14}, {"nonterminal", "RS", 15}};
+   RawReadaheadTriple *ra6  = new RawReadaheadTriple [2] {{"walkString:", "RSN", 66}, {"walkIdentifier:", "RSN", 66}};
+   RawReadaheadTriple *ra7  = new RawReadaheadTriple [3] {{"Equals", "RS", 17}, {"OpenCurly", "RS", 18}, {"RightArrow", "L", 69}};
+   RawReadaheadTriple *ra8  = new RawReadaheadTriple [3] {{"walkString:", "RSN", 66}, {"walkIdentifier:", "RSN", 66}, {"-|", "L", 70}};
+   RawReadaheadTriple *ra9  = new RawReadaheadTriple [1] {{"RightArrow", "RS", 19}};
+   RawReadaheadTriple *ra10 = new RawReadaheadTriple [3] {{"walkString:", "RSN", 66}, {"walkIdentifier:", "RSN", 66}, {"-|", "L", 70}};
+   RawReadaheadTriple *ra11 = new RawReadaheadTriple [3] {{"walkString:", "RSN", 66}, {"Dot", "RS", 78}, {"walkIdentifier:", "RSN", 66}};
+   RawReadaheadTriple *ra12 = new RawReadaheadTriple [1] {{"Dot", "RS", 79}};
+   RawReadaheadTriple *ra13 = new RawReadaheadTriple [2] {{"walkString:", "RSN", 66}, {"walkIdentifier:", "RSN", 66}};
+   RawReadaheadTriple *ra14 = new RawReadaheadTriple [1] {{"defaults", "RS", 23}};
+   RawReadaheadTriple *ra15 = new RawReadaheadTriple [1] {{"defaults", "RS", 24}};
+   RawReadaheadTriple *ra16 = new RawReadaheadTriple [1] {{"Dot", "RS", 80}};
+   RawReadaheadTriple *ra17 = new RawReadaheadTriple [12] {{"walkString:", "RSN", 66}, {"OpenCurly", "RS", 28}, {"walkSymbol:", "RSN", 29}, {"walkInteger:", "RSN", 74}, {"walkCharacter:", "RSN", 74}, {"walkIdentifier:", "RSN", 66}, {"OpenRound", "RS", 33}, {"CloseCurly", "L", 134}, {"Dot", "L", 134}, {"CloseRound", "L", 134}, {"FatRightArrow", "L", 134}, {"RightArrow", "L", 134}};
+   RawReadaheadTriple *ra18 = new RawReadaheadTriple [12] {{"walkString:", "RSN", 66}, {"OpenCurly", "RS", 28}, {"walkSymbol:", "RSN", 29}, {"walkInteger:", "RSN", 74}, {"walkCharacter:", "RSN", 74}, {"walkIdentifier:", "RSN", 66}, {"OpenRound", "RS", 33}, {"CloseCurly", "L", 134}, {"Dot", "L", 134}, {"CloseRound", "L", 134}, {"FatRightArrow", "L", 134}, {"RightArrow", "L", 134}};
+   RawReadaheadTriple *ra19 = new RawReadaheadTriple [12] {{"walkString:", "RSN", 66}, {"OpenCurly", "RS", 28}, {"walkSymbol:", "RSN", 29}, {"walkInteger:", "RSN", 74}, {"walkCharacter:", "RSN", 74}, {"walkIdentifier:", "RSN", 66}, {"OpenRound", "RS", 33}, {"CloseCurly", "L", 134}, {"Dot", "L", 134}, {"CloseRound", "L", 134}, {"FatRightArrow", "L", 134}, {"RightArrow", "L", 134}};
+   RawReadaheadTriple *ra20 = new RawReadaheadTriple [2] {{"RightArrow", "RS", 19}, {"Dot", "RS", 83}};
+   RawReadaheadTriple *ra21 = new RawReadaheadTriple [6] {{"walkString:", "RSN", 66}, {"keywords", "RS", 3}, {"output", "RS", 4}, {"attribute", "RS", 5}, {"optimize", "RS", 6}, {"walkIdentifier:", "RSN", 66}};
+   RawReadaheadTriple *ra22 = new RawReadaheadTriple [3] {{"walkString:", "RSN", 66}, {"Dot", "RS", 84}, {"walkIdentifier:", "RSN", 66}};
+   RawReadaheadTriple *ra23 = new RawReadaheadTriple [2] {{"walkString:", "RSN", 66}, {"walkIdentifier:", "RSN", 66}};
+   RawReadaheadTriple *ra24 = new RawReadaheadTriple [2] {{"walkString:", "RSN", 66}, {"walkIdentifier:", "RSN", 66}};
+   RawReadaheadTriple *ra25 = new RawReadaheadTriple [19] {{"OpenSquare", "RS", 38}, {"Star", "L", 72}, {"QuestionMark", "L", 72}, {"Plus", "L", 72}, {"And", "L", 72}, {"Minus", "L", 72}, {"OpenRound", "L", 72}, {"OpenCurly", "L", 72}, {"walkIdentifier:", "L", 72}, {"walkString:", "L", 72}, {"walkSymbol:", "L", 72}, {"walkCharacter:", "L", 72}, {"walkInteger:", "L", 72}, {"VerticalBar", "L", 72}, {"CloseCurly", "L", 72}, {"Dot", "L", 72}, {"CloseRound", "L", 72}, {"FatRightArrow", "L", 72}, {"RightArrow", "L", 72}};
+   RawReadaheadTriple *ra26 = new RawReadaheadTriple [1] {{"Dot", "RS", 86}};
+   RawReadaheadTriple *ra27 = new RawReadaheadTriple [20] {{"DotDot", "RS", 39}, {"OpenSquare", "L", 73}, {"Star", "L", 73}, {"QuestionMark", "L", 73}, {"Plus", "L", 73}, {"And", "L", 73}, {"Minus", "L", 73}, {"OpenRound", "L", 73}, {"OpenCurly", "L", 73}, {"walkIdentifier:", "L", 73}, {"walkString:", "L", 73}, {"walkSymbol:", "L", 73}, {"walkCharacter:", "L", 73}, {"walkInteger:", "L", 73}, {"VerticalBar", "L", 73}, {"CloseCurly", "L", 73}, {"Dot", "L", 73}, {"CloseRound", "L", 73}, {"FatRightArrow", "L", 73}, {"RightArrow", "L", 73}};
+   RawReadaheadTriple *ra28 = new RawReadaheadTriple [12] {{"walkString:", "RSN", 66}, {"OpenCurly", "RS", 28}, {"walkSymbol:", "RSN", 29}, {"walkInteger:", "RSN", 74}, {"walkCharacter:", "RSN", 74}, {"walkIdentifier:", "RSN", 66}, {"OpenRound", "RS", 33}, {"CloseCurly", "L", 134}, {"Dot", "L", 134}, {"CloseRound", "L", 134}, {"FatRightArrow", "L", 134}, {"RightArrow", "L", 134}};
+   RawReadaheadTriple *ra29 = new RawReadaheadTriple [19] {{"OpenSquare", "RS", 41}, {"Star", "L", 81}, {"QuestionMark", "L", 81}, {"Plus", "L", 81}, {"And", "L", 81}, {"Minus", "L", 81}, {"OpenRound", "L", 81}, {"OpenCurly", "L", 81}, {"walkIdentifier:", "L", 81}, {"walkString:", "L", 81}, {"walkSymbol:", "L", 81}, {"walkCharacter:", "L", 81}, {"walkInteger:", "L", 81}, {"RightArrow", "L", 81}, {"Dot", "L", 81}, {"VerticalBar", "L", 81}, {"CloseCurly", "L", 81}, {"CloseRound", "L", 81}, {"FatRightArrow", "L", 81}};
+   RawReadaheadTriple *ra30 = new RawReadaheadTriple [18] {{"QuestionMark", "RS", 88}, {"Minus", "RS", 42}, {"Star", "RS", 89}, {"Plus", "RS", 90}, {"And", "RS", 43}, {"OpenRound", "L", 75}, {"OpenCurly", "L", 75}, {"walkIdentifier:", "L", 75}, {"walkString:", "L", 75}, {"walkSymbol:", "L", 75}, {"walkCharacter:", "L", 75}, {"walkInteger:", "L", 75}, {"VerticalBar", "L", 75}, {"CloseCurly", "L", 75}, {"Dot", "L", 75}, {"CloseRound", "L", 75}, {"FatRightArrow", "L", 75}, {"RightArrow", "L", 75}};
+   RawReadaheadTriple *ra31 = new RawReadaheadTriple [6] {{"VerticalBar", "RS", 44}, {"CloseCurly", "L", 76}, {"Dot", "L", 76}, {"CloseRound", "L", 76}, {"FatRightArrow", "L", 76}, {"RightArrow", "L", 76}};
+   RawReadaheadTriple *ra32 = new RawReadaheadTriple [13] {{"walkString:", "RSN", 66}, {"OpenCurly", "RS", 28}, {"walkSymbol:", "RSN", 29}, {"walkInteger:", "RSN", 74}, {"walkCharacter:", "RSN", 74}, {"walkIdentifier:", "RSN", 66}, {"OpenRound", "RS", 33}, {"VerticalBar", "L", 77}, {"CloseCurly", "L", 77}, {"Dot", "L", 77}, {"CloseRound", "L", 77}, {"FatRightArrow", "L", 77}, {"RightArrow", "L", 77}};
+   RawReadaheadTriple *ra33 = new RawReadaheadTriple [12] {{"walkString:", "RSN", 66}, {"OpenCurly", "RS", 28}, {"walkSymbol:", "RSN", 29}, {"walkInteger:", "RSN", 74}, {"walkCharacter:", "RSN", 74}, {"walkIdentifier:", "RSN", 66}, {"OpenRound", "RS", 33}, {"CloseCurly", "L", 134}, {"Dot", "L", 134}, {"CloseRound", "L", 134}, {"FatRightArrow", "L", 134}, {"RightArrow", "L", 134}};
+   RawReadaheadTriple *ra34 = new RawReadaheadTriple [1] {{"CloseCurly", "RS", 93}};
+   RawReadaheadTriple *ra35 = new RawReadaheadTriple [3] {{"FatRightArrow", "RS", 47}, {"RightArrow", "L", 53}, {"Dot", "L", 53}};
+   RawReadaheadTriple *ra36 = new RawReadaheadTriple [3] {{"walkString:", "RSN", 66}, {"Dot", "RS", 94}, {"walkIdentifier:", "RSN", 66}};
+   RawReadaheadTriple *ra37 = new RawReadaheadTriple [3] {{"walkString:", "RSN", 66}, {"Dot", "RS", 95}, {"walkIdentifier:", "RSN", 66}};
+   RawReadaheadTriple *ra38 = new RawReadaheadTriple [9] {{"keep", "RSN", 85}, {"noNode", "RSN", 85}, {"noStack", "RSN", 85}, {"CloseSquare", "RS", 96}, {"read", "RSN", 85}, {"look", "RSN", 85}, {"stack", "RSN", 85}, {"node", "RSN", 85}, {"noKeep", "RSN", 85}};
+   RawReadaheadTriple *ra39 = new RawReadaheadTriple [2] {{"walkInteger:", "RSN", 74}, {"walkCharacter:", "RSN", 74}};
+   RawReadaheadTriple *ra40 = new RawReadaheadTriple [1] {{"CloseCurly", "RS", 98}};
+   RawReadaheadTriple *ra41 = new RawReadaheadTriple [6] {{"walkString:", "RSN", 66}, {"walkSymbol:", "RSN", 87}, {"walkIdentifier:", "RSN", 66}, {"walkCharacter:", "RSN", 74}, {"CloseSquare", "RS", 99}, {"walkInteger:", "RSN", 74}};
+   RawReadaheadTriple *ra42 = new RawReadaheadTriple [7] {{"walkSymbol:", "RSN", 29}, {"walkString:", "RSN", 66}, {"OpenCurly", "RS", 28}, {"walkIdentifier:", "RSN", 66}, {"walkCharacter:", "RSN", 74}, {"OpenRound", "RS", 33}, {"walkInteger:", "RSN", 74}};
+   RawReadaheadTriple *ra43 = new RawReadaheadTriple [7] {{"walkString:", "RSN", 66}, {"walkSymbol:", "RSN", 29}, {"OpenCurly", "RS", 28}, {"walkCharacter:", "RSN", 74}, {"walkIdentifier:", "RSN", 66}, {"OpenRound", "RS", 33}, {"walkInteger:", "RSN", 74}};
+   RawReadaheadTriple *ra44 = new RawReadaheadTriple [7] {{"walkString:", "RSN", 66}, {"OpenCurly", "RS", 28}, {"walkSymbol:", "RSN", 29}, {"walkInteger:", "RSN", 74}, {"walkCharacter:", "RSN", 74}, {"walkIdentifier:", "RSN", 66}, {"OpenRound", "RS", 33}};
+   RawReadaheadTriple *ra45 = new RawReadaheadTriple [13] {{"walkString:", "RSN", 66}, {"OpenCurly", "RS", 28}, {"walkSymbol:", "RSN", 29}, {"walkInteger:", "RSN", 74}, {"walkCharacter:", "RSN", 74}, {"walkIdentifier:", "RSN", 66}, {"OpenRound", "RS", 33}, {"VerticalBar", "L", 91}, {"CloseCurly", "L", 91}, {"Dot", "L", 91}, {"CloseRound", "L", 91}, {"FatRightArrow", "L", 91}, {"RightArrow", "L", 91}};
+   RawReadaheadTriple *ra46 = new RawReadaheadTriple [1] {{"CloseRound", "RS", 92}};
+   RawReadaheadTriple *ra47 = new RawReadaheadTriple [6] {{"Minus", "RS", 51}, {"walkString:", "RSN", 66}, {"walkSymbol:", "RSN", 29}, {"walkIdentifier:", "RSN", 66}, {"Plus", "RS", 52}, {"walkInteger:", "RSN", 103}};
+   RawReadaheadTriple *ra48 = new RawReadaheadTriple [9] {{"keep", "RSN", 85}, {"noNode", "RSN", 85}, {"noStack", "RSN", 85}, {"CloseSquare", "RS", 96}, {"read", "RSN", 85}, {"look", "RSN", 85}, {"stack", "RSN", 85}, {"node", "RSN", 85}, {"noKeep", "RSN", 85}};
+   RawReadaheadTriple *ra49 = new RawReadaheadTriple [6] {{"walkString:", "RSN", 66}, {"walkSymbol:", "RSN", 87}, {"walkIdentifier:", "RSN", 66}, {"walkCharacter:", "RSN", 74}, {"CloseSquare", "RS", 99}, {"walkInteger:", "RSN", 74}};
+   RawReadaheadTriple *ra50 = new RawReadaheadTriple [6] {{"VerticalBar", "RS", 44}, {"CloseCurly", "L", 101}, {"Dot", "L", 101}, {"CloseRound", "L", 101}, {"FatRightArrow", "L", 101}, {"RightArrow", "L", 101}};
+   RawReadaheadTriple *ra51 = new RawReadaheadTriple [1] {{"walkInteger:", "RSN", 105}};
+   RawReadaheadTriple *ra52 = new RawReadaheadTriple [1] {{"walkInteger:", "RSN", 103}};
+
+   //Define an array of readahead tables.
+   //FORMAT: RawReadaheadTable {char *name; long stateNumber; long size; RawReadaheadTriple *triples;}
+   RawReadaheadTable *readaheadTables = new RawReadaheadTable [53] {
+      {"ReadaheadTable", 0, 4, &ra0[0]}, 
+      {"ReadaheadTable", 1, 6, &ra1[0]}, 
+      {"ReadaheadTable", 2, 1, &ra2[0]}, 
+      {"ReadaheadTable", 3, 2, &ra3[0]}, 
+      {"ReadaheadTable", 4, 2, &ra4[0]}, 
+      {"ReadaheadTable", 5, 3, &ra5[0]}, 
+      {"ReadaheadTable", 6, 2, &ra6[0]}, 
+      {"ReadaheadTable", 7, 3, &ra7[0]}, 
+      {"ReadaheadTable", 8, 3, &ra8[0]}, 
+      {"ReadaheadTable", 9, 1, &ra9[0]}, 
+      {"ReadaheadTable", 10, 3, &ra10[0]}, 
+      {"ReadaheadTable", 11, 3, &ra11[0]}, 
+      {"ReadaheadTable", 12, 1, &ra12[0]}, 
+      {"ReadaheadTable", 13, 2, &ra13[0]}, 
+      {"ReadaheadTable", 14, 1, &ra14[0]}, 
+      {"ReadaheadTable", 15, 1, &ra15[0]}, 
+      {"ReadaheadTable", 16, 1, &ra16[0]}, 
+      {"ReadaheadTable", 17, 12, &ra17[0]}, 
+      {"ReadaheadTable", 18, 12, &ra18[0]}, 
+      {"ReadaheadTable", 19, 12, &ra19[0]}, 
+      {"ReadaheadTable", 20, 2, &ra20[0]}, 
+      {"ReadaheadTable", 21, 6, &ra21[0]}, 
+      {"ReadaheadTable", 22, 3, &ra22[0]}, 
+      {"ReadaheadTable", 23, 2, &ra23[0]}, 
+      {"ReadaheadTable", 24, 2, &ra24[0]}, 
+      {"ReadaheadTable", 25, 19, &ra25[0]}, 
+      {"ReadaheadTable", 26, 1, &ra26[0]}, 
+      {"ReadaheadTable", 27, 20, &ra27[0]}, 
+      {"ReadaheadTable", 28, 12, &ra28[0]}, 
+      {"ReadaheadTable", 29, 19, &ra29[0]}, 
+      {"ReadaheadTable", 30, 18, &ra30[0]}, 
+      {"ReadaheadTable", 31, 6, &ra31[0]}, 
+      {"ReadaheadTable", 32, 13, &ra32[0]}, 
+      {"ReadaheadTable", 33, 12, &ra33[0]}, 
+      {"ReadaheadTable", 34, 1, &ra34[0]}, 
+      {"ReadaheadTable", 35, 3, &ra35[0]}, 
+      {"ReadaheadTable", 36, 3, &ra36[0]}, 
+      {"ReadaheadTable", 37, 3, &ra37[0]}, 
+      {"ReadaheadTable", 38, 9, &ra38[0]}, 
+      {"ReadaheadTable", 39, 2, &ra39[0]}, 
+      {"ReadaheadTable", 40, 1, &ra40[0]}, 
+      {"ReadaheadTable", 41, 6, &ra41[0]}, 
+      {"ReadaheadTable", 42, 7, &ra42[0]}, 
+      {"ReadaheadTable", 43, 7, &ra43[0]}, 
+      {"ReadaheadTable", 44, 7, &ra44[0]}, 
+      {"ReadaheadTable", 45, 13, &ra45[0]}, 
+      {"ReadaheadTable", 46, 1, &ra46[0]}, 
+      {"ReadaheadTable", 47, 6, &ra47[0]}, 
+      {"ReadaheadTable", 48, 9, &ra48[0]}, 
+      {"ReadaheadTable", 49, 6, &ra49[0]}, 
+      {"ReadaheadTable", 50, 6, &ra50[0]}, 
+      {"ReadaheadTable", 51, 1, &ra51[0]}, 
+      {"ReadaheadTable", 52, 1, &ra52[0]}};
+
+   //Define VARIABLES to refer to readback table TRIPLEs.
+   //FORMAT: RawReadbackPair {const char *symbol; long state;}
+   //FORMAT: RawReadbackTriple {RawReadbackPair pair; const char *attributes; long gotoTableNumber;}
+   RawReadbackTriple *rb53 = new RawReadbackTriple [2] {{{"TreeBuildingOptions", 53}, "RSN", 106}, {{"Alternation", 35}, "RSN", 107}};
+   RawReadbackTriple *rb54 = new RawReadbackTriple [2] {{{"Defaults", 163}, "RSN", 54}, {{"GrammarType", 1}, "RSN", 121}};
+   RawReadbackTriple *rb55 = new RawReadbackTriple [4] {{{"Macro", 8}, "RSN", 55}, {{"Production", 10}, "RSN", 55}, {{"GrammarType", 1}, "L", 133}, {{"Defaults", 163}, "L", 133}};
+   RawReadbackTriple *rb56 = new RawReadbackTriple [2] {{{"RepetitionOption", 45}, "RSN", 56}, {{"RepetitionOption", 32}, "RSN", 147}};
+   RawReadbackTriple *rb57 = new RawReadbackTriple [2] {{{"OpenSquare", 38}, "RS", 109}, {{"Attribute", 48}, "RSN", 57}};
+   RawReadbackTriple *rb58 = new RawReadbackTriple [2] {{{"OpenSquare", 41}, "RS", 81}, {{"SemanticActionParameter", 49}, "RSN", 58}};
+   RawReadbackTriple *rb59 = new RawReadbackTriple [2] {{{"Plus", 52}, "RS", 157}, {{"FatRightArrow", 47}, "L", 157}};
+   RawReadbackTriple *rb60 = new RawReadbackTriple [2] {{{"keywords", 3}, "RS", 135}, {{"Name", 11}, "RSN", 60}};
+   RawReadbackTriple *rb61 = new RawReadbackTriple [2] {{{"LeftPart", 9}, "RSN", 141}, {{"RightPart", 20}, "RSN", 61}};
+   RawReadbackTriple *rb62 = new RawReadbackTriple [2] {{{"Name", 22}, "RSN", 62}, {{"defaults", 13}, "RS", 110}};
+   RawReadbackTriple *rb63 = new RawReadbackTriple [2] {{{"Name", 36}, "RSN", 63}, {{"defaults", 23}, "RS", 111}};
+   RawReadbackTriple *rb64 = new RawReadbackTriple [2] {{{"Name", 37}, "RSN", 64}, {{"defaults", 24}, "RS", 112}};
+   RawReadbackTriple *rb65 = new RawReadbackTriple [2] {{{"Concatenation", 50}, "RSN", 108}, {{"Concatenation", 31}, "RSN", 155}};
+
+   //Define an array of readback tables.
+   //FORMAT: RawReadabackTable {const char *name; long stateNumber; long size; RawReadbackTriple *triples;}
+   RawReadbackTable *readbackTables = new RawReadbackTable [13] {
+      {"ReadbackTable", 53, 2, rb54}, 
+      {"ReadbackTable", 54, 2, rb55}, 
+      {"ReadbackTable", 55, 4, rb56}, 
+      {"ReadbackTable", 56, 2, rb57}, 
+      {"ReadbackTable", 57, 2, rb58}, 
+      {"ReadbackTable", 58, 2, rb59}, 
+      {"ReadbackTable", 59, 2, rb60}, 
+      {"ReadbackTable", 60, 2, rb61}, 
+      {"ReadbackTable", 61, 2, rb62}, 
+      {"ReadbackTable", 62, 2, rb63}, 
+      {"ReadbackTable", 63, 2, rb64}, 
+      {"ReadbackTable", 64, 2, rb65}, 
+      {"ReadbackTable", 65, 2, rb66}};
+
+   //Define an array of shiftback tables.
+   //FORMAT: RawShiftbackTable {const char *name; long stateNumber; long shift; long gotoTable;}
+   RawShiftbackTable *shiftbackTables = new RawShiftbackTable [47] {
+      {"ShiftbackTable", 66, 1, 118}, 
+      {"ShiftbackTable", 67, 1, 54}, 
+      {"ShiftbackTable", 68, 1, 125}, 
+      {"ShiftbackTable", 69, 1, 132}, 
+      {"ShiftbackTable", 70, 1, 55}, 
+      {"ShiftbackTable", 71, 2, 125}, 
+      {"ShiftbackTable", 72, 1, 113}, 
+      {"ShiftbackTable", 73, 1, 127}, 
+      {"ShiftbackTable", 74, 1, 129}, 
+      {"ShiftbackTable", 75, 1, 117}, 
+      {"ShiftbackTable", 76, 1, 128}, 
+      {"ShiftbackTable", 77, 1, 114}, 
+      {"ShiftbackTable", 78, 2, 60}, 
+      {"ShiftbackTable", 79, 3, 136}, 
+      {"ShiftbackTable", 80, 3, 137}, 
+      {"ShiftbackTable", 81, 1, 138}, 
+      {"ShiftbackTable", 82, 1, 139}, 
+      {"ShiftbackTable", 83, 2, 61}, 
+      {"ShiftbackTable", 84, 2, 62}, 
+      {"ShiftbackTable", 85, 1, 124}, 
+      {"ShiftbackTable", 86, 4, 143}, 
+      {"ShiftbackTable", 87, 1, 120}, 
+      {"ShiftbackTable", 88, 2, 144}, 
+      {"ShiftbackTable", 89, 2, 145}, 
+      {"ShiftbackTable", 90, 2, 146}, 
+      {"ShiftbackTable", 91, 1, 56}, 
+      {"ShiftbackTable", 92, 3, 127}, 
+      {"ShiftbackTable", 93, 4, 148}, 
+      {"ShiftbackTable", 94, 2, 63}, 
+      {"ShiftbackTable", 95, 2, 64}, 
+      {"ShiftbackTable", 96, 1, 57}, 
+      {"ShiftbackTable", 97, 3, 152}, 
+      {"ShiftbackTable", 98, 3, 153}, 
+      {"ShiftbackTable", 99, 1, 58}, 
+      {"ShiftbackTable", 100, 3, 154}, 
+      {"ShiftbackTable", 101, 2, 65}, 
+      {"ShiftbackTable", 102, 1, 156}, 
+      {"ShiftbackTable", 103, 1, 59}, 
+      {"ShiftbackTable", 104, 1, 158}, 
+      {"ShiftbackTable", 105, 2, 159}, 
+      {"ShiftbackTable", 106, 3, 140}, 
+      {"ShiftbackTable", 107, 1, 140}, 
+      {"ShiftbackTable", 108, 1, 65}, 
+      {"ShiftbackTable", 109, 1, 151}, 
+      {"ShiftbackTable", 110, 1, 142}, 
+      {"ShiftbackTable", 111, 2, 149}, 
+      {"ShiftbackTable", 112, 2, 150}};
+
+   //Define VARIABLES to refer to reduce table TRIPLEs.
+   //FORMAT: RawReduceTriple {long stackTopState; const char *attributes; long gotoTableNumber;}
+   RawReduceTriple *rd113 = new RawReduceTriple [10] {{17, "RSN", 30}, {18, "RSN", 30}, {19, "RSN", 30}, {28, "RSN", 30}, {32, "RSN", 30}, {33, "RSN", 30}, {42, "RSN", 100}, {43, "RSN", 100}, {44, "RSN", 30}, {45, "RSN", 30}};
+   RawReduceTriple *rd114 = new RawReduceTriple [6] {{17, "RSN", 31}, {18, "RSN", 31}, {19, "RSN", 31}, {28, "RSN", 31}, {33, "RSN", 31}, {44, "RSN", 50}};
+   RawReduceTriple *rd115 = new RawReduceTriple [4] {{1, "RSN", 9}, {8, "RSN", 9}, {10, "RSN", 9}, {163, "RSN", 9}};
+   RawReduceTriple *rd116 = new RawReduceTriple [4] {{1, "RSN", 8}, {8, "RSN", 8}, {10, "RSN", 8}, {163, "RSN", 8}};
+   RawReduceTriple *rd117 = new RawReduceTriple [8] {{17, "RSN", 32}, {18, "RSN", 32}, {19, "RSN", 32}, {28, "RSN", 32}, {32, "RSN", 45}, {33, "RSN", 32}, {44, "RSN", 32}, {45, "RSN", 45}};
+   RawReduceTriple *rd118 = new RawReduceTriple [27] {{1, "RSN", 7}, {3, "RSN", 11}, {4, "RSN", 12}, {6, "RSN", 16}, {8, "RSN", 7}, {10, "RSN", 7}, {11, "RSN", 11}, {13, "RSN", 22}, {17, "RSN", 73}, {18, "RSN", 73}, {19, "RSN", 73}, {163, "RSN", 7}, {22, "RSN", 22}, {23, "RSN", 36}, {24, "RSN", 37}, {28, "RSN", 73}, {32, "RSN", 73}, {33, "RSN", 73}, {36, "RSN", 36}, {37, "RSN", 37}, {41, "RSN", 87}, {42, "RSN", 73}, {43, "RSN", 73}, {44, "RSN", 73}, {45, "RSN", 73}, {47, "RSN", 102}, {49, "RSN", 87}};
+   RawReduceTriple *rd119 = new RawReduceTriple [2] {{1, "RSN", 163}, {163, "RSN", 163}};
+   RawReduceTriple *rd120 = new RawReduceTriple [2] {{41, "RSN", 49}, {49, "RSN", 49}};
+   RawReduceTriple *rd121 = new RawReduceTriple [1] {{0, "RSN", 165}};
+   RawReduceTriple *rd122 = new RawReduceTriple [1] {{47, "RSN", 53}};
+   RawReduceTriple *rd123 = new RawReduceTriple [4] {{1, "RSN", 10}, {8, "RSN", 10}, {10, "RSN", 10}, {163, "RSN", 10}};
+   RawReduceTriple *rd124 = new RawReduceTriple [2] {{38, "RSN", 48}, {48, "RSN", 48}};
+   RawReduceTriple *rd125 = new RawReduceTriple [1] {{0, "RSN", 1}};
+   RawReduceTriple *rd126 = new RawReduceTriple [2] {{1, "RSN", 67}, {163, "RSN", 67}};
+   RawReduceTriple *rd127 = new RawReduceTriple [10] {{17, "RSN", 25}, {18, "RSN", 25}, {19, "RSN", 25}, {28, "RSN", 25}, {32, "RSN", 25}, {33, "RSN", 25}, {42, "RSN", 25}, {43, "RSN", 25}, {44, "RSN", 25}, {45, "RSN", 25}};
+   RawReduceTriple *rd128 = new RawReduceTriple [5] {{17, "RSN", 26}, {18, "RSN", 34}, {19, "RSN", 35}, {28, "RSN", 40}, {33, "RSN", 46}};
+   RawReduceTriple *rd129 = new RawReduceTriple [13] {{17, "RSN", 27}, {18, "RSN", 27}, {19, "RSN", 27}, {28, "RSN", 27}, {32, "RSN", 27}, {33, "RSN", 27}, {39, "RSN", 97}, {41, "RSN", 87}, {42, "RSN", 27}, {43, "RSN", 27}, {44, "RSN", 27}, {45, "RSN", 27}, {49, "RSN", 87}};
+   RawReduceTriple *rd130 = new RawReduceTriple [2] {{9, "RSN", 20}, {20, "RSN", 20}};
+   RawReduceTriple *rd131 = new RawReduceTriple [11] {{17, "RSN", 82}, {18, "RSN", 82}, {19, "RSN", 82}, {28, "RSN", 82}, {32, "RSN", 82}, {33, "RSN", 82}, {42, "RSN", 82}, {43, "RSN", 82}, {44, "RSN", 82}, {45, "RSN", 82}, {47, "RSN", 104}};
+
+   //Define an array of reduce tables.
+   //FORMAT: RawReduceTable {const char *name; long stateNumber;  const char *nonterminal, long size; RawReduceTriple *triples;}
+   RawReduceTable *reduceTables = new RawReduceTable [19] {
+      {"ReduceTable", 113, "Expression", 10, rd113}, 
+      {"ReduceTable", 114, "Concatenation", 6, rd114}, 
+      {"ReduceTable", 115, "LeftPart", 4, rd115}, 
+      {"ReduceTable", 116, "Macro", 4, rd116}, 
+      {"ReduceTable", 117, "RepetitionOption", 8, rd117}, 
+      {"ReduceTable", 118, "Name", 27, rd118}, 
+      {"ReduceTable", 119, "Defaults", 2, rd119}, 
+      {"ReduceTable", 120, "SemanticActionParameter", 2, rd120}, 
+      {"ReduceTable", 121, "Grammar", 1, rd121}, 
+      {"ReduceTable", 122, "TreeBuildingOptions", 1, rd122}, 
+      {"ReduceTable", 123, "Production", 4, rd123}, 
+      {"ReduceTable", 124, "Attribute", 2, rd124}, 
+      {"ReduceTable", 125, "GrammarType", 1, rd125}, 
+      {"ReduceTable", 126, "Rules", 2, rd126}, 
+      {"ReduceTable", 127, "Primary", 10, rd127}, 
+      {"ReduceTable", 128, "Alternation", 5, rd128}, 
+      {"ReduceTable", 129, "Byte", 13, rd129}, 
+      {"ReduceTable", 130, "RightPart", 2, rd130}, 
+      {"ReduceTable", 131, "SemanticAction", 11, rd131}};
+
+   //Define VARIABLES to refer to semantic table PARAMETERs.
+   //FORMAT {string0, string1, ...} 
+   const char **p132 = new const char * [1] {"walkLeftPart:"};
+   const char **p133 = new const char * [1] {"walkGrammar:"};
+   const char **p134 = new const char * [1] {"walkEpsilon:"};
+   const char **p135 = new const char * [1] {"walkKeywords:"};
+   const char **p136 = new const char * [1] {"walkOutput:"};
+   const char **p137 = new const char * [1] {"walkOptimize:"};
+   const char **p138 = new const char * [1] {"walkSemanticAction:"};
+   const char **p139 = new const char * [1] {"walkNonTreeBuildingSemanticAction:"};
+   const char **p140 = new const char * [1] {"walkRightPart:"};
+   const char **p141 = new const char * [1] {"walkProduction:"};
+   const char **p142 = new const char * [1] {"walkAttributeDefaults:"};
+   const char **p143 = new const char * [1] {"walkMacro:"};
+   const char **p144 = new const char * [1] {"walkQuestionMark:"};
+   const char **p145 = new const char * [1] {"walkStar:"};
+   const char **p146 = new const char * [1] {"walkPlus:"};
+   const char **p147 = new const char * [1] {"walkConcatenation:"};
+   const char **p148 = new const char * [1] {"walkLeftPartWithLookahead:"};
+   const char **p149 = new const char * [1] {"walkAttributeTerminalDefaults:"};
+   const char **p150 = new const char * [1] {"walkAttributeNonterminalDefaults:"};
+   const char **p151 = new const char * [1] {"walkAttributes:"};
+   const char **p152 = new const char * [1] {"walkDotDot:"};
+   const char **p153 = new const char * [1] {"walkLook:"};
+   const char **p154 = new const char * [1] {"walkMinus:"};
+   const char **p155 = new const char * [1] {"walkOr:"};
+   const char **p156 = new const char * [1] {"walkBuildTreeOrTokenFromName:"};
+   const char **p157 = new const char * [1] {"walkBuildTreeFromLeftIndex:"};
+   const char **p158 = new const char * [1] {"walkTreeBuildingSemanticAction:"};
+   const char **p159 = new const char * [1] {"walkBuildTreeFromRightIndex:"};
+   const char **p160 = new const char * [1] {"Scanner"};
+   const char **p161 = new const char * [1] {"SuperScanner"};
+   const char **p162 = new const char * [1] {"Parser"};
+   const char **p163 = new const char * [1] {"" /* Empty array is illegal */};
+   const char **p164 = new const char * [1] {"SuperScanner"};
+
+   //Define an array of semantic tables.
+   //FORMAT SemanticTable {const char *name; long stateNumber; const char *action; long size; const char **parameters; long gotoTableNumber;}
+   RawSemanticTable *semanticTables = new RawSemanticTable [33] {
+      {"SemanticTable", 132, "buildTree", 1, p132, 115}, 
+      {"SemanticTable", 133, "buildTree", 1, p133, 126}, 
+      {"SemanticTable", 134, "buildTree", 1, p134, 128}, 
+      {"SemanticTable", 135, "buildTree", 1, p135, 119}, 
+      {"SemanticTable", 136, "buildTree", 1, p136, 119}, 
+      {"SemanticTable", 137, "buildTree", 1, p137, 119}, 
+      {"SemanticTable", 138, "buildTree", 1, p138, 131}, 
+      {"SemanticTable", 139, "buildTree", 1, p139, 113}, 
+      {"SemanticTable", 140, "buildTree", 1, p140, 130}, 
+      {"SemanticTable", 141, "buildTree", 1, p141, 123}, 
+      {"SemanticTable", 142, "buildTree", 1, p142, 119}, 
+      {"SemanticTable", 143, "buildTree", 1, p143, 116}, 
+      {"SemanticTable", 144, "buildTree", 1, p144, 117}, 
+      {"SemanticTable", 145, "buildTree", 1, p145, 117}, 
+      {"SemanticTable", 146, "buildTree", 1, p146, 117}, 
+      {"SemanticTable", 147, "buildTree", 1, p147, 114}, 
+      {"SemanticTable", 148, "buildTree", 1, p148, 115}, 
+      {"SemanticTable", 149, "buildTree", 1, p149, 119}, 
+      {"SemanticTable", 150, "buildTree", 1, p150, 119}, 
+      {"SemanticTable", 151, "buildTree", 1, p151, 113}, 
+      {"SemanticTable", 152, "buildTree", 1, p152, 127}, 
+      {"SemanticTable", 153, "buildTree", 1, p153, 127}, 
+      {"SemanticTable", 154, "buildTree", 1, p154, 117}, 
+      {"SemanticTable", 155, "buildTree", 1, p155, 128}, 
+      {"SemanticTable", 156, "buildTree", 1, p156, 122}, 
+      {"SemanticTable", 157, "buildTree", 1, p157, 122}, 
+      {"SemanticTable", 158, "buildTree", 1, p158, 122}, 
+      {"SemanticTable", 159, "buildTree", 1, p159, 122}, 
+      {"SemanticTable", 160, "processTypeNow", 1, p160, 68}, 
+      {"SemanticTable", 161, "processTypeNow", 1, p161, 68}, 
+      {"SemanticTable", 162, "processTypeNow", 1, p162, 68}, 
+      {"SemanticTable", 163, "processAndDiscardDefaultsNow", 0, p163, 21}, 
+      {"SemanticTable", 164, "processTypeNow", 1, p164, 71}
+   };
+
+   RawAcceptTable *acceptTable = new RawAcceptTable {"AcceptTable", 165};
+
+   ParserTables *parserTables = new ParserTables; ParserTables rawParserTables = {
+      19, keywords,
+      53, readaheadTables,
+      13, readbackTables,
+      47, shiftbackTables,
+      19, reduceTables,
+      33, semanticTables,
+      acceptTable}; copy (parserTables, &rawParserTables);
+
+   return parserTables;
+}
+
+    
+void deleteParserTables (ParserTables *parserTable) {
+
+    for (long index = 0; index < parserTable->readaheadTablesSize; index++) {
+        delete [] parserTable->readaheadTables [index].triples;
+    }
+    delete [] parserTable->readaheadTables;
+    
+    for (long index = 0; index < parserTable->readbackTablesSize; index++) {
+        delete [] parserTable->readbackTables [index].triples;
+    }
+    delete [] parserTable->readbackTables;
+    delete [] parserTable->shiftbackTables;
+    
+    for (long index = 0; index < parserTable->reduceTablesSize; index++) {
+        delete [] parserTable->reduceTables [index].triples;
+    }
+    delete [] parserTable->reduceTables;
+    
+    for (long index = 0; index < parserTable->semanticTablesSize; index++) {
+        delete [] parserTable->semanticTables [index].parameters;
+    }
+    delete [] parserTable->semanticTables;
+}
+
+
+
+
+//JAVA ------------------------------------>
+
+
+
+    
+//NOTE: The following declarations should probably be moved manually to a more global location for access elsewhere...
+
+struct RawReadaheadTriple {const char *string; const char *attributes; long gotoTable;};
+struct RawReadaheadTable {const char *name; long state; long size; RawReadaheadTriple *triples;};
+struct RawReadbackPair {const char *symbol; long state;};
+struct RawReadbackTriple {RawReadbackPair pair; const char *attributes; long gotoTable;};
+struct RawReadbackTable {const char *name; long state; long size; RawReadbackTriple *triples;};
+struct RawShiftbackTable {const char *name; long state; long shift; long gotoTable;};
+struct RawReduceTriple {long stackTopState; const char *attributes; long gotoTable;};
+struct RawReduceTable {const char *name; long state;  const char *nonterminal; long size; RawReduceTriple *triples;};
+struct RawSemanticTable {const char *name; long state; const char *action; long size; const char **parameters; long gotoTable;};
+struct RawAcceptTable {const char *name; long state;};
+
+struct ParserTables {
+    long keywordsSize; const char **keywords;
+    long readaheadTablesSize; RawReadaheadTable *readaheadTables;
+    long readbackTablesSize; RawReadbackTable *readbackTables;
+    long shiftbackTablesSize; RawShiftbackTable *shiftbackTables;
+    long reduceTablesSize; RawReduceTable *reduceTables;
+    long semanticTablesSize; RawSemanticTable *semanticTables;
+    RawAcceptTable *acceptTable;
+};
+
+
+#define copy(a,b) CopyMemory (a, b, sizeof (b))
+
+//For parsingTables.cpp
+
+ParserTables *parserTables () {
+   const char **keywords = new const char * [19] {"stack", "noStack", "read", "look", "node", "noNode", "keep", "noKeep", "parser", "scanner", "super", "superScanner", "attribute", "defaults", "keywords", "output", "optimize", "terminal", "nonterminal"};
+
+   //Define VARIABLES to refer to readahead table TRIPLEs.
+   //FORMAT: RawReadaheadTriple {const char *string; const char *attributes; long gotoTableNumber;} //Note: string == NULL is equivalent to "{256}" (end of file).
+   RawReadaheadTriple *ra0  = new RawReadaheadTriple [4] {{"scanner", "RS", 160}, {"superScanner", "RS", 161}, {"super", "RS", 2}, {"parser", "RS", 162}};
+   RawReadaheadTriple *ra1  = new RawReadaheadTriple [6] {{"walkString:", "RSN", 66}, {"keywords", "RS", 3}, {"output", "RS", 4}, {"attribute", "RS", 5}, {"optimize", "RS", 6}, {"walkIdentifier:", "RSN", 66}};
+   RawReadaheadTriple *ra2  = new RawReadaheadTriple [1] {{"scanner", "RS", 164}};
+   RawReadaheadTriple *ra3  = new RawReadaheadTriple [2] {{"walkString:", "RSN", 66}, {"walkIdentifier:", "RSN", 66}};
+   RawReadaheadTriple *ra4  = new RawReadaheadTriple [2] {{"walkString:", "RSN", 66}, {"walkIdentifier:", "RSN", 66}};
+   RawReadaheadTriple *ra5  = new RawReadaheadTriple [3] {{"defaults", "RS", 13}, {"terminal", "RS", 14}, {"nonterminal", "RS", 15}};
+   RawReadaheadTriple *ra6  = new RawReadaheadTriple [2] {{"walkString:", "RSN", 66}, {"walkIdentifier:", "RSN", 66}};
+   RawReadaheadTriple *ra7  = new RawReadaheadTriple [3] {{"Equals", "RS", 17}, {"OpenCurly", "RS", 18}, {"RightArrow", "L", 69}};
+   RawReadaheadTriple *ra8  = new RawReadaheadTriple [3] {{"walkString:", "RSN", 66}, {"walkIdentifier:", "RSN", 66}, {"-|", "L", 70}};
+   RawReadaheadTriple *ra9  = new RawReadaheadTriple [1] {{"RightArrow", "RS", 19}};
+   RawReadaheadTriple *ra10 = new RawReadaheadTriple [3] {{"walkString:", "RSN", 66}, {"walkIdentifier:", "RSN", 66}, {"-|", "L", 70}};
+   RawReadaheadTriple *ra11 = new RawReadaheadTriple [3] {{"walkString:", "RSN", 66}, {"Dot", "RS", 78}, {"walkIdentifier:", "RSN", 66}};
+   RawReadaheadTriple *ra12 = new RawReadaheadTriple [1] {{"Dot", "RS", 79}};
+   RawReadaheadTriple *ra13 = new RawReadaheadTriple [2] {{"walkString:", "RSN", 66}, {"walkIdentifier:", "RSN", 66}};
+   RawReadaheadTriple *ra14 = new RawReadaheadTriple [1] {{"defaults", "RS", 23}};
+   RawReadaheadTriple *ra15 = new RawReadaheadTriple [1] {{"defaults", "RS", 24}};
+   RawReadaheadTriple *ra16 = new RawReadaheadTriple [1] {{"Dot", "RS", 80}};
+   RawReadaheadTriple *ra17 = new RawReadaheadTriple [12] {{"walkString:", "RSN", 66}, {"OpenCurly", "RS", 28}, {"walkSymbol:", "RSN", 29}, {"walkInteger:", "RSN", 74}, {"walkCharacter:", "RSN", 74}, {"walkIdentifier:", "RSN", 66}, {"OpenRound", "RS", 33}, {"CloseCurly", "L", 134}, {"Dot", "L", 134}, {"CloseRound", "L", 134}, {"FatRightArrow", "L", 134}, {"RightArrow", "L", 134}};
+   RawReadaheadTriple *ra18 = new RawReadaheadTriple [12] {{"walkString:", "RSN", 66}, {"OpenCurly", "RS", 28}, {"walkSymbol:", "RSN", 29}, {"walkInteger:", "RSN", 74}, {"walkCharacter:", "RSN", 74}, {"walkIdentifier:", "RSN", 66}, {"OpenRound", "RS", 33}, {"CloseCurly", "L", 134}, {"Dot", "L", 134}, {"CloseRound", "L", 134}, {"FatRightArrow", "L", 134}, {"RightArrow", "L", 134}};
+   RawReadaheadTriple *ra19 = new RawReadaheadTriple [12] {{"walkString:", "RSN", 66}, {"OpenCurly", "RS", 28}, {"walkSymbol:", "RSN", 29}, {"walkInteger:", "RSN", 74}, {"walkCharacter:", "RSN", 74}, {"walkIdentifier:", "RSN", 66}, {"OpenRound", "RS", 33}, {"CloseCurly", "L", 134}, {"Dot", "L", 134}, {"CloseRound", "L", 134}, {"FatRightArrow", "L", 134}, {"RightArrow", "L", 134}};
+   RawReadaheadTriple *ra20 = new RawReadaheadTriple [2] {{"RightArrow", "RS", 19}, {"Dot", "RS", 83}};
+   RawReadaheadTriple *ra21 = new RawReadaheadTriple [6] {{"walkString:", "RSN", 66}, {"keywords", "RS", 3}, {"output", "RS", 4}, {"attribute", "RS", 5}, {"optimize", "RS", 6}, {"walkIdentifier:", "RSN", 66}};
+   RawReadaheadTriple *ra22 = new RawReadaheadTriple [3] {{"walkString:", "RSN", 66}, {"Dot", "RS", 84}, {"walkIdentifier:", "RSN", 66}};
+   RawReadaheadTriple *ra23 = new RawReadaheadTriple [2] {{"walkString:", "RSN", 66}, {"walkIdentifier:", "RSN", 66}};
+   RawReadaheadTriple *ra24 = new RawReadaheadTriple [2] {{"walkString:", "RSN", 66}, {"walkIdentifier:", "RSN", 66}};
+   RawReadaheadTriple *ra25 = new RawReadaheadTriple [19] {{"OpenSquare", "RS", 38}, {"Star", "L", 72}, {"QuestionMark", "L", 72}, {"Plus", "L", 72}, {"And", "L", 72}, {"Minus", "L", 72}, {"OpenRound", "L", 72}, {"OpenCurly", "L", 72}, {"walkIdentifier:", "L", 72}, {"walkString:", "L", 72}, {"walkSymbol:", "L", 72}, {"walkCharacter:", "L", 72}, {"walkInteger:", "L", 72}, {"VerticalBar", "L", 72}, {"CloseCurly", "L", 72}, {"Dot", "L", 72}, {"CloseRound", "L", 72}, {"FatRightArrow", "L", 72}, {"RightArrow", "L", 72}};
+   RawReadaheadTriple *ra26 = new RawReadaheadTriple [1] {{"Dot", "RS", 86}};
+   RawReadaheadTriple *ra27 = new RawReadaheadTriple [20] {{"DotDot", "RS", 39}, {"OpenSquare", "L", 73}, {"Star", "L", 73}, {"QuestionMark", "L", 73}, {"Plus", "L", 73}, {"And", "L", 73}, {"Minus", "L", 73}, {"OpenRound", "L", 73}, {"OpenCurly", "L", 73}, {"walkIdentifier:", "L", 73}, {"walkString:", "L", 73}, {"walkSymbol:", "L", 73}, {"walkCharacter:", "L", 73}, {"walkInteger:", "L", 73}, {"VerticalBar", "L", 73}, {"CloseCurly", "L", 73}, {"Dot", "L", 73}, {"CloseRound", "L", 73}, {"FatRightArrow", "L", 73}, {"RightArrow", "L", 73}};
+   RawReadaheadTriple *ra28 = new RawReadaheadTriple [12] {{"walkString:", "RSN", 66}, {"OpenCurly", "RS", 28}, {"walkSymbol:", "RSN", 29}, {"walkInteger:", "RSN", 74}, {"walkCharacter:", "RSN", 74}, {"walkIdentifier:", "RSN", 66}, {"OpenRound", "RS", 33}, {"CloseCurly", "L", 134}, {"Dot", "L", 134}, {"CloseRound", "L", 134}, {"FatRightArrow", "L", 134}, {"RightArrow", "L", 134}};
+   RawReadaheadTriple *ra29 = new RawReadaheadTriple [19] {{"OpenSquare", "RS", 41}, {"Star", "L", 81}, {"QuestionMark", "L", 81}, {"Plus", "L", 81}, {"And", "L", 81}, {"Minus", "L", 81}, {"OpenRound", "L", 81}, {"OpenCurly", "L", 81}, {"walkIdentifier:", "L", 81}, {"walkString:", "L", 81}, {"walkSymbol:", "L", 81}, {"walkCharacter:", "L", 81}, {"walkInteger:", "L", 81}, {"RightArrow", "L", 81}, {"Dot", "L", 81}, {"VerticalBar", "L", 81}, {"CloseCurly", "L", 81}, {"CloseRound", "L", 81}, {"FatRightArrow", "L", 81}};
+   RawReadaheadTriple *ra30 = new RawReadaheadTriple [18] {{"QuestionMark", "RS", 88}, {"Minus", "RS", 42}, {"Star", "RS", 89}, {"Plus", "RS", 90}, {"And", "RS", 43}, {"OpenRound", "L", 75}, {"OpenCurly", "L", 75}, {"walkIdentifier:", "L", 75}, {"walkString:", "L", 75}, {"walkSymbol:", "L", 75}, {"walkCharacter:", "L", 75}, {"walkInteger:", "L", 75}, {"VerticalBar", "L", 75}, {"CloseCurly", "L", 75}, {"Dot", "L", 75}, {"CloseRound", "L", 75}, {"FatRightArrow", "L", 75}, {"RightArrow", "L", 75}};
+   RawReadaheadTriple *ra31 = new RawReadaheadTriple [6] {{"VerticalBar", "RS", 44}, {"CloseCurly", "L", 76}, {"Dot", "L", 76}, {"CloseRound", "L", 76}, {"FatRightArrow", "L", 76}, {"RightArrow", "L", 76}};
+   RawReadaheadTriple *ra32 = new RawReadaheadTriple [13] {{"walkString:", "RSN", 66}, {"OpenCurly", "RS", 28}, {"walkSymbol:", "RSN", 29}, {"walkInteger:", "RSN", 74}, {"walkCharacter:", "RSN", 74}, {"walkIdentifier:", "RSN", 66}, {"OpenRound", "RS", 33}, {"VerticalBar", "L", 77}, {"CloseCurly", "L", 77}, {"Dot", "L", 77}, {"CloseRound", "L", 77}, {"FatRightArrow", "L", 77}, {"RightArrow", "L", 77}};
+   RawReadaheadTriple *ra33 = new RawReadaheadTriple [12] {{"walkString:", "RSN", 66}, {"OpenCurly", "RS", 28}, {"walkSymbol:", "RSN", 29}, {"walkInteger:", "RSN", 74}, {"walkCharacter:", "RSN", 74}, {"walkIdentifier:", "RSN", 66}, {"OpenRound", "RS", 33}, {"CloseCurly", "L", 134}, {"Dot", "L", 134}, {"CloseRound", "L", 134}, {"FatRightArrow", "L", 134}, {"RightArrow", "L", 134}};
+   RawReadaheadTriple *ra34 = new RawReadaheadTriple [1] {{"CloseCurly", "RS", 93}};
+   RawReadaheadTriple *ra35 = new RawReadaheadTriple [3] {{"FatRightArrow", "RS", 47}, {"RightArrow", "L", 53}, {"Dot", "L", 53}};
+   RawReadaheadTriple *ra36 = new RawReadaheadTriple [3] {{"walkString:", "RSN", 66}, {"Dot", "RS", 94}, {"walkIdentifier:", "RSN", 66}};
+   RawReadaheadTriple *ra37 = new RawReadaheadTriple [3] {{"walkString:", "RSN", 66}, {"Dot", "RS", 95}, {"walkIdentifier:", "RSN", 66}};
+   RawReadaheadTriple *ra38 = new RawReadaheadTriple [9] {{"keep", "RSN", 85}, {"noNode", "RSN", 85}, {"noStack", "RSN", 85}, {"CloseSquare", "RS", 96}, {"read", "RSN", 85}, {"look", "RSN", 85}, {"stack", "RSN", 85}, {"node", "RSN", 85}, {"noKeep", "RSN", 85}};
+   RawReadaheadTriple *ra39 = new RawReadaheadTriple [2] {{"walkInteger:", "RSN", 74}, {"walkCharacter:", "RSN", 74}};
+   RawReadaheadTriple *ra40 = new RawReadaheadTriple [1] {{"CloseCurly", "RS", 98}};
+   RawReadaheadTriple *ra41 = new RawReadaheadTriple [6] {{"walkString:", "RSN", 66}, {"walkSymbol:", "RSN", 87}, {"walkIdentifier:", "RSN", 66}, {"walkCharacter:", "RSN", 74}, {"CloseSquare", "RS", 99}, {"walkInteger:", "RSN", 74}};
+   RawReadaheadTriple *ra42 = new RawReadaheadTriple [7] {{"walkSymbol:", "RSN", 29}, {"walkString:", "RSN", 66}, {"OpenCurly", "RS", 28}, {"walkIdentifier:", "RSN", 66}, {"walkCharacter:", "RSN", 74}, {"OpenRound", "RS", 33}, {"walkInteger:", "RSN", 74}};
+   RawReadaheadTriple *ra43 = new RawReadaheadTriple [7] {{"walkString:", "RSN", 66}, {"walkSymbol:", "RSN", 29}, {"OpenCurly", "RS", 28}, {"walkCharacter:", "RSN", 74}, {"walkIdentifier:", "RSN", 66}, {"OpenRound", "RS", 33}, {"walkInteger:", "RSN", 74}};
+   RawReadaheadTriple *ra44 = new RawReadaheadTriple [7] {{"walkString:", "RSN", 66}, {"OpenCurly", "RS", 28}, {"walkSymbol:", "RSN", 29}, {"walkInteger:", "RSN", 74}, {"walkCharacter:", "RSN", 74}, {"walkIdentifier:", "RSN", 66}, {"OpenRound", "RS", 33}};
+   RawReadaheadTriple *ra45 = new RawReadaheadTriple [13] {{"walkString:", "RSN", 66}, {"OpenCurly", "RS", 28}, {"walkSymbol:", "RSN", 29}, {"walkInteger:", "RSN", 74}, {"walkCharacter:", "RSN", 74}, {"walkIdentifier:", "RSN", 66}, {"OpenRound", "RS", 33}, {"VerticalBar", "L", 91}, {"CloseCurly", "L", 91}, {"Dot", "L", 91}, {"CloseRound", "L", 91}, {"FatRightArrow", "L", 91}, {"RightArrow", "L", 91}};
+   RawReadaheadTriple *ra46 = new RawReadaheadTriple [1] {{"CloseRound", "RS", 92}};
+   RawReadaheadTriple *ra47 = new RawReadaheadTriple [6] {{"Minus", "RS", 51}, {"walkString:", "RSN", 66}, {"walkSymbol:", "RSN", 29}, {"walkIdentifier:", "RSN", 66}, {"Plus", "RS", 52}, {"walkInteger:", "RSN", 103}};
+   RawReadaheadTriple *ra48 = new RawReadaheadTriple [9] {{"keep", "RSN", 85}, {"noNode", "RSN", 85}, {"noStack", "RSN", 85}, {"CloseSquare", "RS", 96}, {"read", "RSN", 85}, {"look", "RSN", 85}, {"stack", "RSN", 85}, {"node", "RSN", 85}, {"noKeep", "RSN", 85}};
+   RawReadaheadTriple *ra49 = new RawReadaheadTriple [6] {{"walkString:", "RSN", 66}, {"walkSymbol:", "RSN", 87}, {"walkIdentifier:", "RSN", 66}, {"walkCharacter:", "RSN", 74}, {"CloseSquare", "RS", 99}, {"walkInteger:", "RSN", 74}};
+   RawReadaheadTriple *ra50 = new RawReadaheadTriple [6] {{"VerticalBar", "RS", 44}, {"CloseCurly", "L", 101}, {"Dot", "L", 101}, {"CloseRound", "L", 101}, {"FatRightArrow", "L", 101}, {"RightArrow", "L", 101}};
+   RawReadaheadTriple *ra51 = new RawReadaheadTriple [1] {{"walkInteger:", "RSN", 105}};
+   RawReadaheadTriple *ra52 = new RawReadaheadTriple [1] {{"walkInteger:", "RSN", 103}};
+
+   //Define an array of readahead tables.
+   //FORMAT: RawReadaheadTable {char *name; long stateNumber; long size; RawReadaheadTriple *triples;}
+   RawReadaheadTable *readaheadTables = new RawReadaheadTable [53] {
+      {"ReadaheadTable", 0, 4, &ra0[0]}, 
+      {"ReadaheadTable", 1, 6, &ra1[0]}, 
+      {"ReadaheadTable", 2, 1, &ra2[0]}, 
+      {"ReadaheadTable", 3, 2, &ra3[0]}, 
+      {"ReadaheadTable", 4, 2, &ra4[0]}, 
+      {"ReadaheadTable", 5, 3, &ra5[0]}, 
+      {"ReadaheadTable", 6, 2, &ra6[0]}, 
+      {"ReadaheadTable", 7, 3, &ra7[0]}, 
+      {"ReadaheadTable", 8, 3, &ra8[0]}, 
+      {"ReadaheadTable", 9, 1, &ra9[0]}, 
+      {"ReadaheadTable", 10, 3, &ra10[0]}, 
+      {"ReadaheadTable", 11, 3, &ra11[0]}, 
+      {"ReadaheadTable", 12, 1, &ra12[0]}, 
+      {"ReadaheadTable", 13, 2, &ra13[0]}, 
+      {"ReadaheadTable", 14, 1, &ra14[0]}, 
+      {"ReadaheadTable", 15, 1, &ra15[0]}, 
+      {"ReadaheadTable", 16, 1, &ra16[0]}, 
+      {"ReadaheadTable", 17, 12, &ra17[0]}, 
+      {"ReadaheadTable", 18, 12, &ra18[0]}, 
+      {"ReadaheadTable", 19, 12, &ra19[0]}, 
+      {"ReadaheadTable", 20, 2, &ra20[0]}, 
+      {"ReadaheadTable", 21, 6, &ra21[0]}, 
+      {"ReadaheadTable", 22, 3, &ra22[0]}, 
+      {"ReadaheadTable", 23, 2, &ra23[0]}, 
+      {"ReadaheadTable", 24, 2, &ra24[0]}, 
+      {"ReadaheadTable", 25, 19, &ra25[0]}, 
+      {"ReadaheadTable", 26, 1, &ra26[0]}, 
+      {"ReadaheadTable", 27, 20, &ra27[0]}, 
+      {"ReadaheadTable", 28, 12, &ra28[0]}, 
+      {"ReadaheadTable", 29, 19, &ra29[0]}, 
+      {"ReadaheadTable", 30, 18, &ra30[0]}, 
+      {"ReadaheadTable", 31, 6, &ra31[0]}, 
+      {"ReadaheadTable", 32, 13, &ra32[0]}, 
+      {"ReadaheadTable", 33, 12, &ra33[0]}, 
+      {"ReadaheadTable", 34, 1, &ra34[0]}, 
+      {"ReadaheadTable", 35, 3, &ra35[0]}, 
+      {"ReadaheadTable", 36, 3, &ra36[0]}, 
+      {"ReadaheadTable", 37, 3, &ra37[0]}, 
+      {"ReadaheadTable", 38, 9, &ra38[0]}, 
+      {"ReadaheadTable", 39, 2, &ra39[0]}, 
+      {"ReadaheadTable", 40, 1, &ra40[0]}, 
+      {"ReadaheadTable", 41, 6, &ra41[0]}, 
+      {"ReadaheadTable", 42, 7, &ra42[0]}, 
+      {"ReadaheadTable", 43, 7, &ra43[0]}, 
+      {"ReadaheadTable", 44, 7, &ra44[0]}, 
+      {"ReadaheadTable", 45, 13, &ra45[0]}, 
+      {"ReadaheadTable", 46, 1, &ra46[0]}, 
+      {"ReadaheadTable", 47, 6, &ra47[0]}, 
+      {"ReadaheadTable", 48, 9, &ra48[0]}, 
+      {"ReadaheadTable", 49, 6, &ra49[0]}, 
+      {"ReadaheadTable", 50, 6, &ra50[0]}, 
+      {"ReadaheadTable", 51, 1, &ra51[0]}, 
+      {"ReadaheadTable", 52, 1, &ra52[0]}};
+
+   //Define VARIABLES to refer to readback table TRIPLEs.
+   //FORMAT: RawReadbackPair {const char *symbol; long state;}
+   //FORMAT: RawReadbackTriple {RawReadbackPair pair; const char *attributes; long gotoTableNumber;}
+   RawReadbackTriple *rb53 = new RawReadbackTriple [2] {{{"TreeBuildingOptions", 53}, "RSN", 106}, {{"Alternation", 35}, "RSN", 107}};
+   RawReadbackTriple *rb54 = new RawReadbackTriple [2] {{{"Defaults", 163}, "RSN", 54}, {{"GrammarType", 1}, "RSN", 121}};
+   RawReadbackTriple *rb55 = new RawReadbackTriple [4] {{{"Macro", 8}, "RSN", 55}, {{"Production", 10}, "RSN", 55}, {{"GrammarType", 1}, "L", 133}, {{"Defaults", 163}, "L", 133}};
+   RawReadbackTriple *rb56 = new RawReadbackTriple [2] {{{"RepetitionOption", 45}, "RSN", 56}, {{"RepetitionOption", 32}, "RSN", 147}};
+   RawReadbackTriple *rb57 = new RawReadbackTriple [2] {{{"OpenSquare", 38}, "RS", 109}, {{"Attribute", 48}, "RSN", 57}};
+   RawReadbackTriple *rb58 = new RawReadbackTriple [2] {{{"OpenSquare", 41}, "RS", 81}, {{"SemanticActionParameter", 49}, "RSN", 58}};
+   RawReadbackTriple *rb59 = new RawReadbackTriple [2] {{{"Plus", 52}, "RS", 157}, {{"FatRightArrow", 47}, "L", 157}};
+   RawReadbackTriple *rb60 = new RawReadbackTriple [2] {{{"keywords", 3}, "RS", 135}, {{"Name", 11}, "RSN", 60}};
+   RawReadbackTriple *rb61 = new RawReadbackTriple [2] {{{"LeftPart", 9}, "RSN", 141}, {{"RightPart", 20}, "RSN", 61}};
+   RawReadbackTriple *rb62 = new RawReadbackTriple [2] {{{"Name", 22}, "RSN", 62}, {{"defaults", 13}, "RS", 110}};
+   RawReadbackTriple *rb63 = new RawReadbackTriple [2] {{{"Name", 36}, "RSN", 63}, {{"defaults", 23}, "RS", 111}};
+   RawReadbackTriple *rb64 = new RawReadbackTriple [2] {{{"Name", 37}, "RSN", 64}, {{"defaults", 24}, "RS", 112}};
+   RawReadbackTriple *rb65 = new RawReadbackTriple [2] {{{"Concatenation", 50}, "RSN", 108}, {{"Concatenation", 31}, "RSN", 155}};
+
+   //Define an array of readback tables.
+   //FORMAT: RawReadabackTable {const char *name; long stateNumber; long size; RawReadbackTriple *triples;}
+   RawReadbackTable *readbackTables = new RawReadbackTable [13] {
+      {"ReadbackTable", 53, 2, rb54}, 
+      {"ReadbackTable", 54, 2, rb55}, 
+      {"ReadbackTable", 55, 4, rb56}, 
+      {"ReadbackTable", 56, 2, rb57}, 
+      {"ReadbackTable", 57, 2, rb58}, 
+      {"ReadbackTable", 58, 2, rb59}, 
+      {"ReadbackTable", 59, 2, rb60}, 
+      {"ReadbackTable", 60, 2, rb61}, 
+      {"ReadbackTable", 61, 2, rb62}, 
+      {"ReadbackTable", 62, 2, rb63}, 
+      {"ReadbackTable", 63, 2, rb64}, 
+      {"ReadbackTable", 64, 2, rb65}, 
+      {"ReadbackTable", 65, 2, rb66}};
+
+   //Define an array of shiftback tables.
+   //FORMAT: RawShiftbackTable {const char *name; long stateNumber; long shift; long gotoTable;}
+   RawShiftbackTable *shiftbackTables = new RawShiftbackTable [47] {
+      {"ShiftbackTable", 66, 1, 118}, 
+      {"ShiftbackTable", 67, 1, 54}, 
+      {"ShiftbackTable", 68, 1, 125}, 
+      {"ShiftbackTable", 69, 1, 132}, 
+      {"ShiftbackTable", 70, 1, 55}, 
+      {"ShiftbackTable", 71, 2, 125}, 
+      {"ShiftbackTable", 72, 1, 113}, 
+      {"ShiftbackTable", 73, 1, 127}, 
+      {"ShiftbackTable", 74, 1, 129}, 
+      {"ShiftbackTable", 75, 1, 117}, 
+      {"ShiftbackTable", 76, 1, 128}, 
+      {"ShiftbackTable", 77, 1, 114}, 
+      {"ShiftbackTable", 78, 2, 60}, 
+      {"ShiftbackTable", 79, 3, 136}, 
+      {"ShiftbackTable", 80, 3, 137}, 
+      {"ShiftbackTable", 81, 1, 138}, 
+      {"ShiftbackTable", 82, 1, 139}, 
+      {"ShiftbackTable", 83, 2, 61}, 
+      {"ShiftbackTable", 84, 2, 62}, 
+      {"ShiftbackTable", 85, 1, 124}, 
+      {"ShiftbackTable", 86, 4, 143}, 
+      {"ShiftbackTable", 87, 1, 120}, 
+      {"ShiftbackTable", 88, 2, 144}, 
+      {"ShiftbackTable", 89, 2, 145}, 
+      {"ShiftbackTable", 90, 2, 146}, 
+      {"ShiftbackTable", 91, 1, 56}, 
+      {"ShiftbackTable", 92, 3, 127}, 
+      {"ShiftbackTable", 93, 4, 148}, 
+      {"ShiftbackTable", 94, 2, 63}, 
+      {"ShiftbackTable", 95, 2, 64}, 
+      {"ShiftbackTable", 96, 1, 57}, 
+      {"ShiftbackTable", 97, 3, 152}, 
+      {"ShiftbackTable", 98, 3, 153}, 
+      {"ShiftbackTable", 99, 1, 58}, 
+      {"ShiftbackTable", 100, 3, 154}, 
+      {"ShiftbackTable", 101, 2, 65}, 
+      {"ShiftbackTable", 102, 1, 156}, 
+      {"ShiftbackTable", 103, 1, 59}, 
+      {"ShiftbackTable", 104, 1, 158}, 
+      {"ShiftbackTable", 105, 2, 159}, 
+      {"ShiftbackTable", 106, 3, 140}, 
+      {"ShiftbackTable", 107, 1, 140}, 
+      {"ShiftbackTable", 108, 1, 65}, 
+      {"ShiftbackTable", 109, 1, 151}, 
+      {"ShiftbackTable", 110, 1, 142}, 
+      {"ShiftbackTable", 111, 2, 149}, 
+      {"ShiftbackTable", 112, 2, 150}};
+
+   //Define VARIABLES to refer to reduce table TRIPLEs.
+   //FORMAT: RawReduceTriple {long stackTopState; const char *attributes; long gotoTableNumber;}
+   RawReduceTriple *rd113 = new RawReduceTriple [10] {{17, "RSN", 30}, {18, "RSN", 30}, {19, "RSN", 30}, {28, "RSN", 30}, {32, "RSN", 30}, {33, "RSN", 30}, {42, "RSN", 100}, {43, "RSN", 100}, {44, "RSN", 30}, {45, "RSN", 30}};
+   RawReduceTriple *rd114 = new RawReduceTriple [6] {{17, "RSN", 31}, {18, "RSN", 31}, {19, "RSN", 31}, {28, "RSN", 31}, {33, "RSN", 31}, {44, "RSN", 50}};
+   RawReduceTriple *rd115 = new RawReduceTriple [4] {{1, "RSN", 9}, {8, "RSN", 9}, {10, "RSN", 9}, {163, "RSN", 9}};
+   RawReduceTriple *rd116 = new RawReduceTriple [4] {{1, "RSN", 8}, {8, "RSN", 8}, {10, "RSN", 8}, {163, "RSN", 8}};
+   RawReduceTriple *rd117 = new RawReduceTriple [8] {{17, "RSN", 32}, {18, "RSN", 32}, {19, "RSN", 32}, {28, "RSN", 32}, {32, "RSN", 45}, {33, "RSN", 32}, {44, "RSN", 32}, {45, "RSN", 45}};
+   RawReduceTriple *rd118 = new RawReduceTriple [27] {{1, "RSN", 7}, {3, "RSN", 11}, {4, "RSN", 12}, {6, "RSN", 16}, {8, "RSN", 7}, {10, "RSN", 7}, {11, "RSN", 11}, {13, "RSN", 22}, {17, "RSN", 73}, {18, "RSN", 73}, {19, "RSN", 73}, {163, "RSN", 7}, {22, "RSN", 22}, {23, "RSN", 36}, {24, "RSN", 37}, {28, "RSN", 73}, {32, "RSN", 73}, {33, "RSN", 73}, {36, "RSN", 36}, {37, "RSN", 37}, {41, "RSN", 87}, {42, "RSN", 73}, {43, "RSN", 73}, {44, "RSN", 73}, {45, "RSN", 73}, {47, "RSN", 102}, {49, "RSN", 87}};
+   RawReduceTriple *rd119 = new RawReduceTriple [2] {{1, "RSN", 163}, {163, "RSN", 163}};
+   RawReduceTriple *rd120 = new RawReduceTriple [2] {{41, "RSN", 49}, {49, "RSN", 49}};
+   RawReduceTriple *rd121 = new RawReduceTriple [1] {{0, "RSN", 165}};
+   RawReduceTriple *rd122 = new RawReduceTriple [1] {{47, "RSN", 53}};
+   RawReduceTriple *rd123 = new RawReduceTriple [4] {{1, "RSN", 10}, {8, "RSN", 10}, {10, "RSN", 10}, {163, "RSN", 10}};
+   RawReduceTriple *rd124 = new RawReduceTriple [2] {{38, "RSN", 48}, {48, "RSN", 48}};
+   RawReduceTriple *rd125 = new RawReduceTriple [1] {{0, "RSN", 1}};
+   RawReduceTriple *rd126 = new RawReduceTriple [2] {{1, "RSN", 67}, {163, "RSN", 67}};
+   RawReduceTriple *rd127 = new RawReduceTriple [10] {{17, "RSN", 25}, {18, "RSN", 25}, {19, "RSN", 25}, {28, "RSN", 25}, {32, "RSN", 25}, {33, "RSN", 25}, {42, "RSN", 25}, {43, "RSN", 25}, {44, "RSN", 25}, {45, "RSN", 25}};
+   RawReduceTriple *rd128 = new RawReduceTriple [5] {{17, "RSN", 26}, {18, "RSN", 34}, {19, "RSN", 35}, {28, "RSN", 40}, {33, "RSN", 46}};
+   RawReduceTriple *rd129 = new RawReduceTriple [13] {{17, "RSN", 27}, {18, "RSN", 27}, {19, "RSN", 27}, {28, "RSN", 27}, {32, "RSN", 27}, {33, "RSN", 27}, {39, "RSN", 97}, {41, "RSN", 87}, {42, "RSN", 27}, {43, "RSN", 27}, {44, "RSN", 27}, {45, "RSN", 27}, {49, "RSN", 87}};
+   RawReduceTriple *rd130 = new RawReduceTriple [2] {{9, "RSN", 20}, {20, "RSN", 20}};
+   RawReduceTriple *rd131 = new RawReduceTriple [11] {{17, "RSN", 82}, {18, "RSN", 82}, {19, "RSN", 82}, {28, "RSN", 82}, {32, "RSN", 82}, {33, "RSN", 82}, {42, "RSN", 82}, {43, "RSN", 82}, {44, "RSN", 82}, {45, "RSN", 82}, {47, "RSN", 104}};
+
+   //Define an array of reduce tables.
+   //FORMAT: RawReduceTable {const char *name; long stateNumber;  const char *nonterminal, long size; RawReduceTriple *triples;}
+   RawReduceTable *reduceTables = new RawReduceTable [19] {
+      {"ReduceTable", 113, "Expression", 10, rd113}, 
+      {"ReduceTable", 114, "Concatenation", 6, rd114}, 
+      {"ReduceTable", 115, "LeftPart", 4, rd115}, 
+      {"ReduceTable", 116, "Macro", 4, rd116}, 
+      {"ReduceTable", 117, "RepetitionOption", 8, rd117}, 
+      {"ReduceTable", 118, "Name", 27, rd118}, 
+      {"ReduceTable", 119, "Defaults", 2, rd119}, 
+      {"ReduceTable", 120, "SemanticActionParameter", 2, rd120}, 
+      {"ReduceTable", 121, "Grammar", 1, rd121}, 
+      {"ReduceTable", 122, "TreeBuildingOptions", 1, rd122}, 
+      {"ReduceTable", 123, "Production", 4, rd123}, 
+      {"ReduceTable", 124, "Attribute", 2, rd124}, 
+      {"ReduceTable", 125, "GrammarType", 1, rd125}, 
+      {"ReduceTable", 126, "Rules", 2, rd126}, 
+      {"ReduceTable", 127, "Primary", 10, rd127}, 
+      {"ReduceTable", 128, "Alternation", 5, rd128}, 
+      {"ReduceTable", 129, "Byte", 13, rd129}, 
+      {"ReduceTable", 130, "RightPart", 2, rd130}, 
+      {"ReduceTable", 131, "SemanticAction", 11, rd131}};
+
+   //Define VARIABLES to refer to semantic table PARAMETERs.
+   //FORMAT {string0, string1, ...} 
+   const char **p132 = new const char * [1] {"walkLeftPart:"};
+   const char **p133 = new const char * [1] {"walkGrammar:"};
+   const char **p134 = new const char * [1] {"walkEpsilon:"};
+   const char **p135 = new const char * [1] {"walkKeywords:"};
+   const char **p136 = new const char * [1] {"walkOutput:"};
+   const char **p137 = new const char * [1] {"walkOptimize:"};
+   const char **p138 = new const char * [1] {"walkSemanticAction:"};
+   const char **p139 = new const char * [1] {"walkNonTreeBuildingSemanticAction:"};
+   const char **p140 = new const char * [1] {"walkRightPart:"};
+   const char **p141 = new const char * [1] {"walkProduction:"};
+   const char **p142 = new const char * [1] {"walkAttributeDefaults:"};
+   const char **p143 = new const char * [1] {"walkMacro:"};
+   const char **p144 = new const char * [1] {"walkQuestionMark:"};
+   const char **p145 = new const char * [1] {"walkStar:"};
+   const char **p146 = new const char * [1] {"walkPlus:"};
+   const char **p147 = new const char * [1] {"walkConcatenation:"};
+   const char **p148 = new const char * [1] {"walkLeftPartWithLookahead:"};
+   const char **p149 = new const char * [1] {"walkAttributeTerminalDefaults:"};
+   const char **p150 = new const char * [1] {"walkAttributeNonterminalDefaults:"};
+   const char **p151 = new const char * [1] {"walkAttributes:"};
+   const char **p152 = new const char * [1] {"walkDotDot:"};
+   const char **p153 = new const char * [1] {"walkLook:"};
+   const char **p154 = new const char * [1] {"walkMinus:"};
+   const char **p155 = new const char * [1] {"walkOr:"};
+   const char **p156 = new const char * [1] {"walkBuildTreeOrTokenFromName:"};
+   const char **p157 = new const char * [1] {"walkBuildTreeFromLeftIndex:"};
+   const char **p158 = new const char * [1] {"walkTreeBuildingSemanticAction:"};
+   const char **p159 = new const char * [1] {"walkBuildTreeFromRightIndex:"};
+   const char **p160 = new const char * [1] {"Scanner"};
+   const char **p161 = new const char * [1] {"SuperScanner"};
+   const char **p162 = new const char * [1] {"Parser"};
+   const char **p163 = new const char * [1] {"" /* Empty array is illegal */};
+   const char **p164 = new const char * [1] {"SuperScanner"};
+
+   //Define an array of semantic tables.
+   //FORMAT SemanticTable {const char *name; long stateNumber; const char *action; long size; const char **parameters; long gotoTableNumber;}
+   RawSemanticTable *semanticTables = new RawSemanticTable [33] {
+      {"SemanticTable", 132, "buildTree", 1, p132, 115}, 
+      {"SemanticTable", 133, "buildTree", 1, p133, 126}, 
+      {"SemanticTable", 134, "buildTree", 1, p134, 128}, 
+      {"SemanticTable", 135, "buildTree", 1, p135, 119}, 
+      {"SemanticTable", 136, "buildTree", 1, p136, 119}, 
+      {"SemanticTable", 137, "buildTree", 1, p137, 119}, 
+      {"SemanticTable", 138, "buildTree", 1, p138, 131}, 
+      {"SemanticTable", 139, "buildTree", 1, p139, 113}, 
+      {"SemanticTable", 140, "buildTree", 1, p140, 130}, 
+      {"SemanticTable", 141, "buildTree", 1, p141, 123}, 
+      {"SemanticTable", 142, "buildTree", 1, p142, 119}, 
+      {"SemanticTable", 143, "buildTree", 1, p143, 116}, 
+      {"SemanticTable", 144, "buildTree", 1, p144, 117}, 
+      {"SemanticTable", 145, "buildTree", 1, p145, 117}, 
+      {"SemanticTable", 146, "buildTree", 1, p146, 117}, 
+      {"SemanticTable", 147, "buildTree", 1, p147, 114}, 
+      {"SemanticTable", 148, "buildTree", 1, p148, 115}, 
+      {"SemanticTable", 149, "buildTree", 1, p149, 119}, 
+      {"SemanticTable", 150, "buildTree", 1, p150, 119}, 
+      {"SemanticTable", 151, "buildTree", 1, p151, 113}, 
+      {"SemanticTable", 152, "buildTree", 1, p152, 127}, 
+      {"SemanticTable", 153, "buildTree", 1, p153, 127}, 
+      {"SemanticTable", 154, "buildTree", 1, p154, 117}, 
+      {"SemanticTable", 155, "buildTree", 1, p155, 128}, 
+      {"SemanticTable", 156, "buildTree", 1, p156, 122}, 
+      {"SemanticTable", 157, "buildTree", 1, p157, 122}, 
+      {"SemanticTable", 158, "buildTree", 1, p158, 122}, 
+      {"SemanticTable", 159, "buildTree", 1, p159, 122}, 
+      {"SemanticTable", 160, "processTypeNow", 1, p160, 68}, 
+      {"SemanticTable", 161, "processTypeNow", 1, p161, 68}, 
+      {"SemanticTable", 162, "processTypeNow", 1, p162, 68}, 
+      {"SemanticTable", 163, "processAndDiscardDefaultsNow", 0, p163, 21}, 
+      {"SemanticTable", 164, "processTypeNow", 1, p164, 71}
+   };
+
+   RawAcceptTable *acceptTable = new RawAcceptTable {"AcceptTable", 165};
+
+   ParserTables *parserTables = new ParserTables; ParserTables rawParserTables = {
+      19, keywords,
+      53, readaheadTables,
+      13, readbackTables,
+      47, shiftbackTables,
+      19, reduceTables,
+      33, semanticTables,
+      acceptTable}; copy (parserTables, &rawParserTables);
+
+   return parserTables;
+}
+
+    
+void deleteParserTables (ParserTables *parserTable) {
+
+    for (long index = 0; index < parserTable->readaheadTablesSize; index++) {
+        delete [] parserTable->readaheadTables [index].triples;
+    }
+    delete [] parserTable->readaheadTables;
+    
+    for (long index = 0; index < parserTable->readbackTablesSize; index++) {
+        delete [] parserTable->readbackTables [index].triples;
+    }
+    delete [] parserTable->readbackTables;
+    delete [] parserTable->shiftbackTables;
+    
+    for (long index = 0; index < parserTable->reduceTablesSize; index++) {
+        delete [] parserTable->reduceTables [index].triples;
+    }
+    delete [] parserTable->reduceTables;
+    
+    for (long index = 0; index < parserTable->semanticTablesSize; index++) {
+        delete [] parserTable->semanticTables [index].parameters;
+    }
+    delete [] parserTable->semanticTables;
+}
+
+
+
+
+//JAVA: LIST VERSION -------------->
+
+static List<Object> rawParserTables () {return asList (
+   asList (keywords, "stack", "noStack", "read", "look", "node", "noNode", "keep", "noKeep", "parser", "scanner", "super", "superScanner", "attribute", "defaults", "keywords", "output", "optimize", "terminal", "nonterminal"),
+   asList ("ReadaheadTable", 0, asList ("scanner", "RS", 160), asList ("superScanner", "RS", 161), asList ("super", "RS", 2), asList ("parser", "RS", 162)),
+   asList ("ReadaheadTable", 1, asList ("walkString:", "RSN", 66), asList ("keywords", "RS", 3), asList ("output", "RS", 4), asList ("attribute", "RS", 5), asList ("optimize", "RS", 6), asList ("walkIdentifier:", "RSN", 66)),
+   asList ("ReadaheadTable", 2, asList ("scanner", "RS", 164)),
+   asList ("ReadaheadTable", 3, asList ("walkString:", "RSN", 66), asList ("walkIdentifier:", "RSN", 66)),
+   asList ("ReadaheadTable", 4, asList ("walkString:", "RSN", 66), asList ("walkIdentifier:", "RSN", 66)),
+   asList ("ReadaheadTable", 5, asList ("defaults", "RS", 13), asList ("terminal", "RS", 14), asList ("nonterminal", "RS", 15)),
+   asList ("ReadaheadTable", 6, asList ("walkString:", "RSN", 66), asList ("walkIdentifier:", "RSN", 66)),
+   asList ("ReadaheadTable", 7, asList ("Equals", "RS", 17), asList ("OpenCurly", "RS", 18), asList ("RightArrow", "L", 69)),
+   asList ("ReadaheadTable", 8, asList ("walkString:", "RSN", 66), asList ("walkIdentifier:", "RSN", 66), asList ("-|", "L", 70)),
+   asList ("ReadaheadTable", 9, asList ("RightArrow", "RS", 19)),
+   asList ("ReadaheadTable", 10, asList ("walkString:", "RSN", 66), asList ("walkIdentifier:", "RSN", 66), asList ("-|", "L", 70)),
+   asList ("ReadaheadTable", 11, asList ("walkString:", "RSN", 66), asList ("Dot", "RS", 78), asList ("walkIdentifier:", "RSN", 66)),
+   asList ("ReadaheadTable", 12, asList ("Dot", "RS", 79)),
+   asList ("ReadaheadTable", 13, asList ("walkString:", "RSN", 66), asList ("walkIdentifier:", "RSN", 66)),
+   asList ("ReadaheadTable", 14, asList ("defaults", "RS", 23)),
+   asList ("ReadaheadTable", 15, asList ("defaults", "RS", 24)),
+   asList ("ReadaheadTable", 16, asList ("Dot", "RS", 80)),
+   asList ("ReadaheadTable", 17, asList ("walkString:", "RSN", 66), asList ("OpenCurly", "RS", 28), asList ("walkSymbol:", "RSN", 29), asList ("walkInteger:", "RSN", 74), asList ("walkCharacter:", "RSN", 74), asList ("walkIdentifier:", "RSN", 66), asList ("OpenRound", "RS", 33), asList ("CloseCurly", "L", 134), asList ("Dot", "L", 134), asList ("CloseRound", "L", 134), asList ("FatRightArrow", "L", 134), asList ("RightArrow", "L", 134)),
+   asList ("ReadaheadTable", 18, asList ("walkString:", "RSN", 66), asList ("OpenCurly", "RS", 28), asList ("walkSymbol:", "RSN", 29), asList ("walkInteger:", "RSN", 74), asList ("walkCharacter:", "RSN", 74), asList ("walkIdentifier:", "RSN", 66), asList ("OpenRound", "RS", 33), asList ("CloseCurly", "L", 134), asList ("Dot", "L", 134), asList ("CloseRound", "L", 134), asList ("FatRightArrow", "L", 134), asList ("RightArrow", "L", 134)),
+   asList ("ReadaheadTable", 19, asList ("walkString:", "RSN", 66), asList ("OpenCurly", "RS", 28), asList ("walkSymbol:", "RSN", 29), asList ("walkInteger:", "RSN", 74), asList ("walkCharacter:", "RSN", 74), asList ("walkIdentifier:", "RSN", 66), asList ("OpenRound", "RS", 33), asList ("CloseCurly", "L", 134), asList ("Dot", "L", 134), asList ("CloseRound", "L", 134), asList ("FatRightArrow", "L", 134), asList ("RightArrow", "L", 134)),
+   asList ("ReadaheadTable", 20, asList ("RightArrow", "RS", 19), asList ("Dot", "RS", 83)),
+   asList ("ReadaheadTable", 21, asList ("walkString:", "RSN", 66), asList ("keywords", "RS", 3), asList ("output", "RS", 4), asList ("attribute", "RS", 5), asList ("optimize", "RS", 6), asList ("walkIdentifier:", "RSN", 66)),
+   asList ("ReadaheadTable", 22, asList ("walkString:", "RSN", 66), asList ("Dot", "RS", 84), asList ("walkIdentifier:", "RSN", 66)),
+   asList ("ReadaheadTable", 23, asList ("walkString:", "RSN", 66), asList ("walkIdentifier:", "RSN", 66)),
+   asList ("ReadaheadTable", 24, asList ("walkString:", "RSN", 66), asList ("walkIdentifier:", "RSN", 66)),
+   asList ("ReadaheadTable", 25, asList ("OpenSquare", "RS", 38), asList ("Star", "L", 72), asList ("QuestionMark", "L", 72), asList ("Plus", "L", 72), asList ("And", "L", 72), asList ("Minus", "L", 72), asList ("OpenRound", "L", 72), asList ("OpenCurly", "L", 72), asList ("walkIdentifier:", "L", 72), asList ("walkString:", "L", 72), asList ("walkSymbol:", "L", 72), asList ("walkCharacter:", "L", 72), asList ("walkInteger:", "L", 72), asList ("VerticalBar", "L", 72), asList ("CloseCurly", "L", 72), asList ("Dot", "L", 72), asList ("CloseRound", "L", 72), asList ("FatRightArrow", "L", 72), asList ("RightArrow", "L", 72)),
+   asList ("ReadaheadTable", 26, asList ("Dot", "RS", 86)),
+   asList ("ReadaheadTable", 27, asList ("DotDot", "RS", 39), asList ("OpenSquare", "L", 73), asList ("Star", "L", 73), asList ("QuestionMark", "L", 73), asList ("Plus", "L", 73), asList ("And", "L", 73), asList ("Minus", "L", 73), asList ("OpenRound", "L", 73), asList ("OpenCurly", "L", 73), asList ("walkIdentifier:", "L", 73), asList ("walkString:", "L", 73), asList ("walkSymbol:", "L", 73), asList ("walkCharacter:", "L", 73), asList ("walkInteger:", "L", 73), asList ("VerticalBar", "L", 73), asList ("CloseCurly", "L", 73), asList ("Dot", "L", 73), asList ("CloseRound", "L", 73), asList ("FatRightArrow", "L", 73), asList ("RightArrow", "L", 73)),
+   asList ("ReadaheadTable", 28, asList ("walkString:", "RSN", 66), asList ("OpenCurly", "RS", 28), asList ("walkSymbol:", "RSN", 29), asList ("walkInteger:", "RSN", 74), asList ("walkCharacter:", "RSN", 74), asList ("walkIdentifier:", "RSN", 66), asList ("OpenRound", "RS", 33), asList ("CloseCurly", "L", 134), asList ("Dot", "L", 134), asList ("CloseRound", "L", 134), asList ("FatRightArrow", "L", 134), asList ("RightArrow", "L", 134)),
+   asList ("ReadaheadTable", 29, asList ("OpenSquare", "RS", 41), asList ("Star", "L", 81), asList ("QuestionMark", "L", 81), asList ("Plus", "L", 81), asList ("And", "L", 81), asList ("Minus", "L", 81), asList ("OpenRound", "L", 81), asList ("OpenCurly", "L", 81), asList ("walkIdentifier:", "L", 81), asList ("walkString:", "L", 81), asList ("walkSymbol:", "L", 81), asList ("walkCharacter:", "L", 81), asList ("walkInteger:", "L", 81), asList ("RightArrow", "L", 81), asList ("Dot", "L", 81), asList ("VerticalBar", "L", 81), asList ("CloseCurly", "L", 81), asList ("CloseRound", "L", 81), asList ("FatRightArrow", "L", 81)),
+   asList ("ReadaheadTable", 30, asList ("QuestionMark", "RS", 88), asList ("Minus", "RS", 42), asList ("Star", "RS", 89), asList ("Plus", "RS", 90), asList ("And", "RS", 43), asList ("OpenRound", "L", 75), asList ("OpenCurly", "L", 75), asList ("walkIdentifier:", "L", 75), asList ("walkString:", "L", 75), asList ("walkSymbol:", "L", 75), asList ("walkCharacter:", "L", 75), asList ("walkInteger:", "L", 75), asList ("VerticalBar", "L", 75), asList ("CloseCurly", "L", 75), asList ("Dot", "L", 75), asList ("CloseRound", "L", 75), asList ("FatRightArrow", "L", 75), asList ("RightArrow", "L", 75)),
+   asList ("ReadaheadTable", 31, asList ("VerticalBar", "RS", 44), asList ("CloseCurly", "L", 76), asList ("Dot", "L", 76), asList ("CloseRound", "L", 76), asList ("FatRightArrow", "L", 76), asList ("RightArrow", "L", 76)),
+   asList ("ReadaheadTable", 32, asList ("walkString:", "RSN", 66), asList ("OpenCurly", "RS", 28), asList ("walkSymbol:", "RSN", 29), asList ("walkInteger:", "RSN", 74), asList ("walkCharacter:", "RSN", 74), asList ("walkIdentifier:", "RSN", 66), asList ("OpenRound", "RS", 33), asList ("VerticalBar", "L", 77), asList ("CloseCurly", "L", 77), asList ("Dot", "L", 77), asList ("CloseRound", "L", 77), asList ("FatRightArrow", "L", 77), asList ("RightArrow", "L", 77)),
+   asList ("ReadaheadTable", 33, asList ("walkString:", "RSN", 66), asList ("OpenCurly", "RS", 28), asList ("walkSymbol:", "RSN", 29), asList ("walkInteger:", "RSN", 74), asList ("walkCharacter:", "RSN", 74), asList ("walkIdentifier:", "RSN", 66), asList ("OpenRound", "RS", 33), asList ("CloseCurly", "L", 134), asList ("Dot", "L", 134), asList ("CloseRound", "L", 134), asList ("FatRightArrow", "L", 134), asList ("RightArrow", "L", 134)),
+   asList ("ReadaheadTable", 34, asList ("CloseCurly", "RS", 93)),
+   asList ("ReadaheadTable", 35, asList ("FatRightArrow", "RS", 47), asList ("RightArrow", "L", 53), asList ("Dot", "L", 53)),
+   asList ("ReadaheadTable", 36, asList ("walkString:", "RSN", 66), asList ("Dot", "RS", 94), asList ("walkIdentifier:", "RSN", 66)),
+   asList ("ReadaheadTable", 37, asList ("walkString:", "RSN", 66), asList ("Dot", "RS", 95), asList ("walkIdentifier:", "RSN", 66)),
+   asList ("ReadaheadTable", 38, asList ("keep", "RSN", 85), asList ("noNode", "RSN", 85), asList ("noStack", "RSN", 85), asList ("CloseSquare", "RS", 96), asList ("read", "RSN", 85), asList ("look", "RSN", 85), asList ("stack", "RSN", 85), asList ("node", "RSN", 85), asList ("noKeep", "RSN", 85)),
+   asList ("ReadaheadTable", 39, asList ("walkInteger:", "RSN", 74), asList ("walkCharacter:", "RSN", 74)),
+   asList ("ReadaheadTable", 40, asList ("CloseCurly", "RS", 98)),
+   asList ("ReadaheadTable", 41, asList ("walkString:", "RSN", 66), asList ("walkSymbol:", "RSN", 87), asList ("walkIdentifier:", "RSN", 66), asList ("walkCharacter:", "RSN", 74), asList ("CloseSquare", "RS", 99), asList ("walkInteger:", "RSN", 74)),
+   asList ("ReadaheadTable", 42, asList ("walkSymbol:", "RSN", 29), asList ("walkString:", "RSN", 66), asList ("OpenCurly", "RS", 28), asList ("walkIdentifier:", "RSN", 66), asList ("walkCharacter:", "RSN", 74), asList ("OpenRound", "RS", 33), asList ("walkInteger:", "RSN", 74)),
+   asList ("ReadaheadTable", 43, asList ("walkString:", "RSN", 66), asList ("walkSymbol:", "RSN", 29), asList ("OpenCurly", "RS", 28), asList ("walkCharacter:", "RSN", 74), asList ("walkIdentifier:", "RSN", 66), asList ("OpenRound", "RS", 33), asList ("walkInteger:", "RSN", 74)),
+   asList ("ReadaheadTable", 44, asList ("walkString:", "RSN", 66), asList ("OpenCurly", "RS", 28), asList ("walkSymbol:", "RSN", 29), asList ("walkInteger:", "RSN", 74), asList ("walkCharacter:", "RSN", 74), asList ("walkIdentifier:", "RSN", 66), asList ("OpenRound", "RS", 33)),
+   asList ("ReadaheadTable", 45, asList ("walkString:", "RSN", 66), asList ("OpenCurly", "RS", 28), asList ("walkSymbol:", "RSN", 29), asList ("walkInteger:", "RSN", 74), asList ("walkCharacter:", "RSN", 74), asList ("walkIdentifier:", "RSN", 66), asList ("OpenRound", "RS", 33), asList ("VerticalBar", "L", 91), asList ("CloseCurly", "L", 91), asList ("Dot", "L", 91), asList ("CloseRound", "L", 91), asList ("FatRightArrow", "L", 91), asList ("RightArrow", "L", 91)),
+   asList ("ReadaheadTable", 46, asList ("CloseRound", "RS", 92)),
+   asList ("ReadaheadTable", 47, asList ("Minus", "RS", 51), asList ("walkString:", "RSN", 66), asList ("walkSymbol:", "RSN", 29), asList ("walkIdentifier:", "RSN", 66), asList ("Plus", "RS", 52), asList ("walkInteger:", "RSN", 103)),
+   asList ("ReadaheadTable", 48, asList ("keep", "RSN", 85), asList ("noNode", "RSN", 85), asList ("noStack", "RSN", 85), asList ("CloseSquare", "RS", 96), asList ("read", "RSN", 85), asList ("look", "RSN", 85), asList ("stack", "RSN", 85), asList ("node", "RSN", 85), asList ("noKeep", "RSN", 85)),
+   asList ("ReadaheadTable", 49, asList ("walkString:", "RSN", 66), asList ("walkSymbol:", "RSN", 87), asList ("walkIdentifier:", "RSN", 66), asList ("walkCharacter:", "RSN", 74), asList ("CloseSquare", "RS", 99), asList ("walkInteger:", "RSN", 74)),
+   asList ("ReadaheadTable", 50, asList ("VerticalBar", "RS", 44), asList ("CloseCurly", "L", 101), asList ("Dot", "L", 101), asList ("CloseRound", "L", 101), asList ("FatRightArrow", "L", 101), asList ("RightArrow", "L", 101)),
+   asList ("ReadaheadTable", 51, asList ("walkInteger:", "RSN", 105)),
+   asList ("ReadaheadTable", 52, asList ("walkInteger:", "RSN", 103)),
+   asList ("ReadbackTable", 53, asList (asList ("TreeBuildingOptions", 53), "RSN", 106), asList (asList ("Alternation", 35), "RSN", 107)),
+   asList ("ReadbackTable", 54, asList (asList ("Defaults", 163), "RSN", 54), asList (asList ("GrammarType", 1), "RSN", 121)),
+   asList ("ReadbackTable", 55, asList (asList ("Macro", 8), "RSN", 55), asList (asList ("Production", 10), "RSN", 55), asList (asList ("GrammarType", 1), "L", 133), asList (asList ("Defaults", 163), "L", 133)),
+   asList ("ReadbackTable", 56, asList (asList ("RepetitionOption", 45), "RSN", 56), asList (asList ("RepetitionOption", 32), "RSN", 147)),
+   asList ("ReadbackTable", 57, asList (asList ("OpenSquare", 38), "RS", 109), asList (asList ("Attribute", 48), "RSN", 57)),
+   asList ("ReadbackTable", 58, asList (asList ("OpenSquare", 41), "RS", 81), asList (asList ("SemanticActionParameter", 49), "RSN", 58)),
+   asList ("ReadbackTable", 59, asList (asList ("Plus", 52), "RS", 157), asList (asList ("FatRightArrow", 47), "L", 157)),
+   asList ("ReadbackTable", 60, asList (asList ("keywords", 3), "RS", 135), asList (asList ("Name", 11), "RSN", 60)),
+   asList ("ReadbackTable", 61, asList (asList ("LeftPart", 9), "RSN", 141), asList (asList ("RightPart", 20), "RSN", 61)),
+   asList ("ReadbackTable", 62, asList (asList ("Name", 22), "RSN", 62), asList (asList ("defaults", 13), "RS", 110)),
+   asList ("ReadbackTable", 63, asList (asList ("Name", 36), "RSN", 63), asList (asList ("defaults", 23), "RS", 111)),
+   asList ("ReadbackTable", 64, asList (asList ("Name", 37), "RSN", 64), asList (asList ("defaults", 24), "RS", 112)),
+   asList ("ReadbackTable", 65, asList (asList ("Concatenation", 50), "RSN", 108), asList (asList ("Concatenation", 31), "RSN", 155)),
+   asList ("ShiftbackTable", 66, 1, 118),
+   asList ("ShiftbackTable", 67, 1, 54),
+   asList ("ShiftbackTable", 68, 1, 125),
+   asList ("ShiftbackTable", 69, 1, 132),
+   asList ("ShiftbackTable", 70, 1, 55),
+   asList ("ShiftbackTable", 71, 2, 125),
+   asList ("ShiftbackTable", 72, 1, 113),
+   asList ("ShiftbackTable", 73, 1, 127),
+   asList ("ShiftbackTable", 74, 1, 129),
+   asList ("ShiftbackTable", 75, 1, 117),
+   asList ("ShiftbackTable", 76, 1, 128),
+   asList ("ShiftbackTable", 77, 1, 114),
+   asList ("ShiftbackTable", 78, 2, 60),
+   asList ("ShiftbackTable", 79, 3, 136),
+   asList ("ShiftbackTable", 80, 3, 137),
+   asList ("ShiftbackTable", 81, 1, 138),
+   asList ("ShiftbackTable", 82, 1, 139),
+   asList ("ShiftbackTable", 83, 2, 61),
+   asList ("ShiftbackTable", 84, 2, 62),
+   asList ("ShiftbackTable", 85, 1, 124),
+   asList ("ShiftbackTable", 86, 4, 143),
+   asList ("ShiftbackTable", 87, 1, 120),
+   asList ("ShiftbackTable", 88, 2, 144),
+   asList ("ShiftbackTable", 89, 2, 145),
+   asList ("ShiftbackTable", 90, 2, 146),
+   asList ("ShiftbackTable", 91, 1, 56),
+   asList ("ShiftbackTable", 92, 3, 127),
+   asList ("ShiftbackTable", 93, 4, 148),
+   asList ("ShiftbackTable", 94, 2, 63),
+   asList ("ShiftbackTable", 95, 2, 64),
+   asList ("ShiftbackTable", 96, 1, 57),
+   asList ("ShiftbackTable", 97, 3, 152),
+   asList ("ShiftbackTable", 98, 3, 153),
+   asList ("ShiftbackTable", 99, 1, 58),
+   asList ("ShiftbackTable", 100, 3, 154),
+   asList ("ShiftbackTable", 101, 2, 65),
+   asList ("ShiftbackTable", 102, 1, 156),
+   asList ("ShiftbackTable", 103, 1, 59),
+   asList ("ShiftbackTable", 104, 1, 158),
+   asList ("ShiftbackTable", 105, 2, 159),
+   asList ("ShiftbackTable", 106, 3, 140),
+   asList ("ShiftbackTable", 107, 1, 140),
+   asList ("ShiftbackTable", 108, 1, 65),
+   asList ("ShiftbackTable", 109, 1, 151),
+   asList ("ShiftbackTable", 110, 1, 142),
+   asList ("ShiftbackTable", 111, 2, 149),
+   asList ("ShiftbackTable", 112, 2, 150),
+   asList ("ReduceTable", 113, "Expression", asList (17, "RSN", 30), asList (18, "RSN", 30), asList (19, "RSN", 30), asList (28, "RSN", 30), asList (32, "RSN", 30), asList (33, "RSN", 30), asList (42, "RSN", 100), asList (43, "RSN", 100), asList (44, "RSN", 30), asList (45, "RSN", 30)),
+   asList ("ReduceTable", 114, "Concatenation", asList (17, "RSN", 31), asList (18, "RSN", 31), asList (19, "RSN", 31), asList (28, "RSN", 31), asList (33, "RSN", 31), asList (44, "RSN", 50)),
+   asList ("ReduceTable", 115, "LeftPart", asList (1, "RSN", 9), asList (8, "RSN", 9), asList (10, "RSN", 9), asList (163, "RSN", 9)),
+   asList ("ReduceTable", 116, "Macro", asList (1, "RSN", 8), asList (8, "RSN", 8), asList (10, "RSN", 8), asList (163, "RSN", 8)),
+   asList ("ReduceTable", 117, "RepetitionOption", asList (17, "RSN", 32), asList (18, "RSN", 32), asList (19, "RSN", 32), asList (28, "RSN", 32), asList (32, "RSN", 45), asList (33, "RSN", 32), asList (44, "RSN", 32), asList (45, "RSN", 45)),
+   asList ("ReduceTable", 118, "Name", asList (1, "RSN", 7), asList (3, "RSN", 11), asList (4, "RSN", 12), asList (6, "RSN", 16), asList (8, "RSN", 7), asList (10, "RSN", 7), asList (11, "RSN", 11), asList (13, "RSN", 22), asList (17, "RSN", 73), asList (18, "RSN", 73), asList (19, "RSN", 73), asList (163, "RSN", 7), asList (22, "RSN", 22), asList (23, "RSN", 36), asList (24, "RSN", 37), asList (28, "RSN", 73), asList (32, "RSN", 73), asList (33, "RSN", 73), asList (36, "RSN", 36), asList (37, "RSN", 37), asList (41, "RSN", 87), asList (42, "RSN", 73), asList (43, "RSN", 73), asList (44, "RSN", 73), asList (45, "RSN", 73), asList (47, "RSN", 102), asList (49, "RSN", 87)),
+   asList ("ReduceTable", 119, "Defaults", asList (1, "RSN", 163), asList (163, "RSN", 163)),
+   asList ("ReduceTable", 120, "SemanticActionParameter", asList (41, "RSN", 49), asList (49, "RSN", 49)),
+   asList ("ReduceTable", 121, "Grammar", asList (0, "RSN", 165)),
+   asList ("ReduceTable", 122, "TreeBuildingOptions", asList (47, "RSN", 53)),
+   asList ("ReduceTable", 123, "Production", asList (1, "RSN", 10), asList (8, "RSN", 10), asList (10, "RSN", 10), asList (163, "RSN", 10)),
+   asList ("ReduceTable", 124, "Attribute", asList (38, "RSN", 48), asList (48, "RSN", 48)),
+   asList ("ReduceTable", 125, "GrammarType", asList (0, "RSN", 1)),
+   asList ("ReduceTable", 126, "Rules", asList (1, "RSN", 67), asList (163, "RSN", 67)),
+   asList ("ReduceTable", 127, "Primary", asList (17, "RSN", 25), asList (18, "RSN", 25), asList (19, "RSN", 25), asList (28, "RSN", 25), asList (32, "RSN", 25), asList (33, "RSN", 25), asList (42, "RSN", 25), asList (43, "RSN", 25), asList (44, "RSN", 25), asList (45, "RSN", 25)),
+   asList ("ReduceTable", 128, "Alternation", asList (17, "RSN", 26), asList (18, "RSN", 34), asList (19, "RSN", 35), asList (28, "RSN", 40), asList (33, "RSN", 46)),
+   asList ("ReduceTable", 129, "Byte", asList (17, "RSN", 27), asList (18, "RSN", 27), asList (19, "RSN", 27), asList (28, "RSN", 27), asList (32, "RSN", 27), asList (33, "RSN", 27), asList (39, "RSN", 97), asList (41, "RSN", 87), asList (42, "RSN", 27), asList (43, "RSN", 27), asList (44, "RSN", 27), asList (45, "RSN", 27), asList (49, "RSN", 87)),
+   asList ("ReduceTable", 130, "RightPart", asList (9, "RSN", 20), asList (20, "RSN", 20)),
+   asList ("ReduceTable", 131, "SemanticAction", asList (17, "RSN", 82), asList (18, "RSN", 82), asList (19, "RSN", 82), asList (28, "RSN", 82), asList (32, "RSN", 82), asList (33, "RSN", 82), asList (42, "RSN", 82), asList (43, "RSN", 82), asList (44, "RSN", 82), asList (45, "RSN", 82), asList (47, "RSN", 104)),
+   asList ("SemanticTable", 132, buildTree, asList ("walkLeftPart:"), 115),
+   asList ("SemanticTable", 133, buildTree, asList ("walkGrammar:"), 126),
+   asList ("SemanticTable", 134, buildTree, asList ("walkEpsilon:"), 128),
+   asList ("SemanticTable", 135, buildTree, asList ("walkKeywords:"), 119),
+   asList ("SemanticTable", 136, buildTree, asList ("walkOutput:"), 119),
+   asList ("SemanticTable", 137, buildTree, asList ("walkOptimize:"), 119),
+   asList ("SemanticTable", 138, buildTree, asList ("walkSemanticAction:"), 131),
+   asList ("SemanticTable", 139, buildTree, asList ("walkNonTreeBuildingSemanticAction:"), 113),
+   asList ("SemanticTable", 140, buildTree, asList ("walkRightPart:"), 130),
+   asList ("SemanticTable", 141, buildTree, asList ("walkProduction:"), 123),
+   asList ("SemanticTable", 142, buildTree, asList ("walkAttributeDefaults:"), 119),
+   asList ("SemanticTable", 143, buildTree, asList ("walkMacro:"), 116),
+   asList ("SemanticTable", 144, buildTree, asList ("walkQuestionMark:"), 117),
+   asList ("SemanticTable", 145, buildTree, asList ("walkStar:"), 117),
+   asList ("SemanticTable", 146, buildTree, asList ("walkPlus:"), 117),
+   asList ("SemanticTable", 147, buildTree, asList ("walkConcatenation:"), 114),
+   asList ("SemanticTable", 148, buildTree, asList ("walkLeftPartWithLookahead:"), 115),
+   asList ("SemanticTable", 149, buildTree, asList ("walkAttributeTerminalDefaults:"), 119),
+   asList ("SemanticTable", 150, buildTree, asList ("walkAttributeNonterminalDefaults:"), 119),
+   asList ("SemanticTable", 151, buildTree, asList ("walkAttributes:"), 113),
+   asList ("SemanticTable", 152, buildTree, asList ("walkDotDot:"), 127),
+   asList ("SemanticTable", 153, buildTree, asList ("walkLook:"), 127),
+   asList ("SemanticTable", 154, buildTree, asList ("walkMinus:"), 117),
+   asList ("SemanticTable", 155, buildTree, asList ("walkOr:"), 128),
+   asList ("SemanticTable", 156, buildTree, asList ("walkBuildTreeOrTokenFromName:"), 122),
+   asList ("SemanticTable", 157, buildTree, asList ("walkBuildTreeFromLeftIndex:"), 122),
+   asList ("SemanticTable", 158, buildTree, asList ("walkTreeBuildingSemanticAction:"), 122),
+   asList ("SemanticTable", 159, buildTree, asList ("walkBuildTreeFromRightIndex:"), 122),
+   asList ("SemanticTable", 160, processTypeNow, asList ("Scanner"), 68),
+   asList ("SemanticTable", 161, processTypeNow, asList ("SuperScanner"), 68),
+   asList ("SemanticTable", 162, processTypeNow, asList ("Parser"), 68),
+   asList ("SemanticTable", 163, processAndDiscardDefaultsNow, asList (), 21),
+   asList ("SemanticTable", 164, processTypeNow, asList ("SuperScanner"), 71),
+   asList ("AcceptTable", 165));}
