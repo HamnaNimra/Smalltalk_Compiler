@@ -13,7 +13,9 @@ To learn more about Smalltalk compilation please visit: https://en.wikipedia.org
 ### Installation and Setup in Windows 10
 
   Git Clone https://github.com/HamnaNimra/Smalltalk_Compiler.git
+  
   cd Smalltalk_Compiler/Smalltalk
+  
   Open "SETUP INSTRUCTIONS" and follow.
 
 ### Run
