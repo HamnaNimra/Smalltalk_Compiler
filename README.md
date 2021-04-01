@@ -10,13 +10,13 @@
 
 To learn more about Smalltalk compilation please visit: https://en.wikipedia.org/wiki/Smalltalk 
 
-## Installation and Setup in Windows 10
+### Installation and Setup in Windows 10
 
-Git Clone https://github.com/HamnaNimra/Smalltalk_Compiler.git
-cd Smalltalk_Compiler/Smalltalk
-Open "SETUP INSTRUCTIONS" and follow.
+1) Git Clone https://github.com/HamnaNimra/Smalltalk_Compiler.git	
+2) cd Smalltalk_Compiler/Smalltalk
+3) Open "SETUP INSTRUCTIONS" and follow.
 
-## Run
+### Run
 
 ./VDEVW.exe
 
